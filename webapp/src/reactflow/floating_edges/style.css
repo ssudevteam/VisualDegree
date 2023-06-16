@@ -1,0 +1,24 @@
+path.react-flow__edge-path {
+    background: darkgray;
+    stroke-width: 2;
+}
+
+path.react-flow__edge-path:hover {
+    background: gray;
+    stroke-width: 2;
+}
+
+.react-flow__handle {
+    background: darkgray;
+    z-index: 999;
+    border: none;
+    border-radius:0;
+    width: 5px;
+    height: 38px;
+    stroke-width: 1;
+    opacity: 100%;
+}
+
+.react-flow__handle:hover {
+    background: gray;
+}

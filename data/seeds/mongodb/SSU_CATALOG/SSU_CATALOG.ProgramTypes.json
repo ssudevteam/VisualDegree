@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09fea"
+  },
+  "name": "Minor"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09feb"
+  },
+  "name": "Masters"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09fec"
+  },
+  "name": "Concentration"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09fed"
+  },
+  "name": "Sample Four-Year Plans"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09fee"
+  },
+  "name": "Major"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09fef"
+  },
+  "name": "Certificate"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09ff0"
+  },
+  "name": "Credential"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09ff1"
+  },
+  "name": "Added Authorization"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09ff2"
+  },
+  "name": "Sample Two-Year Transfer Plans"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09ff3"
+  },
+  "name": "Other Programs"
+},
+{
+  "_id": {
+    "$oid": "64796e0ad4ea07c70ad09ff4"
+  },
+  "name": "Pathway"
+}]

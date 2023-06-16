@@ -1,0 +1,118 @@
+.banner-bar-block .banner-bar-item {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0
+}
+
+.banner-bar {
+    width: 100%;
+    overflow: hidden
+}
+
+.banner-bar .banner-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0
+}
+
+.banner-bar, .banner-bar {
+    position: static;
+    float: left
+}
+
+.banner-bar .banner-button {
+    white-space: normal
+}
+
+.banner {
+    z-index: 0;
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-height: 45px;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    box-sizing: border-box;
+}
+
+.banner-button {
+    order: -1;
+    height: 100%;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.banner-content {
+    align-items: center;
+    margin-left: 10px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner-opacity {
+    animation: opac 0.8s
+}
+
+.banner-top {
+    position: relative;
+    animation: animatetop 0.4s
+}
+
+.banner-right {
+    position: relative;
+    animation: animateright 0.4s
+}
+
+.banner-bottom {
+    position: relative;
+    animation: animatebottom 0.4s
+}
+
+.banner-zoom {
+    animation: animatezoom 0.6s
+}
+
+.banner-input {
+    transition: width 0.4s ease-in-out
+}
+
+.banner-input:focus {
+    width: 100% !important
+}
+
+.banner-large {
+    font-size: 18px !important
+}
+
+.banner-xlarge {
+    font-size: 24px !important
+}
+
+.banner-button {
+    color: #fff;
+    background-color: #004c98 !important;
+    margin-right: 10px;
+    /*height: 5%;*/
+}
+
+.banner-button:hover {
+    background-color: #003178 !important
+}
+
+.banner-sonoma {
+    color: #fff !important;
+    background-color: #004c98 !important
+}

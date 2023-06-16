@@ -1,0 +1,294 @@
+[{
+  "_id": {
+    "$oid": "6479429608db5d81e7110197"
+  },
+  "name": "American Multicultural Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e7110198"
+  },
+  "name": "Anthropology",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e7110199"
+  },
+  "name": "Art and Art History",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e711019a"
+  },
+  "name": "Biology",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e711019b"
+  },
+  "name": "Business Administration",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e711019c"
+  },
+  "name": "Chemistry",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e711019d"
+  },
+  "name": "Chicano and Latino Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e711019e"
+  },
+  "name": "Communication and Media Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e711019f"
+  },
+  "name": "Computer Science",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a0"
+  },
+  "name": "Counseling",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a1"
+  },
+  "name": "Criminology and Criminal Justice Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a2"
+  },
+  "name": "Economics",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a3"
+  },
+  "name": "Education: Curriculum Studies & Secondary Education (CSSE)",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a4"
+  },
+  "name": "Education: Early Childhood Studies (ECS)",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a5"
+  },
+  "name": "Education: Educational Leadership and Special Education (ELSE)",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a6"
+  },
+  "name": "Education: Literacy Studies and Elementary Education (LSEE)",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a7"
+  },
+  "name": "Engineering",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a8"
+  },
+  "name": "English",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101a9"
+  },
+  "name": "Film Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101aa"
+  },
+  "name": "Geography, Environment and Planning",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101ab"
+  },
+  "name": "Geology",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101ac"
+  },
+  "name": "Global Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101ad"
+  },
+  "name": "History",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101ae"
+  },
+  "name": "Human Development",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101af"
+  },
+  "name": "Hutchins School of Liberal Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b0"
+  },
+  "name": "Interdisciplinary Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b1"
+  },
+  "name": "Jewish Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b2"
+  },
+  "name": "Kinesiology",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b3"
+  },
+  "name": "Linguistics",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b4"
+  },
+  "name": "Mathematics and Statistics",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b5"
+  },
+  "name": "Modern Languages and Literatures",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b6"
+  },
+  "name": "Music",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b7"
+  },
+  "name": "Native American Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b8"
+  },
+  "name": "Nursing",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101b9"
+  },
+  "name": "Philosophy",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101ba"
+  },
+  "name": "Physics and Astronomy",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101bb"
+  },
+  "name": "Political Science",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101bc"
+  },
+  "name": "Psychology",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101bd"
+  },
+  "name": "School of Extended and International Education",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101be"
+  },
+  "name": "Sociology",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101bf"
+  },
+  "name": "Theatre Arts & Dance",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+},
+{
+  "_id": {
+    "$oid": "6479429608db5d81e71101c0"
+  },
+  "name": "Women's and Gender Studies",
+  "url": "https://catalog.sonoma.edu/content.php?catoid=9&navoid=1180"
+}]
