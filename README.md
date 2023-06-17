@@ -14,8 +14,6 @@ As of now, I don't know how to do hot reloading. I think it can be done with vit
 2. npm run build:webapp
 3. 'node app' starts the express server
 
-Redoing the routine will be easy. Just need to have build:website clear './public/website' and likewise for webapp
-
 # Routes:
 
 - / - Index, shows landingPage
@@ -24,7 +22,7 @@ Redoing the routine will be easy. Just need to have build:website clear './publi
 
 # Directory Map:
 
-/public/\* -Viteified source files
-/scripts - Various scripts we might need to run for development
-/webapp - Codebase for the 1 page webapp
-/website - Codebase for the multi page website: landingPage... we'll add a signUp page, etc.
+/public/\* -Viteified source files  
+/scripts - Various scripts we might need to run for development  
+/webapp - Codebase for the 1 page webapp  
+/website - Codebase for the multi page website: landingPage... we'll add a signUp page, etc.  
