@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { OverlayTrigger, Button, Popover } from "react-bootstrap";
-import { Handle, Position } from "reactflow";
+import { Handle, Position, useStore } from "reactflow";
 import "../../reactflow/floating_edges/style.css";
+import "../../../css/customNodes.css";
+import ModeContext from "../FlowContexts/ModeContext";
+
+const connectionNodeIdSelector = (state) => state.connectionNodeId;
 
 const CourseNode = ({ data, isConnectable }) => {
   const [showPopover, setShowPopover] = useState(false);
+  const connectionNodeId = useStore(connectionNodeIdSelector);
+  const isConnecting = !!connectionNodeId;
+  const { mode } = useContext(ModeContext);
 
+  // refactor to useEffect
   document.addEventListener("keydown", (event) => {
     if (event.key.toLowerCase() === "escape" || event.code === "27") {
       handleClosePopover();
@@ -13,7 +21,9 @@ const CourseNode = ({ data, isConnectable }) => {
   });
 
   const handleNodeClick = () => {
-    setShowPopover(!showPopover);
+    if (mode !== "move") {
+      setShowPopover(!showPopover);
+    }
   };
 
   const handleClosePopover = () => {
@@ -40,21 +50,24 @@ const CourseNode = ({ data, isConnectable }) => {
 
   return (
     <>
+      {!isConnecting && (
+        <Handle
+          type="source"
+          position={Position.Right}
+          className="courseHandle"
+          id="a" // does this mean all the handles have the same Ids?
+          onConnect={(params) => console.log("handle onConnect", params)}
+          isConnectable={isConnectable}
+        />
+      )}
       <Handle
         type="target"
         position={Position.Left}
-        style={{
-          background: "transparent",
-        }}
+        className="courseHandle"
         isConnectable={isConnectable}
+        isConnectableStart={false}
       />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="a"
-        onConnect={(params) => console.log("handle onConnect", params)}
-        isConnectable={isConnectable}
-      />
+
       <div
         className="node-wrapper"
         onClick={handleNodeClick}

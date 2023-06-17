@@ -12,10 +12,13 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import CourseNode from "../FlowNodes/CourseNode";
 import FlowButtonPanel from "./FlowButtonPanel";
+import ModeContext from "../../components/FlowContexts/ModeContext";
 
 import csNodes from "../../reactflow/data/cs_flow_nodes";
 import FloatingEdge from "../../reactflow/floating_edges/FloatingEdge";
-import FloatingConnectionLine from "../../reactflow/floating_edges/FloatingConnectionLine.jsx";
+import FloatingConnectionLine from "../../reactflow/floating_edges/FloatingConnectionLine";
+import ModeSelector from "../UserSettings/ModeSelector";
+
 import "../../reactflow/floating_edges/style.css";
 import "../../../css/flow.css";
 
@@ -43,7 +46,15 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [rfInstance, setRfInstance] = useState(forwardRef);
+  const [mode, setMode] = useState("move"); // Default mode
+
   const { setViewport } = useReactFlow();
+
+  //   const onMouseMove = (event) => {
+  //     if (mode === "select") {
+  //       // Implement your custom selection box logic here
+  //     }
+  //   };
 
   const onConnect = useCallback(
     (params) =>
@@ -96,26 +107,33 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
       }}
       {...props}
     >
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onInit={setRfInstance}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        connectionLineComponent={FloatingConnectionLine}
-        // fitViewport={true}
-      >
-        <FlowButtonPanel
-          onAddNode={onAdd}
-          onChange={onCanvasChange}
-          flowInstance={rfInstance}
-        />
-        <Controls />
-        <Background />
-      </ReactFlow>
+      <ModeContext.Provider value={{ mode }}>
+        <ModeSelector setMode={setMode} />
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onInit={setRfInstance}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          connectionLineComponent={FloatingConnectionLine}
+          nodesDraggable={mode === "move"} // Only allow dragging nodes in 'move' mode
+          nodesConnectable={mode === "connect"} // Only allow connecting nodes in 'connect' mode
+          connectionRadius={80}
+          // onPaneClick={(event) => mode === 'move' && onMouseMove(event)} // Custom behavior in 'move' mode
+          // fitViewport={true}
+        >
+          <FlowButtonPanel
+            onAddNode={onAdd}
+            onChange={onCanvasChange}
+            flowInstance={rfInstance}
+          />
+          <Controls />
+          <Background />
+        </ReactFlow>
+      </ModeContext.Provider>
     </div>
   );
 });
