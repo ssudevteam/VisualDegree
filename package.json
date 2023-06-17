@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm run build:website && npm run build:webapp && node app",
     "build:website": "rimraf ./public/website && vite build -c website/vite.config.js && node scripts/website/postbuild",
-    "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts"
+    "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts",
+    "test": "vite serve -c webapp/vite.config.ts"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
