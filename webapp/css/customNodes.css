@@ -1,0 +1,5 @@
+.react-flow__node-courseNode.selected .node-wrapper {
+  box-shadow: 0 0 5px #add8e6, 0 0 10px #add8e6;
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
