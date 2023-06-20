@@ -8,6 +8,7 @@ import ReactFlow, {
   MarkerType,
   Background,
   Controls,
+  SelectionMode,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import CourseNode from "../FlowNodes/CourseNode";
@@ -122,6 +123,7 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
           nodesDraggable={mode === "move"} // Only allow dragging nodes in 'move' mode
           nodesConnectable={mode === "connect"} // Only allow connecting nodes in 'connect' mode
           connectionRadius={80}
+          selectionMode={SelectionMode.Partial}
           // onPaneClick={(event) => mode === 'move' && onMouseMove(event)} // Custom behavior in 'move' mode
           // fitViewport={true}
         >
@@ -131,7 +133,7 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
             flowInstance={rfInstance}
           />
           <Controls />
-          <Background />
+          <Background size="1" />
         </ReactFlow>
       </ModeContext.Provider>
     </div>

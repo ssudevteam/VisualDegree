@@ -11,6 +11,7 @@ path.react-flow__edge-path {
   border: 2px solid blue;
 }
 
+
 .react-flow__handle {
   background: darkgray;
   z-index: 999;
