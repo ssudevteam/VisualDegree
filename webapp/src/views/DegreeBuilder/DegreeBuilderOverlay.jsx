@@ -1,10 +1,12 @@
 import React, { createRef, useState, useEffect, useCallback } from "react";
 import Banner from "../../components/Banner";
 import Sidebar from "../../components/Sidebar";
+import Navbar from "../../components/Navbar";
 import FontSelector from "../../components/UserSettings/FontSelector";
 import LanguageSelector from "../../components/UserSettings/LanguageSelector";
 import csNodes from "../../reactflow/data/cs_flow_nodes";
 import "../../../css/banner.css";
+import "../../../css/navbar.css";
 import "../../../css/sidebar.css";
 
 const DegreeBuilderOverlay = (props) => {
@@ -299,6 +301,27 @@ const DegreeBuilderOverlay = (props) => {
     );
   };
 
+  const renderNavbar = () => {
+    return (
+      <Navbar id="builderNavbar" className="navbar navbar-material">
+        <div className="container" style={{ alignItems: "left" }}>
+          <div className="navbarItem selected" style={{ marginTop: 0 }}>
+            <span>Major</span>
+          </div>
+          <div className="navbarItem" style={{ marginTop: 0 }}>
+            GE
+          </div>
+          <div className="navbarItem" style={{ marginTop: 0 }}>
+            Catalog
+          </div>
+          <div className="navbarItem" style={{ marginTop: 0 }}>
+            My Semester
+          </div>
+        </div>
+      </Navbar>
+    );
+  };
+
   const renderSidebar = () => {
     return (
       <Sidebar
@@ -330,6 +353,7 @@ const DegreeBuilderOverlay = (props) => {
   return (
     <div id="builderOverlay" className="builder-overlay" {...props}>
       {renderBanner()}
+      {renderNavbar()}
       {renderSidebar()}
     </div>
   );
