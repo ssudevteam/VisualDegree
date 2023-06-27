@@ -6,7 +6,7 @@ const { ApolloClient, InMemoryCache, gql } = require("@apollo/client");
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache(),
-});
+}); 
 
 // Api access point 
 router.get("/", (req, res) => {
