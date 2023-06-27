@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+const { gql } = require('@apollo/client');
 
 const GET_COURSE = gql`
   query GetCourse($id: ID!) {
@@ -13,17 +13,13 @@ const GET_COURSE = gql`
       ge_category
       prerequisites
       url
-      department {
-        id
-        name
-        url
-      }
     }
   }
 `;
 
-const GET_COURSES = gql`
+const  GET_COURSES = gql`
   query GetCourses {
+    courses {
       id
       title
       prefix
@@ -39,13 +35,14 @@ const GET_COURSES = gql`
         name
         url
       }
+    }
   }
 `;
 
 const GET_COURSES_BY_DEPARTMENT = gql`
   query GetCoursesByDepartment($departmentId: ID!) {
     coursesByDepartment(departmentId: $departmentId) {
-      id
+      ids
       title
       prefix
       header
@@ -61,7 +58,7 @@ const GET_COURSES_BY_DEPARTMENT = gql`
         url
       }
     }
-  }
+}
 `;
 
-export { GET_COURSE, GET_COURSES, GET_COURSES_BY_DEPARTMENT };
+module.exports = { GET_COURSE, GET_COURSES, GET_COURSES_BY_DEPARTMENT };

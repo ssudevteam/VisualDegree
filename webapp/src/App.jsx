@@ -1,5 +1,7 @@
 import React, { createRef } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DegreeBuilderView from "./views/DegreeBuilder/DegreeBuilderView";
+import DbHomeView from "./views/DbAccess/DbHomeView";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "../css/App.css";
 
@@ -47,15 +49,22 @@ const client = new ApolloClient({
     cache,
 });
 
-export default function App() {
-    const degreeBuilderRef = createRef();
+function App() {
+  const degreeBuilderRef = React.useRef();
+  const DbHomeRef = React.useRef();
 
-    return (
-        <>
-            <ApolloProvider client={client}></ApolloProvider>
-            <div id="appWindow" className="app-window">
-                <DegreeBuilderView forwardRef={degreeBuilderRef} />
-            </div>
-        </>
-    );
+  return (
+    <ApolloProvider client={client}>
+      <Router>
+        <div id="appWindow" className="app-window">
+          <Routes>
+            <Route path="/app" element={<DegreeBuilderView forwardRef={degreeBuilderRef} />} />
+            <Route path="/api" element={<DbHomeView forwardRef={DbHomeRef} />} />
+          </Routes>
+        </div>
+      </Router>
+    </ApolloProvider>
+  );
 }
+
+export default App;
