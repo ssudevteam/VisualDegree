@@ -17,7 +17,7 @@ const CourseRow = ({ course, handleButtonClick }) => {
       <tr>
         <td></td>
         <td>{course.title}</td>
-        <td className="units">{course.num_units}</td> {/* Add class "units" */}
+        <td>{course.num_units}</td>
         <td>{course.code}</td>
         <td>{course.ge_category}</td>
         <td>
