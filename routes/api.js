@@ -4,7 +4,7 @@ const path = require("path");
 const { ApolloClient, InMemoryCache, gql } = require("@apollo/client");
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 }); 
 
@@ -18,34 +18,34 @@ const {
   GET_COURSE,
   GET_COURSES,
   GET_COURSES_BY_DEPARTMENT
-} = require("../webapp/src/client/queries/courseQueries");
+} = require("../database/client/queries/courseQueries");
 
 const {
   GET_DEPARTMENT,
   GET_DEPARTMENTS
-} = require("../webapp/src/client/queries/departmentQueries.js");
+} = require("../database/client/queries/departmentQueries.js");
 
 const {
   GET_PROGRAM,
   GET_PROGRAMS, 
   GET_PROGRAMS_BY_PROGRAM_TYPE
-} = require("../webapp/src/client/queries/programQueries.js");
+} = require("../database/client/queries/programQueries.js");
 
 const {
   GET_PROGRAM_DISTINCT,
   GET_PROGRAM_DISTINCTS
-} = require("../webapp/src/client/queries/programtypesQueries.js");
+} = require("../database/client/queries/programtypesQueries.js");
 
 const {
   GET_SCHEDULE,
   GET_SCHEDULES
-} = require("../webapp/src/client/queries/scheduleQueries.js");
+} = require("../database/client/queries/scheduleQueries.js");
 
 const {
   GET_USER,
   GET_USERS,
   GET_USERS_IN_MAJOR
-} = require("../webapp/src/client/queries/userQueries.js");
+} = require("../database/client/queries/userQueries.js");
 
 router.get("/course/:id", (req, res) => {
   const { id } = req.params;
