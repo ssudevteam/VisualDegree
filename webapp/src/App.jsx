@@ -28,7 +28,7 @@ const cache = new InMemoryCache({
                     merge(existing, incoming) {
                         return incoming;
                     },
-                },
+                }, 
                 programType: {
                     merge(existing, incoming) {
                         return incoming;

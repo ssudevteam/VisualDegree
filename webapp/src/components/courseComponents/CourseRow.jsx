@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CourseModal from "./CourseModal";
 
-export default function CourseRow({ course, handleButtonClick }) {
+const CourseRow = ({ course, handleButtonClick }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -15,6 +15,11 @@ export default function CourseRow({ course, handleButtonClick }) {
   return (
     <>
       <tr>
+        <td></td>
+        <td>{course.title}</td>
+        <td className="units">{course.num_units}</td> {/* Add class "units" */}
+        <td>{course.code}</td>
+        <td>{course.ge_category}</td>
         <td>
           <div>
             <button
@@ -26,14 +31,10 @@ export default function CourseRow({ course, handleButtonClick }) {
             </button>
           </div>
         </td>
-        <td>{course.title}</td>
-        <td>{course.num_units}</td>
-        <td>{course.code}</td>
-        <td>{course.ge_category}</td>
       </tr>
-      {modalOpen && (
-        <CourseModal courseId={course.id} closeModal={closeModal} />
-      )}
+      {modalOpen && <CourseModal courseId={course.id} closeModal={closeModal} />}
     </>
   );
-}
+};
+
+export default CourseRow;

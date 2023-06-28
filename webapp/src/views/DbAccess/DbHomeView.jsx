@@ -8,7 +8,13 @@ const DbHomeView = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      id="builderView"
+      className="builder-view"
+      style={{
+        backgroundColor: "whitesmoke",
+      }}
+    >
       <DbHomeOverlay />
     </div>
   );
