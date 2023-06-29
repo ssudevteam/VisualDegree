@@ -1,3 +1,4 @@
 20230620	13:13:06	607c4a08-bee6-4acd-aaa7-fc21f2488e80	Error: ENOENT: no such file or directory, stat '/Users/jordannakamoto/Documents/Programming/SpringProjects/VisualDegree/views/404.html'	GET	/favicon.ico	undefined
 20230628	05:33:51	b5969928-6d8b-4fa6-965c-baa51a645e3c	Error: ENOENT: no such file or directory, stat 'C:\Users\harri\Desktop\VisualDegree\views\404.html'	GET	/favicon.ico	undefined
 20230628	05:36:35	90fbe3bf-8ca7-4d89-9ef5-d30e068a8e81	Error: ENOENT: no such file or directory, stat 'C:\Users\harri\Desktop\VisualDegree\views\404.html'	GET	/Courses	undefined
+20230628	21:27:43	a10182dc-e16d-42ef-95ae-dc7c78ad3d58	Error: ENOENT: no such file or directory, stat 'C:\Users\harri\Desktop\VisualDegree\views\404.html'	GET	/api/degrees	undefined
