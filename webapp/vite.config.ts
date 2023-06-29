@@ -7,6 +7,27 @@ export default defineConfig({
   resolve: {},
   server: {
     port: 4000,
+    proxy: {
+      "/app": "http://localhost:4000/webapp/app",
+      "/api/": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      "/api": {
+        target: "http://localhost:4000/webapp/api",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+        rewrite: (path) => {
+          if (path.startsWith("/api/programs")) {
+            return path.replace(/^\/api\/programs/, "");
+          }
+          return path;
+        },
+      },
+    },
   },
   root: "./webapp", // move the root from the root directory to web
   base: "/webapp",

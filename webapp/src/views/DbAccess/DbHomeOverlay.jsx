@@ -147,7 +147,6 @@ const DhHomeOverlay = (props) => {
     );
   };
 
-
   const handleDegreeSelect = async (event) => {
     const degree = event.target.value;
     setSelectedDegree(degree);
