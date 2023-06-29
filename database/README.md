@@ -12,11 +12,6 @@ The server connects to a MongoDB database using Mongoose for data storage and re
 2. Navigate to the project directory: `cd <project-directory>`
 3. Install the dependencies: `npm install`
 
-## Configuration
-
-1. Create a `.env` file in the root directory of the project.
-2. Define the following environment variables in the `.env` file:
-
 ```
 PORT=<port-number>
 MONGODB_URI=<mongodb-connection-uri>
@@ -25,9 +20,10 @@ NODE_ENV=<development-or-production>
 
 ## Usage
 
-1. Start the server using nodemon: `npm run dev`
-2. Access the Apollo Sandbox at `https://studio.apollographql.com/sandbox/explorer` in your web browser.
-3. Make sure the Sandbox is on `http://localhost:<port-number>/graphql`
+1. Start the server using nodemon: `npm run create-env`
+2. Start the server using nodemon: `npm run dev`
+3. Access the Apollo Sandbox for testing at `https://studio.apollographql.com/sandbox/explorer` in your web browser.
+4. Make sure the Sandbox is on `http://localhost:<port-number>/graphql`
 
 ## API Endpoint - Refer to gist files for possible implementation in Sandbox
 
@@ -132,9 +128,5 @@ The GraphQL schema defines the available types and operations:
 - All CRUD functionality for all types
 
 ### NEEDED CONFIG
-
-- Currenly the db connection is hardcoded for developement 
-    however, in the future the db connection string
-    needs to use the .env file by using process.env.MONGO_URL in the .env file
 - Currently type-defs and resolvers are in the same file however in the future
      these should be seperated into respective files and exported.

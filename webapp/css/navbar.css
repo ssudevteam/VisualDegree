@@ -34,3 +34,13 @@
   margin-bottom: -4px;
   border-bottom: solid 2px grey;
 }
+
+.navbarLink {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbarLink:hover {
+  text-decoration: underline;
+}

@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DegreeBuilderView from "./views/DegreeBuilder/DegreeBuilderView";
 import DbHomeView from "./views/DbAccess/DbHomeView";
@@ -28,7 +28,7 @@ const cache = new InMemoryCache({
                     merge(existing, incoming) {
                         return incoming;
                     },
-                },
+                }, 
                 programType: {
                     merge(existing, incoming) {
                         return incoming;
@@ -45,7 +45,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-    uri: "http://localhost:5000/graphql",
+    uri: "http://localhost:8000/graphql",
     cache,
 });
 

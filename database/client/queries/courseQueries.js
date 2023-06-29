@@ -42,7 +42,7 @@ const  GET_COURSES = gql`
 const GET_COURSES_BY_DEPARTMENT = gql`
   query GetCoursesByDepartment($departmentId: ID!) {
     coursesByDepartment(departmentId: $departmentId) {
-      ids
+      id
       title
       prefix
       header

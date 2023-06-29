@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import CourseModal from "./CourseModal";
+import DepartmentModal from "./DepartmentModal";
 
-export default function CourseRow({ course, handleButtonClick }) {
+const DepartmentRow = ({ department, handleButtonClick }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -15,6 +15,7 @@ export default function CourseRow({ course, handleButtonClick }) {
   return (
     <>
       <tr>
+        <td>{department.name}</td>
         <td>
           <div>
             <button
@@ -22,18 +23,14 @@ export default function CourseRow({ course, handleButtonClick }) {
               className="btn btn-secondary"
               onClick={openModal}
             >
-              Course Info
+              Department Info
             </button>
           </div>
         </td>
-        <td>{course.title}</td>
-        <td>{course.num_units}</td>
-        <td>{course.code}</td>
-        <td>{course.ge_category}</td>
       </tr>
-      {modalOpen && (
-        <CourseModal courseId={course.id} closeModal={closeModal} />
-      )}
+      {modalOpen && <DepartmentModal departmentId={department.id} closeModal={closeModal} />}
     </>
   );
-}
+};
+
+export default DepartmentRow;
