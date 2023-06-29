@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 import Banner from "../../components/Banner";
 import Navbar from "../../components/Navbar";
-import Courses from "../../components/courseComponents/Courses";
+import Courses from "../../components/DbAccessComponents/courseComponents/Courses";
+
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
 import "../../../css/sidebar.css";
-import "../../../css/courses.css";
+import "../../../css/DbAccessData.css";
 
 const DhHomeOverlay = (props) => {
   const [degreeName, setDegreeName] = useState("");
@@ -17,6 +18,10 @@ const DhHomeOverlay = (props) => {
 
   useEffect(() => {
     handleNavOpen();
+    window.addEventListener("resize", handleNavOpen);
+    return () => {
+      window.removeEventListener("resize", handleNavOpen);
+    };
   }, []);
 
   const handleNavOpen = () => {

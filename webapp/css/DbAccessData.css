@@ -1,0 +1,25 @@
+.table-container {
+    overflow-y: auto;
+    max-height: 90vh;
+    width: 100%;
+  }
+  
+  .table-container td {
+    padding: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .table-container th:first-child,
+  .table-container td:first-child {
+    text-align: left;
+    direction: rls;
+  }
+  
+  .table-container .btn {
+    padding: 5px;
+    font-size: 10px;
+  }
+  

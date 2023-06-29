@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "../../components/Spinner";
-import CourseRow from "../../components/courseComponents/CourseRow";
-import "../../../css/courses.css"; // Update the CSS file path
+import Spinner from "../../Spinner";
+import CourseRow from "../courseComponents/CourseRow";
+import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
 const Courses = (props) => {
   const [loading, setLoading] = useState(true);

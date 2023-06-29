@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../Spinner";
 
 export default function CourseModal({ courseId, closeModal }) {
   const [loading, setLoading] = useState(true);
