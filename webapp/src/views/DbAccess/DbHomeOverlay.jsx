@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 import Banner from "../../components/Banner";
 import Navbar from "../../components/Navbar";
+import csNodes from "../../reactflow/data/cs_flow_nodes";
+
 import Courses from "../../components/DbAccessComponents/courseComponents/Courses";
+import Programs from "../../components/DbAccessComponents/programComponents/Programs";
+import Departments from "../../components/DbAccessComponents/departmentComponents/Departments";
 
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
@@ -12,6 +16,8 @@ import "../../../css/DbAccessData.css";
 const DhHomeOverlay = (props) => {
   const [degreeName, setDegreeName] = useState("");
   const [showCourses, setShowCourses] = useState(false);
+  const [showPrograms, setShowPrograms] = useState(false);
+  const [showDepartments, setShowDepartments] = useState(false);
   const [selectedDegree, setSelectedDegree] = useState("");
   const [courseList, setCourseList] = useState([]);
   const degreeList = ["Computer Science", "Other Degrees"];
@@ -46,7 +52,20 @@ const DhHomeOverlay = (props) => {
 
   const handleCoursesClick = () => {
     setShowCourses(true);
-    renderCourseListBox();
+    setShowPrograms(false); // Reset showPrograms state to false
+    setShowDepartments(false);
+  };
+
+  const handleProgramsClick = () => {
+    setShowPrograms(true);
+    setShowCourses(false); // Reset showCourses state to false
+    setShowDepartments(false);
+  };
+
+  const handleDepartmentsClick = () => {
+    setShowDepartments(true);
+    setShowCourses(false); // Reset showCourses state to false
+    setShowPrograms(false); // Reset showPrograms state to false
   };
 
   const renderBanner = () => {
@@ -83,10 +102,16 @@ const DhHomeOverlay = (props) => {
     return (
       <Navbar id="builderNavbar" className="navbar navbar-material">
         <div className="container" style={{ alignItems: "left" }}>
-          <div className="navbarItem selected">
-            <span>Programs</span>
+          <div className="navbarItem">
+            <span className="navbarLink" onClick={handleProgramsClick}>
+              Programs
+            </span>
           </div>
-          <div className="navbarItem">Departments</div>
+          <div className="navbarItem">
+            <span className="navbarLink" onClick={handleDepartmentsClick}>
+              Departments
+            </span>
+          </div>
           <div className="navbarItem">
             <span className="navbarLink" onClick={handleCoursesClick}>
               Courses
@@ -100,11 +125,11 @@ const DhHomeOverlay = (props) => {
 
   const updateCourseListCallback = React.useCallback((degree) => {
     if (degree === "Computer Science") {
-      setCourseList(csNodes);
+      setCourseList(csNodes); // Assuming csNodes is defined elsewhere
     } else {
       setCourseList([]);
     }
-  }, []);
+  }, [csNodes]);
 
   const handleDegreeSelect = async (event) => {
     const degree = event.target.value;
@@ -196,12 +221,13 @@ const DhHomeOverlay = (props) => {
 
   return (
     <div id="builderOverlay" className="builder-overlay" {...props}>
-      <Sidebar id="builderSidebar">
-        {degreeSelectBox()}
-      </Sidebar>
+      <Sidebar id="builderSidebar">{degreeSelectBox()}</Sidebar>
       {renderBanner()}
       {renderNavbar()}
       {showCourses && <Courses />}
+      {showPrograms && <Programs />}
+      {showDepartments && <Departments />}
+      {renderCourseListBox()}
     </div>
   );
 };
