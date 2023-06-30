@@ -38,19 +38,12 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.22.5",
     "glob": "^10.2.7",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
     "vite-plugin-html-purgecss": "^0.1.1",
     "vite-plugin-static-copy": "^0.16.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
