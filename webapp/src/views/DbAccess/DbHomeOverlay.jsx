@@ -80,7 +80,7 @@ const DhHomeOverlay = () => {
     setShowCourses(false);
     setShowDepartments(false);
     setShowProgramCourses(false);
-    setDegreeName(""); // Clear the degree name when switching to programs
+    setDegreeName(""); 
   };
 
   const handleDepartmentsClick = () => {
@@ -88,7 +88,7 @@ const DhHomeOverlay = () => {
     setShowCourses(false);
     setShowPrograms(false);
     setShowProgramCourses(false);
-    setDegreeName(""); // Clear the degree name when switching to departments
+    setDegreeName("");
   };
 
   const handleProgramCoursesClick = (programId, programName) => {
