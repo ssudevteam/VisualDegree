@@ -44,3 +44,5 @@
 20230629	02:32:41	670b9a60-2dca-4748-ab97-d0a902ee1805	Error: ENOENT: no such file or directory, stat '/Users/jordannakamoto/Documents/Programming/SpringProjects/VisualDegree/views/404.html'	GET	/api/programs/api	undefined
 20230629	02:34:15	d6d71807-b534-4ebe-8110-887d573c48cb	Error: ENOENT: no such file or directory, stat '/Users/jordannakamoto/Documents/Programming/SpringProjects/VisualDegree/views/404.html'	GET	/api/programs/api	undefined
 20230629	02:35:26	6390887d-55b6-4073-8200-3655bf34930c	Error: ENOENT: no such file or directory, stat '/Users/jordannakamoto/Documents/Programming/SpringProjects/VisualDegree/views/404.html'	GET	/webapp/api	undefined
+20230630	01:01:09	bb589bc8-ba1a-4ec0-97af-a6a315cba051	Error: ENOENT: no such file or directory, stat 'C:\Users\harri\Desktop\VisualDegree\views\404.html'	GET	/api/courses/department/	undefined
+20230630	01:12:25	ff9665a5-2c65-4271-9f40-0851fbe0b595	Error: ENOENT: no such file or directory, stat 'C:\Users\harri\Desktop\VisualDegree\views\404.html'	GET	/api/courses/department/	undefined

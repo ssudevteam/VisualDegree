@@ -91,12 +91,14 @@ const DegreeBuilderOverlay = (props) => {
           display: "grid",
           paddingBottom: "10px",
           borderBottom: "ridge",
-        }}>
+        }}
+      >
         <label htmlFor="degreeSelect">Select Degree:</label>
         <select
           id="degreeSelect"
           value={selectedDegree}
-          onChange={handleDegreeSelect}>
+          onChange={handleDegreeSelect}
+        >
           <option value="">-- Select --</option>
           {degreeList.map((degree, index) => (
             <option key={index} value={degree}>
@@ -139,7 +141,8 @@ const DegreeBuilderOverlay = (props) => {
         style={{
           paddingTop: "15px",
           position: "relative",
-        }}>
+        }}
+      >
         <h4 style={{ paddingLeft: "10px" }}>Courses</h4>
         <div
           id="courseListBox"
@@ -154,7 +157,8 @@ const DegreeBuilderOverlay = (props) => {
             borderRight: "none",
             overflowY: "scroll",
             maxHeight: "calc(80vh)",
-          }}>
+          }}
+        >
           {courseList.map((course, index) => (
             <button
               key={index}
@@ -162,7 +166,8 @@ const DegreeBuilderOverlay = (props) => {
                 width: "100%",
                 border: "none",
                 borderBottom: "ridge",
-              }}>
+              }}
+            >
               {course.data.label.split("-")[0].trim()}
             </button>
           ))}
@@ -261,7 +266,8 @@ const DegreeBuilderOverlay = (props) => {
       <button
         id="sidebarNavButton"
         className="sidebar-banner banner-button banner-sonoma"
-        onClick={handleNavClose}>
+        onClick={handleNavClose}
+      >
         <h5>{label}</h5>
       </button>
     );
@@ -273,7 +279,8 @@ const DegreeBuilderOverlay = (props) => {
         <button
           id="bannerNavButton"
           className="banner-button banner-sonoma banner-xlarge"
-          onClick={handleNavOpen}>
+          onClick={handleNavOpen}
+        >
           &#9776;
         </button>
         <div style={{ alignItems: "center" }}>
@@ -282,7 +289,8 @@ const DegreeBuilderOverlay = (props) => {
             style={{
               paddingTop: "7px",
               marginBottom: 0,
-            }}>
+            }}
+          >
             {label}
           </h5>
           <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
@@ -323,7 +331,8 @@ const DegreeBuilderOverlay = (props) => {
           flexDirection: "column",
         }}
         ref={sidebarRef}
-        label={label}>
+        label={label}
+      >
         {renderNavButton()}
         <div
           id="sidebarContent"
@@ -331,7 +340,8 @@ const DegreeBuilderOverlay = (props) => {
           style={{
             padding: 10,
             minHeight: "100%",
-          }}>
+          }}
+        >
           {degreeSelectBox()}
           {renderCourseListBox()}
         </div>
@@ -349,3 +359,16 @@ const DegreeBuilderOverlay = (props) => {
   );
 };
 export default DegreeBuilderOverlay;
+
+
+
+
+
+
+
+
+
+
+
+
+

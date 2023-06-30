@@ -30,10 +30,6 @@ const Courses = (props) => {
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const handleButtonClick = (courseId) => {
-    console.log("Button clicked for course ID:", courseId);
-  };
-
   return (
     <div className="table-container">
       <table className="table table-hover mt-3">
@@ -51,7 +47,6 @@ const Courses = (props) => {
             <CourseRow
               key={course.id}
               course={course}
-              handleButtonClick={handleButtonClick}
             />
           ))}
         </tbody>
