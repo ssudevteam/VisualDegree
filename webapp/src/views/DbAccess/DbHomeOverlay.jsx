@@ -80,6 +80,7 @@ const DhHomeOverlay = () => {
     setShowCourses(false);
     setShowDepartments(false);
     setShowProgramCourses(false);
+    setDegreeName(""); // Clear the degree name when switching to programs
   };
 
   const handleDepartmentsClick = () => {
@@ -87,14 +88,16 @@ const DhHomeOverlay = () => {
     setShowCourses(false);
     setShowPrograms(false);
     setShowProgramCourses(false);
+    setDegreeName(""); // Clear the degree name when switching to departments
   };
 
-  const handleProgramCoursesClick = (programId) => {
+  const handleProgramCoursesClick = (programId, programName) => {
     setSelectedDegree(programId);
     setShowProgramCourses(true);
     setShowDepartments(false);
     setShowCourses(false);
     setShowPrograms(false);
+    setDegreeName(programName);
   };
 
   const renderBanner = () => {
@@ -117,7 +120,9 @@ const DhHomeOverlay = () => {
                 marginBottom: 0,
                 marginRight: "10px",
               }}
-            ></h5>
+            >
+              {showProgramCourses}
+            </h5>
             <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
               {degreeName}
             </h3>
@@ -154,9 +159,15 @@ const DhHomeOverlay = () => {
 
   const handleDegreeSelect = (event) => {
     const degree = event.target.value;
-    setSelectedDegree(degree);
-    handleProgramCoursesClick(degree);
+    const programName = event.target.options[event.target.selectedIndex].text;
+    handleProgramCoursesClick(degree, programName);
   };
+
+  useEffect(() => {
+    if (selectedDegree) {
+      handleProgramCoursesClick(selectedDegree, degreeName);
+    }
+  }, [selectedDegree]);
 
   const degreeSelectBox = () => {
     return (
@@ -175,10 +186,7 @@ const DhHomeOverlay = () => {
         >
           <option value="">-- Select --</option>
           {programs.map((program) => (
-            <option
-              key={program.id}
-              value={program.id}
-            >
+            <option key={program.id} value={program.id}>
               {program.name}
             </option>
           ))}
@@ -199,7 +207,10 @@ const DhHomeOverlay = () => {
       {showPrograms && <Programs />}
       {showDepartments && <Departments />}
       {showProgramCourses && (
-        <CoursesInDepartment departmentId={selectedDegree} />
+        <CoursesInDepartment
+          key={selectedDegree}
+          departmentId={selectedDegree}
+        />
       )}
     </div>
   );
