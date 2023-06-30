@@ -8,23 +8,23 @@ import Courses from "../../components/DbAccessComponents/courseComponents/Course
 import Programs from "../../components/DbAccessComponents/programComponents/Programs";
 import Departments from "../../components/DbAccessComponents/departmentComponents/Departments";
 import CoursesInDepartment from "../../components/DbAccessComponents/courseComponents/CoursesInDepartment";
+import SSU_programs from "../../reactflow/data/SSU_programs";
 
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
 import "../../../css/sidebar.css";
 import "../../../css/DbAccessData.css";
 
-const DhHomeOverlay = (props) => {
+const DhHomeOverlay = () => {
   const [degreeName, setDegreeName] = useState("");
   const [showCourses, setShowCourses] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
   const [showDepartments, setShowDepartments] = useState(false);
+  const [showProgramCourses, setShowProgramCourses] = useState(false);
   const [selectedDegree, setSelectedDegree] = useState("");
-  const [courseList, setCourseList] = useState([]);
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const degreeList = ["Based on name", "Based on ID"];
 
   useEffect(() => {
     fetchPrograms();
@@ -36,22 +36,16 @@ const DhHomeOverlay = (props) => {
   }, []);
 
   const fetchPrograms = () => {
-    fetch("/api/programs")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error fetching programs");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPrograms(data);
+    try {
+      // Simulating an asynchronous API call to fetch the programs
+      setTimeout(() => {
+        setPrograms(SSU_programs);
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching programs:", error);
-        setError(error);
-        setLoading(false);
-      });
+      }, 1000);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
   };
 
   const handleNavOpen = () => {
@@ -76,20 +70,31 @@ const DhHomeOverlay = (props) => {
 
   const handleCoursesClick = () => {
     setShowCourses(true);
-    setShowPrograms(false); // Reset showPrograms state to false
+    setShowPrograms(false);
     setShowDepartments(false);
+    setShowProgramCourses(false);
   };
 
   const handleProgramsClick = () => {
     setShowPrograms(true);
-    setShowCourses(false); // Reset showCourses state to false
+    setShowCourses(false);
     setShowDepartments(false);
+    setShowProgramCourses(false);
   };
 
   const handleDepartmentsClick = () => {
     setShowDepartments(true);
-    setShowCourses(false); // Reset showCourses state to false
-    setShowPrograms(false); // Reset showPrograms state to false
+    setShowCourses(false);
+    setShowPrograms(false);
+    setShowProgramCourses(false);
+  };
+
+  const handleProgramCoursesClick = (programId) => {
+    setSelectedDegree(programId);
+    setShowProgramCourses(true);
+    setShowDepartments(false);
+    setShowCourses(false);
+    setShowPrograms(false);
   };
 
   const renderBanner = () => {
@@ -147,20 +152,10 @@ const DhHomeOverlay = (props) => {
     );
   };
 
-  const handleDegreeSelect = async (event) => {
+  const handleDegreeSelect = (event) => {
     const degree = event.target.value;
     setSelectedDegree(degree);
-    setDegreeName(degree);
-
-    const setBannerTitle = () => {
-      const banner = document.getElementById("builderBanner");
-      if (banner) {
-        banner.title = degreeName;
-      }
-    };
-    setBannerTitle();
-
-    await updateCourseListCallback(degree);
+    handleProgramCoursesClick(degree);
   };
 
   const degreeSelectBox = () => {
@@ -179,9 +174,12 @@ const DhHomeOverlay = (props) => {
           onChange={handleDegreeSelect}
         >
           <option value="">-- Select --</option>
-          {degreeList.map((degree, index) => (
-            <option key={index} value={degree}>
-              {degree}
+          {programs.map((program) => (
+            <option
+              key={program.id}
+              value={program.id}
+            >
+              {program.name}
             </option>
           ))}
         </select>
@@ -193,20 +191,16 @@ const DhHomeOverlay = (props) => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div id="builderOverlay" className="builder-overlay" {...props}>
-      <Sidebar id="builderSidebar">
-        {degreeSelectBox()}
-        <ul>
-          {programs.map((program, index) => (
-            <li key={index}>{program.name}</li>
-          ))}
-        </ul>
-      </Sidebar>
+    <div id="builderOverlay" className="builder-overlay">
+      <Sidebar id="builderSidebar">{degreeSelectBox()}</Sidebar>
       {renderBanner()}
       {renderNavbar()}
       {showCourses && <Courses />}
       {showPrograms && <Programs />}
       {showDepartments && <Departments />}
+      {showProgramCourses && (
+        <CoursesInDepartment departmentId={selectedDegree} />
+      )}
     </div>
   );
 };
