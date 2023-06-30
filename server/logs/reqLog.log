@@ -3131,3 +3131,13 @@
 20230630	01:24:01	bac31549-f944-4861-bf94-57d7534acad9	GET	/api/courses/department/6479429608db5d81e7110198	undefined
 20230630	01:24:07	8ae1f9e3-06c8-4ec9-93c1-8b8feff0dc14	GET	/api/programs	undefined
 20230630	01:24:37	296b548d-f427-4993-b847-edfda9f879c5	GET	/api/courses/department/6479429608db5d81e711019f	undefined
+20230630	09:56:08	852483b4-08cc-4d8e-9ca0-938139cf6af1	GET	/	undefined
+20230630	09:56:08	8f539482-9bbf-44c8-8e13-81d9cdeab9f0	GET	/website/main.js	http://localhost:3000
+20230630	09:56:08	79319147-556c-4be8-8aee-cae78dda356a	GET	/website/landingPage/landing.css	undefined
+20230630	09:56:08	d72085cd-4a39-4113-8d70-e452e6e6792a	GET	/website/assets/images/hero_c.png	undefined
+20230630	09:56:11	aa157d35-c6aa-426c-afaf-cd97fc9d6ead	GET	/api	undefined
+20230630	09:56:11	e7d0f741-691e-4359-8cda-1f288038be96	GET	/webapp/assets/index-13e88321.js	http://localhost:3000
+20230630	09:56:11	6f58fc39-412a-4500-b5e0-0a16b1df701e	GET	/webapp/assets/index-661e3bda.css	undefined
+20230630	09:56:18	89c0b143-8a6f-416b-8347-f36088cb884e	GET	/app	undefined
+20230630	09:56:18	ccdd2d39-647b-4f44-b8e0-0c32c1e79d97	GET	/webapp/assets/index-13e88321.js	http://localhost:3000
+20230630	09:56:18	02d9eb31-cf40-4376-a860-96d3992103d4	GET	/webapp/assets/index-661e3bda.css	undefined

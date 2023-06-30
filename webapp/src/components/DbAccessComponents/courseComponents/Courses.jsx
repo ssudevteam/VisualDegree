@@ -44,10 +44,7 @@ const Courses = (props) => {
         </thead>
         <tbody>
           {courses.map((course) => (
-            <CourseRow
-              key={course.id}
-              course={course}
-            />
+            <CourseRow key={course.id} course={course} />
           ))}
         </tbody>
       </table>

@@ -80,7 +80,7 @@ const DhHomeOverlay = () => {
     setShowCourses(false);
     setShowDepartments(false);
     setShowProgramCourses(false);
-    setDegreeName(""); 
+    setDegreeName("");
   };
 
   const handleDepartmentsClick = () => {
@@ -118,8 +118,7 @@ const DhHomeOverlay = () => {
                 paddingTop: "7px",
                 marginBottom: 0,
                 marginRight: "10px",
-              }}
-            >
+              }}>
               {showProgramCourses}
             </h5>
             <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
