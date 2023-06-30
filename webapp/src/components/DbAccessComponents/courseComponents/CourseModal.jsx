@@ -48,8 +48,7 @@ export default function CourseModal({ courseId, closeModal }) {
       tabIndex="-1"
       aria-labelledby="displayCourseModal"
       aria-hidden="true"
-      style={{ display: "block" }}
-    >
+      style={{ display: "block" }}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -61,8 +60,7 @@ export default function CourseModal({ courseId, closeModal }) {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={closeModal}
-            ></button>
+              onClick={closeModal}></button>
           </div>
           <div className="modal-body">
             <style>
@@ -112,8 +110,7 @@ export default function CourseModal({ courseId, closeModal }) {
               type="button"
               data-bs-dismiss="modal"
               className="btn btn-secondary"
-              onClick={closeModal}
-            >
+              onClick={closeModal}>
               Close
             </button>
           </div>

@@ -1,4 +1,4 @@
-const { gql } = require('@apollo/client');
+const { gql } = require("@apollo/client");
 
 const GET_COURSE = gql`
   query GetCourse($id: ID!) {
@@ -17,7 +17,7 @@ const GET_COURSE = gql`
   }
 `;
 
-const  GET_COURSES = gql`
+const GET_COURSES = gql`
   query GetCourses {
     courses {
       id
@@ -58,7 +58,11 @@ const GET_COURSES_BY_DEPARTMENT = gql`
         url
       }
     }
-}
+  }
 `;
 
-module.exports = { GET_COURSE, GET_COURSES, GET_COURSES_BY_DEPARTMENT };
+module.exports = {
+  GET_COURSE,
+  GET_COURSES,
+  GET_COURSES_BY_DEPARTMENT,
+};

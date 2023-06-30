@@ -27,12 +27,18 @@ function getNodeIntersection(intersectionNode, targetNode) {
   const x = w * (xx3 + yy3) + x2;
   const y = h * (-xx3 + yy3) + y2;
 
-  return { x, y };
+  return {
+    x,
+    y,
+  };
 }
 
 // returns the position (top,right,bottom or right) passed node compared to the intersection point
 function getEdgePosition(node, intersectionPoint) {
-  const n = { ...node.positionAbsolute, ...node };
+  const n = {
+    ...node.positionAbsolute,
+    ...node,
+  };
   const nx = Math.round(n.x);
   const ny = Math.round(n.y);
   const px = Math.round(intersectionPoint.x);
@@ -75,9 +81,18 @@ export function getEdgeParams(source, target) {
 export function createNodesAndEdges() {
   const nodes = [];
   const edges = [];
-  const center = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const center = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  };
 
-  nodes.push({ id: "target", data: { label: "Target" }, position: center });
+  nodes.push({
+    id: "target",
+    data: {
+      label: "Target",
+    },
+    position: center,
+  });
 
   for (let i = 0; i < 8; i++) {
     const degrees = i * (360 / 8);
@@ -85,7 +100,16 @@ export function createNodesAndEdges() {
     const x = 250 * Math.cos(radians) + center.x;
     const y = 250 * Math.sin(radians) + center.y;
 
-    nodes.push({ id: `${i}`, data: { label: "Source" }, position: { x, y } });
+    nodes.push({
+      id: `${i}`,
+      data: {
+        label: "Source",
+      },
+      position: {
+        x,
+        y,
+      },
+    });
 
     edges.push({
       id: `edge-${i}`,
@@ -98,5 +122,8 @@ export function createNodesAndEdges() {
     });
   }
 
-  return { nodes, edges };
+  return {
+    nodes,
+    edges,
+  };
 }

@@ -1,4 +1,4 @@
-const { gql } = require('@apollo/client');
+const { gql } = require("@apollo/client");
 
 const GET_PROGRAM = gql`
   query GetProgram($id: ID!) {
@@ -39,4 +39,8 @@ const GET_PROGRAMS_BY_PROGRAM_TYPE = gql`
   }
 `;
 
-module.exports = { GET_PROGRAM, GET_PROGRAMS, GET_PROGRAMS_BY_PROGRAM_TYPE };
+module.exports = {
+  GET_PROGRAM,
+  GET_PROGRAMS,
+  GET_PROGRAMS_BY_PROGRAM_TYPE,
+};

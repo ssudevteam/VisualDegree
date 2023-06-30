@@ -40,10 +40,7 @@ const Programs = (props) => {
         </thead>
         <tbody>
           {programs.map((program) => (
-            <ProgramRow
-              key={program.id}
-              program={program}
-            />
+            <ProgramRow key={program.id} program={program} />
           ))}
         </tbody>
       </table>

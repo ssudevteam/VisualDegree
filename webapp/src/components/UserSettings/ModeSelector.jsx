@@ -10,8 +10,7 @@ export default function ModeSelector({ setMode }) {
         right: "20px",
         gap: "10px",
         zIndex: "1",
-      }}
-    >
+      }}>
       <button className="btn btn-tool" onClick={() => setMode("move")}>
         👆
       </button>

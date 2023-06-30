@@ -6,9 +6,9 @@ const { ApolloClient, InMemoryCache, gql } = require("@apollo/client");
 const client = new ApolloClient({
   uri: "http://localhost:8000/graphql",
   cache: new InMemoryCache(),
-}); 
+});
 
-// Api access point 
+// Api access point
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
 });
@@ -17,34 +17,34 @@ router.get("/", (req, res) => {
 const {
   GET_COURSE,
   GET_COURSES,
-  GET_COURSES_BY_DEPARTMENT
+  GET_COURSES_BY_DEPARTMENT,
 } = require("../database/client/queries/courseQueries");
 
 const {
   GET_DEPARTMENT,
-  GET_DEPARTMENTS
+  GET_DEPARTMENTS,
 } = require("../database/client/queries/departmentQueries.js");
 
 const {
   GET_PROGRAM,
-  GET_PROGRAMS, 
-  GET_PROGRAMS_BY_PROGRAM_TYPE
+  GET_PROGRAMS,
+  GET_PROGRAMS_BY_PROGRAM_TYPE,
 } = require("../database/client/queries/programQueries.js");
 
 const {
   GET_PROGRAM_DISTINCT,
-  GET_PROGRAM_DISTINCTS
+  GET_PROGRAM_DISTINCTS,
 } = require("../database/client/queries/programtypesQueries.js");
 
 const {
   GET_SCHEDULE,
-  GET_SCHEDULES
+  GET_SCHEDULES,
 } = require("../database/client/queries/scheduleQueries.js");
 
 const {
   GET_USER,
   GET_USERS,
-  GET_USERS_IN_MAJOR
+  GET_USERS_IN_MAJOR,
 } = require("../database/client/queries/userQueries.js");
 
 router.get("/course/:id", (req, res) => {
@@ -64,7 +64,9 @@ router.get("/course/:id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching course:", error);
-      res.status(500).json({ error: "Error fetching course" });
+      res.status(500).json({
+        error: "Error fetching course",
+      });
     });
 });
 
@@ -80,7 +82,9 @@ router.get("/courses", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching courses:", error);
-      res.status(500).json({ error: "Error fetching courses" });
+      res.status(500).json({
+        error: "Error fetching courses",
+      });
     });
 });
 
@@ -101,7 +105,9 @@ router.get("/courses/department/:departmentId", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching courses by department:", error);
-      res.status(500).json({ error: "Error fetching courses by department" });
+      res.status(500).json({
+        error: "Error fetching courses by department",
+      });
     });
 });
 
@@ -122,7 +128,9 @@ router.get("/department/:id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching department:", error);
-      res.status(500).json({ error: "Error fetching department" });
+      res.status(500).json({
+        error: "Error fetching department",
+      });
     });
 });
 
@@ -138,7 +146,9 @@ router.get("/departments", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching departments:", error);
-      res.status(500).json({ error: "Error fetching departments" });
+      res.status(500).json({
+        error: "Error fetching departments",
+      });
     });
 });
 
@@ -159,7 +169,9 @@ router.get("/program/:id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching program:", error);
-      res.status(500).json({ error: "Error fetching program" });
+      res.status(500).json({
+        error: "Error fetching program",
+      });
     });
 });
 
@@ -175,7 +187,9 @@ router.get("/programs", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching programs:", error);
-      res.status(500).json({ error: "Error fetching programs" });
+      res.status(500).json({
+        error: "Error fetching programs",
+      });
     });
 });
 
@@ -196,7 +210,9 @@ router.get("/programs/programType/:type_id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching programs by program type:", error);
-      res.status(500).json({ error: "Error fetching programs by program type" });
+      res.status(500).json({
+        error: "Error fetching programs by program type",
+      });
     });
 });
 
@@ -217,7 +233,9 @@ router.get("/programDistinct/:id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching program distinct:", error);
-      res.status(500).json({ error: "Error fetching program distinct" });
+      res.status(500).json({
+        error: "Error fetching program distinct",
+      });
     });
 });
 
@@ -233,7 +251,9 @@ router.get("/programDistincts", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching program distincts:", error);
-      res.status(500).json({ error: "Error fetching program distincts" });
+      res.status(500).json({
+        error: "Error fetching program distincts",
+      });
     });
 });
 
@@ -254,7 +274,9 @@ router.get("/schedule/:id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching schedule:", error);
-      res.status(500).json({ error: "Error fetching schedule" });
+      res.status(500).json({
+        error: "Error fetching schedule",
+      });
     });
 });
 
@@ -270,7 +292,9 @@ router.get("/schedules", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching schedules:", error);
-      res.status(500).json({ error: "Error fetching schedules" });
+      res.status(500).json({
+        error: "Error fetching schedules",
+      });
     });
 });
 
@@ -291,7 +315,9 @@ router.get("/user/:id", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching user:", error);
-      res.status(500).json({ error: "Error fetching user" });
+      res.status(500).json({
+        error: "Error fetching user",
+      });
     });
 });
 
@@ -307,7 +333,9 @@ router.get("/users", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching users:", error);
-      res.status(500).json({ error: "Error fetching users" });
+      res.status(500).json({
+        error: "Error fetching users",
+      });
     });
 });
 
@@ -328,7 +356,9 @@ router.get("/usersInMajor/:programID", (req, res) => {
     })
     .catch((error) => {
       console.error("Error fetching user count by major:", error);
-      res.status(500).json({ error: "Error fetching user count by major" });
+      res.status(500).json({
+        error: "Error fetching user count by major",
+      });
     });
 });
 

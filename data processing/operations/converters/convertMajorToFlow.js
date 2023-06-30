@@ -35,14 +35,29 @@ Object.keys(csCourses).forEach((courseId) => {
 
 // Calculate positions for each course group
 const groupPositions = {
-  100: { x: 100, y: 100 },
-  200: { x: 100, y: 200 },
-  300: { x: 100, y: 300 },
-  400: { x: 100, y: 400 },
+  100: {
+    x: 100,
+    y: 100,
+  },
+  200: {
+    x: 100,
+    y: 200,
+  },
+  300: {
+    x: 100,
+    y: 300,
+  },
+  400: {
+    x: 100,
+    y: 400,
+  },
 };
 
 // Default position if level not found in groupPositions
-const defaultPosition = { x: 500, y: 500 }; // Adjust the default position as needed
+const defaultPosition = {
+  x: 500,
+  y: 500,
+}; // Adjust the default position as needed
 
 // Convert CS courses data to initialNodes format
 const initialNodes = [];
@@ -66,7 +81,10 @@ Object.keys(courseGroups).forEach((level) => {
         labHours: `${laboratoryHours}`,
         lecHours: `${lectureHours}`,
       },
-      position: { x: position.x + xOffset, y: position.y },
+      position: {
+        x: position.x + xOffset,
+        y: position.y,
+      },
       type: "courseNode",
     };
 

@@ -20,7 +20,7 @@ const courseSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      default: 'None',
+      default: "None",
     },
     num_units: {
       type: String,
@@ -28,11 +28,11 @@ const courseSchema = new mongoose.Schema(
     },
     ge_category: {
       type: String,
-      default: 'n/a',
+      default: "n/a",
     },
     prerequisites: {
       type: String,
-      default: 'None',
+      default: "None",
     },
     url: {
       type: String,
@@ -43,7 +43,7 @@ const courseSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

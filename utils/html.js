@@ -1,3 +1,3 @@
 export const setWindowTitle = (title) => {
-    document.title = title;
-}
+  document.title = title;
+};

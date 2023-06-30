@@ -80,7 +80,7 @@ const DhHomeOverlay = () => {
     setShowCourses(false);
     setShowDepartments(false);
     setShowProgramCourses(false);
-    setDegreeName(""); 
+    setDegreeName("");
   };
 
   const handleDepartmentsClick = () => {
@@ -107,8 +107,7 @@ const DhHomeOverlay = () => {
         <button
           id="bannerNavButton"
           className="banner-button banner-sonoma banner-xlarge"
-          onClick={handleNavOpen}
-        >
+          onClick={handleNavOpen}>
           &#9776;
         </button>
         <div style={{ alignItems: "center" }}>
@@ -119,8 +118,7 @@ const DhHomeOverlay = () => {
                 paddingTop: "7px",
                 marginBottom: 0,
                 marginRight: "10px",
-              }}
-            >
+              }}>
               {showProgramCourses}
             </h5>
             <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
@@ -176,14 +174,12 @@ const DhHomeOverlay = () => {
           display: "grid",
           paddingBottom: "10px",
           borderBottom: "ridge",
-        }}
-      >
+        }}>
         <label htmlFor="degreeSelect">Select Program:</label>
         <select
           id="degreeSelect"
           value={selectedDegree}
-          onChange={handleDegreeSelect}
-        >
+          onChange={handleDegreeSelect}>
           <option value="">-- Select --</option>
           {programs.map((program) => (
             <option key={program.id} value={program.id}>

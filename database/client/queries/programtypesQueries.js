@@ -1,4 +1,4 @@
-const { gql } = require('@apollo/client');
+const { gql } = require("@apollo/client");
 
 const GET_PROGRAM_DISTINCT = gql`
   query GetProgramDistinct($id: ID!) {
@@ -16,4 +16,7 @@ const GET_PROGRAM_DISTINCTS = gql`
   }
 `;
 
-module.exports =  { GET_PROGRAM_DISTINCT, GET_PROGRAM_DISTINCTS };
+module.exports = {
+  GET_PROGRAM_DISTINCT,
+  GET_PROGRAM_DISTINCTS,
+};

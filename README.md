@@ -1,28 +1,36 @@
-# Installation Instructions
+# VisualDegree
+___
+## Installation and Building Instructions:
 
-All dependencies are in root directory, just run npm install
+From the root directory, the following options are available:
 
-# Testing on LocalHost:
+1. `npm start` installs, builds, and runs the application. They can also be called separately:
+    - `npm run build:website` builds the website
+    - `npm run build:webapp` builds the webapp
+    - `node app` starts the express server
+2. `npm run setup:db` installs, builds, and start the database server
+3. `npm test` starts the local vite server, which handles auto-reloading
+4. `npm run format` formats the code for all `.js` and `.jsx` files
 
-As of now, I don't know how to do hot reloading. I think it can be done with vite. I have nodemon installed in the packages but no package.json scripts invoking it. Should take like 10 mins of research to figure this part out.
-
-# Building:
-
-'npm start' calls the whole build process or they can be called separately:
-
-1. npm run build:website
-2. npm run build:webapp
-3. 'node app' starts the express server
-
-# Routes:
+## Routes:
 
 - / - Index, shows landingPage
 - /app - React-flow app
 - /api - Api stub
 
-# Directory Map:
+## Directory Map:
 
 /public/\* -Viteified source files  
 /scripts - Various scripts we might need to run for development  
-/webapp - Codebase for the 1 page webapp  
-/website - Codebase for the multi page website: landingPage... we'll add a signUp page, etc.  
+/webapp - Codebase for the one-page webapp  
+/website - Codebase for the multi-page website: landingPage... we'll add a signUp page, etc.
+
+___
+## Contributing:
+
+Fork the repository, make your changes, and open a pull request.
+
+### Important Notes:
+
+- Be sure to use descriptive language in your commits
+- Before opening a pull request run `npm run format` to enforce code style standards.

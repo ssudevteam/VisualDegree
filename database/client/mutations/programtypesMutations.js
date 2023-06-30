@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const ADD_PROGRAM_DISTINCT = gql`
   mutation AddProgramDistinct($name: String!) {
@@ -27,4 +27,8 @@ const DELETE_PROGRAM_DISTINCT = gql`
   }
 `;
 
-export { ADD_PROGRAM_DISTINCT, UPDATE_PROGRAM_DISTINCT, DELETE_PROGRAM_DISTINCT}
+export {
+  ADD_PROGRAM_DISTINCT,
+  UPDATE_PROGRAM_DISTINCT,
+  DELETE_PROGRAM_DISTINCT,
+};

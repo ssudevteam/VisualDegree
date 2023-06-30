@@ -18,8 +18,7 @@ class DegreeBuilderView extends React.Component {
         className="builder-view"
         style={{
           backgroundColor: "whitesmoke",
-        }}
-      >
+        }}>
         <DegreeBuilderOverlay />
         <div
           id="flowContainer"
@@ -27,8 +26,7 @@ class DegreeBuilderView extends React.Component {
             width: "100%",
             height: "100%",
             backgroundColor: "whitesmoke",
-          }}
-        >
+          }}>
           <FlowCanvas forwardRef={this.flowCanvasRef} />
         </div>
       </div>

@@ -21,14 +21,15 @@ const DepartmentRow = ({ department, handleButtonClick }) => {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={openModal}
-            >
+              onClick={openModal}>
               Department Info
             </button>
           </div>
         </td>
       </tr>
-      {modalOpen && <DepartmentModal departmentId={department.id} closeModal={closeModal} />}
+      {modalOpen && (
+        <DepartmentModal departmentId={department.id} closeModal={closeModal} />
+      )}
     </>
   );
 };

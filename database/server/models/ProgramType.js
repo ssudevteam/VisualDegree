@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const programTypeSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('ProgramType', programTypeSchema);
+module.exports = mongoose.model("ProgramType", programTypeSchema);

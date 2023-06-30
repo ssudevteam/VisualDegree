@@ -1,4 +1,4 @@
-const { gql } = require('@apollo/client');
+const { gql } = require("@apollo/client");
 
 const GET_USER = gql`
   query GetUser($id: ID!) {
@@ -148,6 +148,10 @@ const GET_USERS_IN_MAJOR = gql`
       }
     }
   }
-`; 
+`;
 
-module.exports = { GET_USER, GET_USERS, GET_USERS_IN_MAJOR };
+module.exports = {
+  GET_USER,
+  GET_USERS,
+  GET_USERS_IN_MAJOR,
+};
