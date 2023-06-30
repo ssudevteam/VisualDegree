@@ -8,7 +8,7 @@
     "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts",
     "test": "vite serve -c webapp/vite.config.ts",
     "setup:db": "cd database && npm install && npm run create-env && npm run dev",
-    "format": "prettier --check --write \"./**/*.{js,jsx}\" --ignore=\"node_modules/**/*\""
+    "format": "prettier --check --write \"./**/*.{js,jsx}\""
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
