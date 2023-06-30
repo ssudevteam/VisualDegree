@@ -13,8 +13,7 @@ const DbHomeView = () => {
       className="builder-view"
       style={{
         backgroundColor: "whitesmoke",
-      }}
-    >
+      }}>
       <DbHomeOverlay />
     </div>
   );

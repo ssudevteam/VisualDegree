@@ -1,6 +1,8 @@
 import React from "react";
 
-const ModeContext = React.createContext({ mode: "move" });
+const ModeContext = React.createContext({
+  mode: "move",
+});
 
 export default ModeContext;
 

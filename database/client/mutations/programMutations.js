@@ -1,18 +1,18 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const ADD_PROGRAM = gql`
   mutation AddProgram(
-    $name: String!,
-    $url: String,
-    $department: ID!,
-    $courses: [ID],
+    $name: String!
+    $url: String
+    $department: ID!
+    $courses: [ID]
     $programType: ID!
   ) {
     addProgram(
-      name: $name,
-      url: $url,
-      department: $department,
-      courses: $courses,
+      name: $name
+      url: $url
+      department: $department
+      courses: $courses
       programType: $programType
     ) {
       id
@@ -50,19 +50,19 @@ const ADD_PROGRAM = gql`
 
 const UPDATE_PROGRAM = gql`
   mutation UpdateProgram(
-    $id: ID!,
-    $name: String,
-    $url: String,
-    $department: ID,
-    $courses: [ID],
+    $id: ID!
+    $name: String
+    $url: String
+    $department: ID
+    $courses: [ID]
     $programType: ID
   ) {
     updateProgram(
-      id: $id,
-      name: $name,
-      url: $url,
-      department: $department,
-      courses: $courses,
+      id: $id
+      name: $name
+      url: $url
+      department: $department
+      courses: $courses
       programType: $programType
     ) {
       id
@@ -134,4 +134,4 @@ const DELETE_PROGRAM = gql`
   }
 `;
 
-export { ADD_PROGRAM, UPDATE_PROGRAM, DELETE_PROGRAM }
+export { ADD_PROGRAM, UPDATE_PROGRAM, DELETE_PROGRAM };

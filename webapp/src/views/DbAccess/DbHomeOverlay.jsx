@@ -99,8 +99,7 @@ const DhHomeOverlay = (props) => {
         <button
           id="bannerNavButton"
           className="banner-button banner-sonoma banner-xlarge"
-          onClick={handleNavOpen}
-        >
+          onClick={handleNavOpen}>
           &#9776;
         </button>
         <div style={{ alignItems: "center" }}>
@@ -111,8 +110,7 @@ const DhHomeOverlay = (props) => {
                 paddingTop: "7px",
                 marginBottom: 0,
                 marginRight: "10px",
-              }}
-            ></h5>
+              }}></h5>
             <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
               {degreeName}
             </h3>
@@ -170,14 +168,12 @@ const DhHomeOverlay = (props) => {
           display: "grid",
           paddingBottom: "10px",
           borderBottom: "ridge",
-        }}
-      >
+        }}>
         <label htmlFor="degreeSelect">Select Program:</label>
         <select
           id="degreeSelect"
           value={selectedDegree}
-          onChange={handleDegreeSelect}
-        >
+          onChange={handleDegreeSelect}>
           <option value="">-- Select --</option>
           {degreeList.map((degree, index) => (
             <option key={index} value={degree}>

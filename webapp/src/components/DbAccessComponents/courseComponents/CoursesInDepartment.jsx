@@ -3,10 +3,10 @@ import Spinner from "../../Spinner";
 import CourseRow from "../courseComponents/CourseRow";
 import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
-const CoursesInDepartment =  ({departmentId}) => {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [courses, setCourses] = useState([]);
+const CoursesInDepartment = ({ departmentId }) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -18,7 +18,6 @@ const CoursesInDepartment =  ({departmentId}) => {
         const data = await response.json();
         setCourses(data);
         setLoading(false);
-
       } catch (error) {
         console.error("Error fetching course:", error);
         setError(error);

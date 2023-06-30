@@ -37,8 +37,7 @@ const CourseNode = ({ data, isConnectable }) => {
         <Button
           variant="link"
           className="custom-popover-close"
-          onClick={handleClosePopover}
-        >
+          onClick={handleClosePopover}>
           <span className="custom-popover-close-icon">X</span>
         </Button>
       </Popover.Header>
@@ -78,14 +77,12 @@ const CourseNode = ({ data, isConnectable }) => {
           padding: "8px",
           cursor: "pointer",
           width: "140px",
-        }}
-      >
+        }}>
         <div
           className="node-label"
           style={{
             marginBottom: "4px",
-          }}
-        >
+          }}>
           {data.label}
         </div>
       </div>
@@ -94,8 +91,7 @@ const CourseNode = ({ data, isConnectable }) => {
         placement="auto"
         show={showPopover}
         onHide={handleClosePopover}
-        overlay={popover}
-      >
+        overlay={popover}>
         <div />
       </OverlayTrigger>
     </>
