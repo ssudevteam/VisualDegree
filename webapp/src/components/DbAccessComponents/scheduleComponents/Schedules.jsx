@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../../Spinner";
-import ProgramRow from "./ProgramRow";
+import ScheduleRow from "./ScheduleRow";
 import "../../../../css/DbAccessData.css";
 
-const Programs = (props) => {
+const Schedules = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [programs, setprograms] = useState([]);
+  const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
-    fetch("/api/programs")
+    fetch("/api/schedules")
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Error fetching programs");
+          throw new Error("Error fetching schedules");
         }
         return response.json();
       })
       .then((data) => {
-        setprograms(data);
+        setSchedules(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching programs:", error);
+        console.error("Error fetching schedules:", error);
         setError(error);
         setLoading(false);
       });
@@ -39,8 +39,8 @@ const Programs = (props) => {
           </tr>
         </thead>
         <tbody>
-          {programs.map((program) => (
-            <ProgramRow key={program.id} program={program} />
+          {schedules.map((schedule) => (
+            <ScheduleRow key={schedule.id} schedule={schedule} />
           ))}
         </tbody>
       </table>
@@ -48,4 +48,4 @@ const Programs = (props) => {
   );
 };
 
-export default Programs;
+export default Schedules;
