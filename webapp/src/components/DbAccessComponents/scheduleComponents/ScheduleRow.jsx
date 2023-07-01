@@ -1,21 +1,25 @@
 import React, { useState } from "react";
+import CourseList from "../courseComponents/CourseList";
 
-const ScheduleRow = ({ schedule, handleButtonClick }) => {
+const ScheduleRow = ({ schedule }) => {
   const [dropDownListOpen, setDropDownListOpen] = useState(false);
 
-  const openDropDownList = () => {
-    setDropDownListOpen(true);
-  };
-
-  const closeDropDownList = () => {
-    setDropDownListOpen(false);
+  const toggleDropDownList = () => {
+    setDropDownListOpen(!dropDownListOpen);
   };
 
   return (
     <>
-      <tr>
+      <tr onClick={toggleDropDownList}>
         <td>{schedule.name}</td>
       </tr>
+      {dropDownListOpen && (
+        <tr>
+          <td colSpan="1">
+            <CourseList courses={schedule.courses} />
+          </td>
+        </tr>
+      )}
     </>
   );
 };

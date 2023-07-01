@@ -3,12 +3,16 @@ import Spinner from "../../Spinner";
 import ScheduleRow from "./ScheduleRow";
 import "../../../../css/DbAccessData.css";
 
-const Schedules = (props) => {
+const Schedules = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
+    fetchSchedules();
+  }, []);
+
+  const fetchSchedules = () => {
     fetch("/api/schedules")
       .then((response) => {
         if (!response.ok) {
@@ -25,7 +29,7 @@ const Schedules = (props) => {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  };
 
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
@@ -35,7 +39,7 @@ const Schedules = (props) => {
       <table className="table table-hover mt-3">
         <thead>
           <tr>
-            <th> Name </th>
+            <th>Name</th>
           </tr>
         </thead>
         <tbody>
