@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import Courses from "../../components/DbAccessComponents/courseComponents/Courses";
 import Programs from "../../components/DbAccessComponents/programComponents/Programs";
 import Departments from "../../components/DbAccessComponents/departmentComponents/Departments";
+import Schedules from "../../components/DbAccessComponents/scheduleComponents/Schedules";
 import CoursesInDepartment from "../../components/DbAccessComponents/courseComponents/CoursesInDepartment";
 import SSU_programs from "../../reactflow/data/SSU_programs";
 
@@ -19,6 +20,7 @@ const DhHomeOverlay = () => {
   const [degreeName, setDegreeName] = useState("");
   const [showCourses, setShowCourses] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
+  const [showSchedules, setShowSchedules] = useState(false);
   const [showDepartments, setShowDepartments] = useState(false);
   const [showProgramCourses, setShowProgramCourses] = useState(false);
   const [selectedDegree, setSelectedDegree] = useState("");
@@ -72,6 +74,7 @@ const DhHomeOverlay = () => {
     setShowCourses(true);
     setShowPrograms(false);
     setShowDepartments(false);
+    setShowSchedules(false);
     setShowProgramCourses(false);
   };
 
@@ -79,6 +82,7 @@ const DhHomeOverlay = () => {
     setShowPrograms(true);
     setShowCourses(false);
     setShowDepartments(false);
+    setShowSchedules(false);
     setShowProgramCourses(false);
     setDegreeName("");
   };
@@ -87,17 +91,27 @@ const DhHomeOverlay = () => {
     setShowDepartments(true);
     setShowCourses(false);
     setShowPrograms(false);
+    setShowSchedules(false);
     setShowProgramCourses(false);
     setDegreeName("");
   };
 
+  const handleSchedulesClick = () => {
+    setShowSchedules(true);
+    setShowCourses(false);
+    setShowPrograms(false);
+    setShowDepartments(false);
+    setShowProgramCourses(false);
+  };
+
   const handleProgramCoursesClick = (programId, programName) => {
     setSelectedDegree(programId);
+    setDegreeName(programName);
     setShowProgramCourses(true);
+    setShowSchedules(false);
     setShowDepartments(false);
     setShowCourses(false);
     setShowPrograms(false);
-    setDegreeName(programName);
   };
 
   const renderBanner = () => {
@@ -149,7 +163,11 @@ const DhHomeOverlay = () => {
               Courses
             </span>
           </div>
-          <div className="navbarItem">My Schedules</div>
+          <div className="navbarItem">
+            <span className="navbarLink" onClick={handleSchedulesClick}>
+              All Schedules
+            </span>
+          </div>
         </div>
       </Navbar>
     );
@@ -202,6 +220,7 @@ const DhHomeOverlay = () => {
       {showCourses && <Courses />}
       {showPrograms && <Programs />}
       {showDepartments && <Departments />}
+      {showSchedules && <Schedules />}
       {showProgramCourses && (
         <CoursesInDepartment
           key={selectedDegree}
