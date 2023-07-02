@@ -1,15 +1,19 @@
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { createHtmlPlugin } from "vite-plugin-html";
-import { resolve, extname } from "path";
+import { extname } from "path";
 
 export default defineConfig({
+  resolve: {},
+  server: {
+    port: 4001,
+  },
   plugins: [
     viteStaticCopy({
       // copy assets to the public directory for distribution
       targets: [
         {
-          src: "../website/landingPage/images/**/*",
+          src: "../website/**/images/**/*",
           dest: "website/assets/images",
         },
         {
@@ -29,6 +33,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: "./website/landingPage/landing.html", // entry html file - landing page
+        login: "./website/loginPage/login.html",
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -46,6 +51,8 @@ export default defineConfig({
           if (ext === ".css") {
             // Extract the page name from the assetInfo object
             const pageName = assetInfo.name.split(".").shift();
+            console.log(pageName);
+            console.log(assetInfo.name);
 
             // Return the desired output path for CSS files
             return `${pageName}Page/${assetInfo.name}`;
