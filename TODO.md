@@ -12,7 +12,3 @@ another page is made and the rollup options are experimented with
 
 Design:
 Apple iOS homescreen/Chrome manifest Favicons (for when webpage is saved as an app)
-
-# Meta Data
-
-I would also like to pull the meta data folder out of webapp

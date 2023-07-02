@@ -2,12 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBi2qK40PdaRGVDoenRoJNqDOR7u9ryjws",
-  authDomain: "visual-degree.firebaseapp.com",
-  projectId: "visual-degree",
-  storageBucket: "visual-degree.appspot.com",
-  messagingSenderId: "230261036162",
-  appId: "1:230261036162:web:dc118ebe11d58447abd09b",
+  apiKey: "AIzaSyA2i1n0MAWn3n0eX9oZsoZreT7yaOj0J54",
+  authDomain: "visual-degree-f99a8.firebaseapp.com",
+  projectId: "visual-degree-f99a8",
+  storageBucket: "visual-degree-f99a8.appspot.com",
+  messagingSenderId: "412236224408",
+  appId: "1:412236224408:web:ab88a6985821fe76627ded",
+  measurementId: "G-Z38JNSMNL6",
 };
 
 // Initialize Firebase

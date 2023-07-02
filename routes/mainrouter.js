@@ -10,6 +10,13 @@ router.get("^/$|/index(.html)?", (req, res) => {
 });
 
 // App - webapp
+router.get("/login", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "..", "public/website/loginPage", "login.html")
+  );
+});
+
+// App - webapp
 router.get("/app", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
 });
