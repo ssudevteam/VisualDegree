@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const CREATE_USER = gql`
   mutation CreateUser($input: UserInput!) {
@@ -183,4 +183,4 @@ const DELETE_USER = gql`
   }
 `;
 
-export { CREATE_USER, UPDATE_USER, DELETE_USER }
+export { CREATE_USER, UPDATE_USER, DELETE_USER };

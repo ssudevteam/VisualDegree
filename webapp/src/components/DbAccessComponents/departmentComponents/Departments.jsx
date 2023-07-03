@@ -30,10 +30,6 @@ const Departments = (props) => {
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const handleButtonClick = (departmentId) => {
-    console.log("Button clicked for department ID:", departmentId);
-  };
-
   return (
     <div className="table-container">
       <table className="table table-hover mt-3">
@@ -44,11 +40,7 @@ const Departments = (props) => {
         </thead>
         <tbody>
           {departments.map((department) => (
-            <DepartmentRow
-              key={department.id}
-              department={department}
-              handleButtonClick={handleButtonClick}
-            />
+            <DepartmentRow key={department.id} department={department} />
           ))}
         </tbody>
       </table>

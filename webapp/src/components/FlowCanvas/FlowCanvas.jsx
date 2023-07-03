@@ -39,8 +39,12 @@ const initialEdges = [
   },
 ];
 
-const nodeTypes = { courseNode: CourseNode };
-const edgeTypes = { floating: FloatingEdge };
+const nodeTypes = {
+  courseNode: CourseNode,
+};
+const edgeTypes = {
+  floating: FloatingEdge,
+};
 console.log(csNodes);
 
 const FlowCanvas = forwardRef((props, forwardRef) => {
@@ -64,7 +68,9 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
           {
             ...params,
             type: "floating",
-            markerEnd: { type: MarkerType.ArrowClosed },
+            markerEnd: {
+              type: MarkerType.ArrowClosed,
+            },
           },
           eds
         )
@@ -75,7 +81,9 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
   const onAdd = useCallback(() => {
     const newNode = {
       id: getNodeId(),
-      data: { label: "Added node" },
+      data: {
+        label: "Added node",
+      },
       position: {
         x: Math.random() * window.innerWidth - 100,
         y: Math.random() * window.innerHeight,
@@ -90,7 +98,11 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
         const { x = 0, y = 0, zoom = 1 } = flowObject.viewport;
         setNodes(flowObject.nodes || []);
         setEdges(flowObject.edges || []);
-        setViewport({ x, y, zoom });
+        setViewport({
+          x,
+          y,
+          zoom,
+        });
       }
     };
 
@@ -106,8 +118,7 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
         height: "100vh",
         backgroundColor: "whitesmoke",
       }}
-      {...props}
-    >
+      {...props}>
       <ModeContext.Provider value={{ mode }}>
         <ModeSelector setMode={setMode} />
         <ReactFlow

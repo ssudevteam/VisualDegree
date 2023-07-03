@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run build:website && npm run build:webapp && node app",
+    "start": "npm install && npm run build:website && npm run build:webapp && node app",
     "build:website": "rimraf ./public/website && vite build -c website/vite.config.js && node scripts/website/postbuild",
     "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts",
     "test": "vite serve -c webapp/vite.config.ts",
-    "test:website": "vite serve -c website/vite.config.js",
-    "setup:db": "cd database && npm install && npm run create-env && npm run dev"
+    "setup:db": "cd database && npm install && npm run create-env && npm run dev",
+    "format": "prettier --check --write \"./**/*.{js,jsx}\""
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
@@ -38,18 +38,12 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.22.5",
     "glob": "^10.2.7",
     "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
     "vite-plugin-html-purgecss": "^0.1.1",
     "vite-plugin-static-copy": "^0.16.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

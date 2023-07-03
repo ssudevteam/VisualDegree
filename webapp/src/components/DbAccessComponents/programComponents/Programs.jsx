@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../../Spinner";
 import ProgramRow from "./ProgramRow";
-import "../../../../css/DbAccessData.css"; // Update the CSS file path
+import "../../../../css/DbAccessData.css";
 
 const Programs = (props) => {
   const [loading, setLoading] = useState(true);
@@ -30,10 +30,6 @@ const Programs = (props) => {
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const handleButtonClick = (programId) => {
-    console.log("Button clicked for program ID:", programId);
-  };
-
   return (
     <div className="table-container">
       <table className="table table-hover mt-3">
@@ -44,11 +40,7 @@ const Programs = (props) => {
         </thead>
         <tbody>
           {programs.map((program) => (
-            <ProgramRow
-              key={program.id}
-              program={program}
-              handleButtonClick={handleButtonClick}
-            />
+            <ProgramRow key={program.id} program={program} />
           ))}
         </tbody>
       </table>

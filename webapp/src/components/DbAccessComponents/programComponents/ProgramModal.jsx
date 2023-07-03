@@ -29,10 +29,7 @@ export default function ProgramModal({ programId, closeModal }) {
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const {
-    name,
-    url,
-  } = program;
+  const { name, url } = program;
 
   return (
     <div
@@ -41,21 +38,19 @@ export default function ProgramModal({ programId, closeModal }) {
       tabIndex="-1"
       aria-labelledby="displayProgramModal"
       aria-hidden="true"
-      style={{ display: "block" }}
-    >
+      style={{ display: "block" }}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="displayProgramModal">
-            Program Info
+              Program Info
             </h5>
             <button
               type="button"
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={closeModal}
-            ></button>
+              onClick={closeModal}></button>
           </div>
           <div className="modal-body">
             <style>
@@ -77,8 +72,7 @@ export default function ProgramModal({ programId, closeModal }) {
               type="button"
               data-bs-dismiss="modal"
               className="btn btn-secondary"
-              onClick={closeModal}
-            >
+              onClick={closeModal}>
               Close
             </button>
           </div>
