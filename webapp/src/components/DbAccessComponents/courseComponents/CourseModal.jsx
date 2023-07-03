@@ -1,45 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from '@apollo/client';
 import Spinner from "../../Spinner";
+import { GET_COURSE } from '../../../client/queries/courseQueries';
+import '../../../../css/DbAccessData.css'; // Update the CSS file path
 
 export default function CourseModal({ courseId, closeModal }) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [course, setCourse] = useState(null);
+  const { loading, error, data } = useQuery(GET_COURSE, {
+    variables: { id: courseId } 
+  });
 
-  useEffect(() => {
-    const fetchCourse = async () => {
-      try {
-        const response = await fetch(`/api/course/${courseId}`);
-        if (!response.ok) {
-          throw new Error("Error fetching course");
-        }
-        const data = await response.json();
-        setCourse(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching course:", error);
-        setError(error);
-        setLoading(false);
-      }
-    };
+  if (loading) {
+    return <Spinner />;
+  }
 
-    fetchCourse();
-  }, [courseId]);
+  if (error) {
+    return <div>Error loading course data</div>;
+  }
 
-  if (loading) return <Spinner />;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const {
-    title,
-    prefix,
-    header,
-    code,
-    description,
-    num_units,
-    ge_category,
-    prerequisites,
-    url,
-  } = course;
+  const course = data.course; // Assuming the course data is returned in the "course" field
 
   return (
     <div
@@ -48,7 +26,8 @@ export default function CourseModal({ courseId, closeModal }) {
       tabIndex="-1"
       aria-labelledby="displayCourseModal"
       aria-hidden="true"
-      style={{ display: "block" }}>
+      style={{ display: "block" }}
+    >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -60,7 +39,8 @@ export default function CourseModal({ courseId, closeModal }) {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={closeModal}></button>
+              onClick={closeModal}
+            ></button>
           </div>
           <div className="modal-body">
             <style>
@@ -72,45 +52,46 @@ export default function CourseModal({ courseId, closeModal }) {
             </style>
             <div className="mb-3">
               <label>Prefix: </label>
-              <span>{prefix}</span>
+              <span>{course.prefix}</span>
             </div>
             <div className="mb-3">
               <label>Code: </label>
-              <span>{code}</span>
+              <span>{course.code}</span>
             </div>
             <div className="mb-3">
               <label>Title: </label>
-              <span>{title}</span>
+              <span>{course.title}</span>
             </div>
             <div className="mb-3">
               <label>Header: </label>
-              <span>{header}</span>
+              <span>{course.header}</span>
             </div>
             <div className="mb-3">
               <label>Description: </label>
-              <span>{description}</span>
+              <span>{course.description}</span>
             </div>
             <div className="mb-3">
               <label>Number of Units: </label>
-              <span>{num_units}</span>
+              <span>{course.num_units}</span>
             </div>
             <div className="mb-3">
               <label>GE Category: </label>
-              <span>{ge_category}</span>
+              <span>{course.ge_category}</span>
             </div>
             <div className="mb-3">
               <label>Prerequisites: </label>
-              <span>{prerequisites}</span>
+              <span>{course.prerequisites}</span>
             </div>
             <div className="mb-3">
               <label>URL: </label>
-              <span>{url}</span>
+              <span>{course.url}</span>
             </div>
             <button
               type="button"
               data-bs-dismiss="modal"
               className="btn btn-secondary"
-              onClick={closeModal}>
+              onClick={closeModal}
+            >
               Close
             </button>
           </div>

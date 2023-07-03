@@ -3630,3 +3630,17 @@
 20230702	19:13:49	471f0378-723c-48f2-9cb6-96d36d8f117b	GET	/api	undefined
 20230702	19:13:49	0fa1af85-9922-438f-8c03-236d3b3da328	GET	/webapp/assets/index-82d1615b.js	http://localhost:3000
 20230702	19:13:49	685ba20e-d4c3-456d-bf2c-1e4778bce3d9	GET	/webapp/assets/index-661e3bda.css	undefined
+20230702	19:39:42	5f6ff86d-8e3b-44a3-a866-a173d8f7b3c6	GET	/	undefined
+20230702	19:39:42	6f8d5caf-1b62-4871-bcfb-3c5503338482	GET	/website/main.js	http://localhost:3000
+20230702	19:39:42	37323125-c2e0-4449-b132-2871e62c8cf2	GET	/website/landingPage/landing.css	undefined
+20230702	19:39:42	411ee3ea-7921-4053-99bf-fafe47caaf45	GET	/website/assets/images/hero_c.png	undefined
+20230702	19:39:43	e2a9fd58-03ff-4ff3-abfe-2d5ceef8f099	GET	/api	undefined
+20230702	19:39:43	4ccf93db-fe03-4208-9ce6-850a26538ed0	GET	/webapp/assets/index-952ca73a.js	http://localhost:3000
+20230702	19:39:43	0ab47e83-45c7-46e5-82f5-1527370a1ddb	GET	/webapp/assets/index-661e3bda.css	undefined
+20230702	19:47:22	0fdaf96d-9881-42a4-8440-64c8c8ece349	GET	/	undefined
+20230702	19:47:22	cfea9388-14d0-4656-ac9b-54813b9c5f98	GET	/website/main.js	http://localhost:3000
+20230702	19:47:22	3bf636c3-78e4-409c-8706-27e235a24c2c	GET	/website/landingPage/landing.css	undefined
+20230702	19:47:22	e88356b6-f44c-49ad-8c75-ccacc1a46274	GET	/website/assets/images/hero_c.png	undefined
+20230702	19:47:22	5fb489a3-439a-4904-b57c-857186112ce4	GET	/api	undefined
+20230702	19:47:22	cecf3f62-e3f6-431d-9df2-e351e22c2c4e	GET	/webapp/assets/index-7825684b.js	http://localhost:3000
+20230702	19:47:22	8011dc60-0227-4fc5-a045-ceb71c01247a	GET	/webapp/assets/index-661e3bda.css	undefined

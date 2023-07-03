@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { useMutation } from '@apollo/client';
 // import { DELETE_COURSE, GET_COURSES, GET_PROJECTS } from '../client/queries/courseQueries';
-// import CourseModal from './CourseModal';
+import CourseModal from './CourseModal';
 
 export default function CourseRow({ course }) {
   // const [deleteCourse] = useMutation(DELETE_COURSE, {
@@ -18,15 +18,15 @@ export default function CourseRow({ course }) {
   //   // },
   // });
 
-  // const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <>
@@ -36,17 +36,17 @@ export default function CourseRow({ course }) {
         <td>{course.num_units}</td>
         <td>{course.code}</td>
         <td>{course.ge_category}</td>
-        {/* <td>
+        <td>
           <div>
             <button type="button" className="btn btn-secondary" onClick={openModal}>
               Course Info
             </button>
           </div>
-        </td> */}
+        </td>
       </tr>
-      {/* {modalOpen && (
+      {modalOpen && (
         <CourseModal courseId={course.id} closeModal={closeModal} />
-      )} */}
+      )}
     </>
   );
 }
