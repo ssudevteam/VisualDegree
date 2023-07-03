@@ -1,35 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
-import ScheduleRow from "./ScheduleRow";
+import ScheduleRow from "../scheduleComponents/ScheduleRow";
+import { GET_SCHEDULES } from "../../../client/queries/scheduleQueries";
 import "../../../../css/DbAccessData.css";
 
 const Schedules = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [schedules, setSchedules] = useState([]);
-
-  useEffect(() => {
-    fetchSchedules();
-  }, []);
-
-  const fetchSchedules = () => {
-    fetch("/api/schedules")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error fetching schedules");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setSchedules(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching schedules:", error);
-        setError(error);
-        setLoading(false);
-      });
-  };
+  const { loading, error, data } = useQuery(GET_SCHEDULES);
 
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
@@ -43,7 +20,7 @@ const Schedules = () => {
           </tr>
         </thead>
         <tbody>
-          {schedules.map((schedule) => (
+          {data.schedules.map((schedule) => (
             <ScheduleRow key={schedule.id} schedule={schedule} />
           ))}
         </tbody>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProgramModal from "./ProgramModal";
 
-const ProgramRow = ({ program, handleButtonClick }) => {
+const ProgramRow = ({ program }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {

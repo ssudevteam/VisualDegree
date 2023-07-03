@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import CourseRow from "../courseComponents/CourseRow";
-import "../../../../css/DbAccessData.css"; // Update the CSS file path
+import { GET_COURSES_BY_DEPARTMENT } from "../../../client/queries/courseQueries";
+import "../../../../css/DbAccessData.css";
 
 const CoursesInDepartment = ({ departmentId }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [courses, setCourses] = useState([]);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await fetch(`/api/courses/department/${departmentId}`);
-        if (!response.ok) {
-          throw new Error("Error fetching courses");
-        }
-        const data = await response.json();
-        setCourses(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
-  }, [departmentId]);
+  const { loading, error, data } = useQuery(GET_COURSES_BY_DEPARTMENT, {
+    variables: { departmentId },
+  });
 
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
@@ -44,7 +26,7 @@ const CoursesInDepartment = ({ departmentId }) => {
           </tr>
         </thead>
         <tbody>
-          {courses.map((course) => (
+          {data.coursesByDepartment.map((course) => (
             <CourseRow key={course.id} course={course} />
           ))}
         </tbody>

@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
     schedule: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Course", // Reference to the 'Course' model
+        ref: "Schedule", // Reference to the 'Schedule' model
         default: null,
       },
     ],

@@ -3,26 +3,24 @@ import Spinner from "../../components/Spinner";
 import Sidebar from "../../components/Sidebar";
 import Banner from "../../components/Banner";
 import Navbar from "../../components/Navbar";
-
 import Courses from "../../components/DbAccessComponents/courseComponents/Courses";
 import Programs from "../../components/DbAccessComponents/programComponents/Programs";
 import Departments from "../../components/DbAccessComponents/departmentComponents/Departments";
 import Schedules from "../../components/DbAccessComponents/scheduleComponents/Schedules";
 import CoursesInDepartment from "../../components/DbAccessComponents/courseComponents/CoursesInDepartment";
 import SSU_programs from "../../reactflow/data/SSU_programs";
-
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
 import "../../../css/sidebar.css";
 import "../../../css/DbAccessData.css";
 
 const DhHomeOverlay = () => {
-  const [degreeName, setDegreeName] = useState("");
   const [showCourses, setShowCourses] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
   const [showSchedules, setShowSchedules] = useState(false);
   const [showDepartments, setShowDepartments] = useState(false);
   const [showProgramCourses, setShowProgramCourses] = useState(false);
+  const [degreeName, setDegreeName] = useState("");
   const [selectedDegree, setSelectedDegree] = useState("");
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +37,6 @@ const DhHomeOverlay = () => {
 
   const fetchPrograms = () => {
     try {
-      // Simulating an asynchronous API call to fetch the programs
       setTimeout(() => {
         setPrograms(SSU_programs);
         setLoading(false);
@@ -79,8 +76,8 @@ const DhHomeOverlay = () => {
   };
 
   const handleProgramsClick = () => {
-    setShowPrograms(true);
     setShowCourses(false);
+    setShowPrograms(true);
     setShowDepartments(false);
     setShowSchedules(false);
     setShowProgramCourses(false);
@@ -88,19 +85,18 @@ const DhHomeOverlay = () => {
   };
 
   const handleDepartmentsClick = () => {
-    setShowDepartments(true);
     setShowCourses(false);
     setShowPrograms(false);
+    setShowDepartments(true);
     setShowSchedules(false);
     setShowProgramCourses(false);
-    setDegreeName("");
   };
 
   const handleSchedulesClick = () => {
-    setShowSchedules(true);
     setShowCourses(false);
     setShowPrograms(false);
     setShowDepartments(false);
+    setShowSchedules(true);
     setShowProgramCourses(false);
   };
 
@@ -222,10 +218,7 @@ const DhHomeOverlay = () => {
       {showDepartments && <Departments />}
       {showSchedules && <Schedules />}
       {showProgramCourses && (
-        <CoursesInDepartment
-          key={selectedDegree}
-          departmentId={selectedDegree}
-        />
+        <CoursesInDepartment departmentId={selectedDegree} />
       )}
     </div>
   );

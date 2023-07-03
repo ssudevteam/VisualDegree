@@ -806,6 +806,9 @@ const Mutation = new GraphQLObjectType({
         name: {
           type: new GraphQLNonNull(GraphQLString),
         },
+        user: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
         courses: {
           type: new GraphQLList(GraphQLID),
         },
@@ -813,6 +816,7 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         let schedule = new Schedule({
           name: args.name,
+          user: args.user,
           courses: args.courses,
         });
         return schedule.save();
@@ -827,6 +831,9 @@ const Mutation = new GraphQLObjectType({
         name: {
           type: GraphQLString,
         },
+        user: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
         courses: {
           type: new GraphQLList(GraphQLID),
         },
@@ -837,6 +844,7 @@ const Mutation = new GraphQLObjectType({
           {
             $set: {
               name: args.name,
+              user: args.user,
               courses: args.courses,
             },
           },
