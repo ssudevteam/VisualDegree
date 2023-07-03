@@ -20,7 +20,4 @@ const GET_DEPARTMENTS = gql`
   }
 `;
 
-export {
-  GET_DEPARTMENT,
-  GET_DEPARTMENTS,
-};
+export { GET_DEPARTMENT, GET_DEPARTMENTS };

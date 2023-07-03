@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ProgramModal from './ProgramModal';
+import React, { useState } from "react";
+import ProgramModal from "./ProgramModal";
 
 const ProgramRow = ({ program }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,8 +21,7 @@ const ProgramRow = ({ program }) => {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={openModal}
-            >
+              onClick={openModal}>
               Program Info
             </button>
           </div>

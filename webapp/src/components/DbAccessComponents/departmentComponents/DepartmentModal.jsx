@@ -1,18 +1,18 @@
 import React from "react";
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
-import { GET_DEPARTMENT } from '../../../client/queries/departmentQueries';
-import '../../../../css/DbAccessData.css'; 
+import { GET_DEPARTMENT } from "../../../client/queries/departmentQueries";
+import "../../../../css/DbAccessData.css";
 
 export default function DepartmentModal({ departmentId, closeModal }) {
-    const { loading, error, data } = useQuery(GET_DEPARTMENT, {
-      variables: { id: departmentId } 
-    });
-    
+  const { loading, error, data } = useQuery(GET_DEPARTMENT, {
+    variables: { id: departmentId },
+  });
+
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const department = data.department; 
+  const department = data.department;
 
   return (
     <div

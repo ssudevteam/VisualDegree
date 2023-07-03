@@ -1,11 +1,11 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React from "react";
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import DepartmentRow from "./DepartmentRow";
-import { GET_DEPARTMENTS } from '../../../client/queries/departmentQueries';
+import { GET_DEPARTMENTS } from "../../../client/queries/departmentQueries";
 import "../../../../css/DbAccessData.css";
 
- const Departments = () => {
+const Departments = () => {
   const { loading, error, data } = useQuery(GET_DEPARTMENTS);
 
   if (loading) return <Spinner />;

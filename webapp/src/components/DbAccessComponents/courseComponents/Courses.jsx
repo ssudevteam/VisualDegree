@@ -1,9 +1,9 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import Spinner from '../../Spinner';
-import CourseRow from '../courseComponents/CourseRow';
-import { GET_COURSES } from '../../../client/queries/courseQueries';
-import '../../../../css/DbAccessData.css'; // Update the CSS file path
+import React from "react";
+import { useQuery } from "@apollo/client";
+import Spinner from "../../Spinner";
+import CourseRow from "../courseComponents/CourseRow";
+import { GET_COURSES } from "../../../client/queries/courseQueries";
+import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
 const Courses = () => {
   const { loading, error, data } = useQuery(GET_COURSES);
@@ -31,6 +31,6 @@ const Courses = () => {
       </table>
     </div>
   );
-}
+};
 
 export default Courses;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import Spinner from '../../Spinner';
-import { GET_PROGRAM } from '../../../client/queries/programQueries';
-import '../../../../css/DbAccessData.css';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import Spinner from "../../Spinner";
+import { GET_PROGRAM } from "../../../client/queries/programQueries";
+import "../../../../css/DbAccessData.css";
 
 const ProgramModal = ({ programId, closeModal }) => {
   const { loading, error, data } = useQuery(GET_PROGRAM, {
@@ -26,8 +26,7 @@ const ProgramModal = ({ programId, closeModal }) => {
       tabIndex="-1"
       aria-labelledby="displayProgramModal"
       aria-hidden="true"
-      style={{ display: 'block' }}
-    >
+      style={{ display: "block" }}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -39,8 +38,7 @@ const ProgramModal = ({ programId, closeModal }) => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={closeModal}
-            ></button>
+              onClick={closeModal}></button>
           </div>
           <div className="modal-body">
             <style>
@@ -62,8 +60,7 @@ const ProgramModal = ({ programId, closeModal }) => {
               type="button"
               data-bs-dismiss="modal"
               className="btn btn-secondary"
-              onClick={closeModal}
-            >
+              onClick={closeModal}>
               Close
             </button>
           </div>

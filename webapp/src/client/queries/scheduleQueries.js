@@ -52,7 +52,4 @@ const GET_SCHEDULES = gql`
   }
 `;
 
-export {
-  GET_SCHEDULE,
-  GET_SCHEDULES,
-};
+export { GET_SCHEDULE, GET_SCHEDULES };

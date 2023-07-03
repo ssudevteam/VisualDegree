@@ -150,8 +150,4 @@ const GET_USERS_IN_MAJOR = gql`
   }
 `;
 
-export {
-  GET_USER,
-  GET_USERS,
-  GET_USERS_IN_MAJOR,
-};
+export { GET_USER, GET_USERS, GET_USERS_IN_MAJOR };

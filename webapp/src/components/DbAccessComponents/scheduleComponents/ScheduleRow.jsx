@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import CourseList from "../courseComponents/CourseList";
 
 const ScheduleRow = ({ schedule }) => {

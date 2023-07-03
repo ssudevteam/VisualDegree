@@ -362,9 +362,8 @@ router.get("/", (req, res) => {
 //     });
 // });
 
-
-//Mutations 
-router.post('/api/schedule', (req, res) => {
+//Mutations
+router.post("/api/schedule", (req, res) => {
   const { name, user, courses } = req.body;
 
   const newSchedule = new Schedule({
@@ -375,15 +374,13 @@ router.post('/api/schedule', (req, res) => {
 
   newSchedule.save((err) => {
     if (err) {
-      console.error('Error creating schedule:', err);
-      return res.status(500).json({ error: 'Failed to create schedule' });
+      console.error("Error creating schedule:", err);
+      return res.status(500).json({ error: "Failed to create schedule" });
     }
 
-    console.log('Schedule created:', newSchedule);
+    console.log("Schedule created:", newSchedule);
     return res.status(200).json(newSchedule);
   });
 });
-
-
 
 module.exports = router;

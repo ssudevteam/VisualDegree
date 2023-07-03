@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import DepartmentModal from './DepartmentModal';
+import React, { useState } from "react";
+import DepartmentModal from "./DepartmentModal";
 
 const DepartmentRow = ({ department }) => {
   const [modalOpen, setModalOpen] = useState(false);

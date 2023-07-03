@@ -1,12 +1,12 @@
 import React from "react";
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
-import { GET_COURSE } from '../../../client/queries/courseQueries';
-import '../../../../css/DbAccessData.css'; // Update the CSS file path
+import { GET_COURSE } from "../../../client/queries/courseQueries";
+import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
- const CourseModal = ({ courseId, closeModal }) => {
+const CourseModal = ({ courseId, closeModal }) => {
   const { loading, error, data } = useQuery(GET_COURSE, {
-    variables: { id: courseId } 
+    variables: { id: courseId },
   });
 
   if (loading) {
@@ -26,8 +26,7 @@ import '../../../../css/DbAccessData.css'; // Update the CSS file path
       tabIndex="-1"
       aria-labelledby="displayCourseModal"
       aria-hidden="true"
-      style={{ display: "block" }}
-    >
+      style={{ display: "block" }}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -39,8 +38,7 @@ import '../../../../css/DbAccessData.css'; // Update the CSS file path
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={closeModal}
-            ></button>
+              onClick={closeModal}></button>
           </div>
           <div className="modal-body">
             <style>
@@ -90,8 +88,7 @@ import '../../../../css/DbAccessData.css'; // Update the CSS file path
               type="button"
               data-bs-dismiss="modal"
               className="btn btn-secondary"
-              onClick={closeModal}
-            >
+              onClick={closeModal}>
               Close
             </button>
           </div>
@@ -100,6 +97,6 @@ import '../../../../css/DbAccessData.css'; // Update the CSS file path
       <div className="modal-backdrop fade show" onClick={closeModal}></div>
     </div>
   );
-}
+};
 
 export default CourseModal;
