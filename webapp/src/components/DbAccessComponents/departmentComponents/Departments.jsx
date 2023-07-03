@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import { useQuery } from '@apollo/client';
 import Spinner from "../../Spinner";
 import DepartmentRow from "./DepartmentRow";
-import "../../../../css/DbAccessData.css"; // Update the CSS file path
+import { GET_DEPARTMENTS } from '../../../client/queries/departmentQueries';
+import "../../../../css/DbAccessData.css";
 
-const Departments = (props) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [departments, setdepartments] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/departments")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error fetching departments");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setdepartments(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching departments:", error);
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
+ const Departments = () => {
+  const { loading, error, data } = useQuery(GET_DEPARTMENTS);
 
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
@@ -39,7 +20,7 @@ const Departments = (props) => {
           </tr>
         </thead>
         <tbody>
-          {departments.map((department) => (
+          {data.departments.map((department) => (
             <DepartmentRow key={department.id} department={department} />
           ))}
         </tbody>

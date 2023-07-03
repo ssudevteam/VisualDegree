@@ -5,7 +5,7 @@ import CourseRow from '../courseComponents/CourseRow';
 import { GET_COURSES } from '../../../client/queries/courseQueries';
 import '../../../../css/DbAccessData.css'; // Update the CSS file path
 
-export default function Courses() {
+const Courses = () => {
   const { loading, error, data } = useQuery(GET_COURSES);
 
   if (loading) return <Spinner />;
@@ -32,3 +32,5 @@ export default function Courses() {
     </div>
   );
 }
+
+export default Courses;

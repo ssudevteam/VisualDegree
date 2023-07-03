@@ -3,7 +3,11 @@ import Spinner from "../../components/Spinner";
 import Sidebar from "../../components/Sidebar";
 import Banner from "../../components/Banner";
 import Navbar from "../../components/Navbar";
+
 import Courses from "../../components/DbAccessComponents/courseComponents/Courses";
+import Programs from "../../components/DbAccessComponents/programComponents/Programs";
+import Departments from "../../components/DbAccessComponents/departmentComponents/Departments";
+import Schedules from "../../components/DbAccessComponents/scheduleComponents/Schedules";
 
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
@@ -12,6 +16,9 @@ import "../../../css/DbAccessData.css";
 
 const DhHomeOverlay = () => {
   const [showCourses, setShowCourses] = useState(false);
+  const [showPrograms, setShowPrograms] = useState(false);
+  const [showSchedules, setShowSchedules] = useState(false);
+  const [showDepartments, setShowDepartments] = useState(false);
 
   useEffect(() => {
     handleNavOpen();
@@ -41,6 +48,30 @@ const DhHomeOverlay = () => {
 
   const handleCoursesClick = () => {
     setShowCourses(true);
+    setShowPrograms(false);
+    setShowDepartments(false);
+    setShowSchedules(false);
+  };
+
+  const handleProgramsClick = () => {
+    setShowCourses(false);
+    setShowPrograms(true);
+    setShowDepartments(false);
+    setShowSchedules(false);
+  };
+
+  const handleDepartmentsClick = () => {
+    setShowCourses(false);
+    setShowPrograms(false);
+    setShowDepartments(true);
+    setShowSchedules(false);
+  };
+
+  const handleSchedulesClick = () => {
+    setShowCourses(false);
+    setShowPrograms(false);
+    setShowDepartments(false);
+    setShowSchedules(true);
   };
 
   const renderBanner = () => {
@@ -76,8 +107,23 @@ const DhHomeOverlay = () => {
       <Navbar id="builderNavbar" className="navbar navbar-material">
         <div className="container" style={{ alignItems: "left" }}>
           <div className="navbarItem">
+            <span className="navbarLink" onClick={handleProgramsClick}>
+              Programs
+            </span>
+          </div>
+          <div className="navbarItem">
+            <span className="navbarLink" onClick={handleDepartmentsClick}>
+              Departments
+            </span>
+          </div>
+          <div className="navbarItem">
             <span className="navbarLink" onClick={handleCoursesClick}>
               Courses
+            </span>
+          </div>
+          <div className="navbarItem">
+            <span className="navbarLink" onClick={handleSchedulesClick}>
+              All Schedules
             </span>
           </div>
         </div>
@@ -90,6 +136,9 @@ const DhHomeOverlay = () => {
       {renderBanner()}
       {renderNavbar()}
       {showCourses && <Courses />}
+      {showPrograms && <Programs />}
+      {showDepartments && <Departments />}
+      {showSchedules && <Schedules />}
     </div>
   );
 };

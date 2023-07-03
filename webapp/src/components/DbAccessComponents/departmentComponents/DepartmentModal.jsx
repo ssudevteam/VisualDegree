@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from '@apollo/client';
 import Spinner from "../../Spinner";
+import { GET_DEPARTMENT } from '../../../client/queries/departmentQueries';
+import '../../../../css/DbAccessData.css'; 
 
 export default function DepartmentModal({ departmentId, closeModal }) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [department, setDepartment] = useState(null);
-
-  useEffect(() => {
-    const fetchDepartment = async () => {
-      try {
-        const response = await fetch(`/api/department/${departmentId}`);
-        if (!response.ok) {
-          throw new Error("Error fetching department");
-        }
-        const data = await response.json();
-        setDepartment(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching department:", error);
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    fetchDepartment();
-  }, [departmentId]);
-
+    const { loading, error, data } = useQuery(GET_DEPARTMENT, {
+      variables: { id: departmentId } 
+    });
+    
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const { name, url } = department;
+  const department = data.department; 
 
   return (
     <div
@@ -62,11 +45,11 @@ export default function DepartmentModal({ departmentId, closeModal }) {
             </style>
             <div className="mb-3">
               <label>Name: </label>
-              <span>{name}</span>
+              <span>{department.name}</span>
             </div>
             <div className="mb-3">
               <label>URL: </label>
-              <span>{url}</span>
+              <span>{department.url}</span>
             </div>
             <button
               type="button"

@@ -4,7 +4,7 @@ import Spinner from "../../Spinner";
 import { GET_COURSE } from '../../../client/queries/courseQueries';
 import '../../../../css/DbAccessData.css'; // Update the CSS file path
 
-export default function CourseModal({ courseId, closeModal }) {
+ const CourseModal = ({ courseId, closeModal }) => {
   const { loading, error, data } = useQuery(GET_COURSE, {
     variables: { id: courseId } 
   });
@@ -101,3 +101,5 @@ export default function CourseModal({ courseId, closeModal }) {
     </div>
   );
 }
+
+export default CourseModal;

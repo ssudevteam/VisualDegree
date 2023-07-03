@@ -1,23 +1,7 @@
 import React, { useState } from 'react';
-// import { useMutation } from '@apollo/client';
-// import { DELETE_COURSE, GET_COURSES, GET_PROJECTS } from '../client/queries/courseQueries';
 import CourseModal from './CourseModal';
 
-export default function CourseRow({ course }) {
-  // const [deleteCourse] = useMutation(DELETE_COURSE, {
-  //   variables: { id: course.id },
-  //   refetchQueries: [{ query: GET_COURSES }, { query: GET_PROJECTS }],
-  //   // update(cache, { data: { deleteCourse } }) {
-  //   //   const { courses } = cache.readQuery({ query: GET_COURSES });
-  //   //   cache.writeQuery({
-  //   //     query: GET_COURSES,
-  //   //     data: {
-  //   //       courses: courses.filter((course) => course.id !== deleteCourse.id),
-  //   //     },
-  //   //   });
-  //   // },
-  // });
-
+ const CourseRow = ({ course }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -50,3 +34,5 @@ export default function CourseRow({ course }) {
     </>
   );
 }
+
+export default CourseRow;
