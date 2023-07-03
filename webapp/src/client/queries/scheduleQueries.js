@@ -1,4 +1,4 @@
-const { gql } = require("@apollo/client");
+import { gql } from "@apollo/client";
 
 const GET_SCHEDULE = gql`
   query GetSchedule($id: ID!) {
@@ -52,7 +52,7 @@ const GET_SCHEDULES = gql`
   }
 `;
 
-module.exports = {
+export {
   GET_SCHEDULE,
   GET_SCHEDULES,
 };

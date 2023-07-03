@@ -1,16 +1,32 @@
-import React, { useState } from "react";
-import CourseModal from "./CourseModal";
+import React from 'react';
+// import { useMutation } from '@apollo/client';
+// import { DELETE_COURSE, GET_COURSES, GET_PROJECTS } from '../client/queries/courseQueries';
+// import CourseModal from './CourseModal';
 
-const CourseRow = ({ course, handleButtonClick }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+export default function CourseRow({ course }) {
+  // const [deleteCourse] = useMutation(DELETE_COURSE, {
+  //   variables: { id: course.id },
+  //   refetchQueries: [{ query: GET_COURSES }, { query: GET_PROJECTS }],
+  //   // update(cache, { data: { deleteCourse } }) {
+  //   //   const { courses } = cache.readQuery({ query: GET_COURSES });
+  //   //   cache.writeQuery({
+  //   //     query: GET_COURSES,
+  //   //     data: {
+  //   //       courses: courses.filter((course) => course.id !== deleteCourse.id),
+  //   //     },
+  //   //   });
+  //   // },
+  // });
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
+  // const [modalOpen, setModalOpen] = useState(false);
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  // const openModal = () => {
+  //   setModalOpen(true);
+  // };
+
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
 
   return (
     <>
@@ -20,22 +36,17 @@ const CourseRow = ({ course, handleButtonClick }) => {
         <td>{course.num_units}</td>
         <td>{course.code}</td>
         <td>{course.ge_category}</td>
-        <td>
+        {/* <td>
           <div>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={openModal}>
+            <button type="button" className="btn btn-secondary" onClick={openModal}>
               Course Info
             </button>
           </div>
-        </td>
+        </td> */}
       </tr>
-      {modalOpen && (
+      {/* {modalOpen && (
         <CourseModal courseId={course.id} closeModal={closeModal} />
-      )}
+      )} */}
     </>
   );
-};
-
-export default CourseRow;
+}

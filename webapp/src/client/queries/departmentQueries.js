@@ -1,4 +1,4 @@
-const { gql } = require("@apollo/client");
+import { gql } from "@apollo/client";
 
 const GET_DEPARTMENT = gql`
   query GetDepartment($id: ID!) {
@@ -20,7 +20,7 @@ const GET_DEPARTMENTS = gql`
   }
 `;
 
-module.exports = {
+export {
   GET_DEPARTMENT,
   GET_DEPARTMENTS,
 };
