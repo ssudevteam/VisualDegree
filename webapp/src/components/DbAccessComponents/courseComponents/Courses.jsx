@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import CourseRow from "../courseComponents/CourseRow";
+import { GET_COURSES } from "../../../client/queries/courseQueries";
 import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
-const Courses = (props) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [courses, setCourses] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/courses")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error fetching courses");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching courses:", error);
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
+const Courses = () => {
+  const { loading, error, data } = useQuery(GET_COURSES);
 
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
@@ -43,7 +24,7 @@ const Courses = (props) => {
           </tr>
         </thead>
         <tbody>
-          {courses.map((course) => (
+          {data.courses.map((course) => (
             <CourseRow key={course.id} course={course} />
           ))}
         </tbody>

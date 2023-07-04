@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CourseModal from "./CourseModal";
 
-const CourseRow = ({ course, handleButtonClick }) => {
+const CourseRow = ({ course }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {

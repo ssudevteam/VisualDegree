@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import ProgramRow from "./ProgramRow";
+import { GET_PROGRAMS } from "../../../client/queries/programQueries";
 import "../../../../css/DbAccessData.css";
 
-const Programs = (props) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [programs, setprograms] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/programs")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error fetching programs");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setprograms(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching programs:", error);
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
+const Programs = () => {
+  const { loading, error, data } = useQuery(GET_PROGRAMS);
 
   if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
@@ -35,11 +16,11 @@ const Programs = (props) => {
       <table className="table table-hover mt-3">
         <thead>
           <tr>
-            <th> Name </th>
+            <th>Name</th>
           </tr>
         </thead>
         <tbody>
-          {programs.map((program) => (
+          {data.programs.map((program) => (
             <ProgramRow key={program.id} program={program} />
           ))}
         </tbody>
