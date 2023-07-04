@@ -5,9 +5,11 @@ import Navbar from "../../components/Navbar";
 import FontSelector from "../../components/UserSettings/FontSelector";
 import LanguageSelector from "../../components/UserSettings/LanguageSelector";
 import csNodes from "../../reactflow/data/cs_flow_nodes";
+import "../../../css/builder.css";
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
 import "../../../css/sidebar.css";
+import "../../../css/overlay.css";
 
 const DegreeBuilderOverlay = (props) => {
   const initialDegreeList = [
@@ -31,11 +33,6 @@ const DegreeBuilderOverlay = (props) => {
       "Psychology",
       "Business",
     ]);
-    // async function fetchInitialDegreeList() {
-    //     setDegreeList(await getAllDegreePrograms());
-    // }
-    //
-    // fetchInitialDegreeList().then();
     handleNavOpen();
     updateCourseListCallback(degreeName);
   }, []);
@@ -181,13 +178,13 @@ const DegreeBuilderOverlay = (props) => {
 
   const resizeViewport = () => {
     const sidebar = document.getElementById("builderSidebar");
-    const viewport = document.getElementById("builderView");
-    if (viewport && sidebar) {
+    const header = document.getElementById("builderHeader");
+    if (header && sidebar) {
       const animateLeft = async () => {
-        viewport.style.transition = "padding-left 0.7s ease-in-out";
+        header.style.transition = "padding-left 0.7s ease-in-out";
         // Animate the page "shrink" right
         setTimeout(() => {
-          viewport.style.paddingLeft = sidebar.offsetWidth + "px";
+          header.style.paddingLeft = sidebar.offsetWidth + "px";
         }, 0.1);
       };
       animateLeft().then();
@@ -197,6 +194,7 @@ const DegreeBuilderOverlay = (props) => {
       }
     }
 
+    // Resize the nav buttons
     const navButton = document.getElementById("sidebarNavButton");
     if (navButton) {
       navButton.style.width = "100%";
@@ -210,9 +208,10 @@ const DegreeBuilderOverlay = (props) => {
 
     const bannerLabel = document.getElementById("bannerLabel");
     if (bannerLabel) {
-      bannerLabel.hidden = 1;
+      bannerLabel.hidden = true;
     }
 
+    // Resize the banner label to fit the title
     const bannerDegreeName = document.getElementById("bannerDegreeName");
     if (bannerDegreeName) {
       bannerDegreeName.style.marginTop = "3px";
@@ -226,7 +225,7 @@ const DegreeBuilderOverlay = (props) => {
     }
 
     const elements = [];
-    elements.push(document.getElementById("builderView"));
+    elements.push(document.getElementById("builderHeader"));
     const banner = document.getElementById("builderBanner");
     elements.push(banner);
     const bannerNavButton = document.getElementById("bannerNavButton");
@@ -297,20 +296,23 @@ const DegreeBuilderOverlay = (props) => {
     return (
       <Navbar id="builderNavbar" className="navbar navbar-material">
         <div className="container" style={{ alignItems: "left" }}>
-          <div className="navbarItem selected" style={{ marginTop: 0 }}>
+          <div className="navbarItem selected">
             <span>Major</span>
           </div>
-          <div className="navbarItem" style={{ marginTop: 0 }}>
-            GE
-          </div>
-          <div className="navbarItem" style={{ marginTop: 0 }}>
-            Catalog
-          </div>
-          <div className="navbarItem" style={{ marginTop: 0 }}>
-            My Semester
-          </div>
+          <div className="navbarItem">GE</div>
+          <div className="navbarItem">Catalog</div>
+          <div className="navbarItem">My Semester</div>
         </div>
       </Navbar>
+    );
+  };
+
+  const renderHeader = () => {
+    return (
+      <div id="builderHeader" className={"overlay-header"}>
+        {renderBanner()}
+        {renderNavbar()}
+      </div>
     );
   };
 
@@ -318,10 +320,7 @@ const DegreeBuilderOverlay = (props) => {
     return (
       <Sidebar
         id="builderSidebar"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
+        className="builder-sidebar"
         ref={sidebarRef}
         label={label}>
         {renderNavButton()}
@@ -340,12 +339,17 @@ const DegreeBuilderOverlay = (props) => {
     );
   };
 
+  const renderBody = () => {
+    return <div className="overlay-body">{props.body}</div>;
+  };
+
   return (
-    <div id="builderOverlay" className="builder-overlay" {...props}>
-      {renderBanner()}
-      {renderNavbar()}
+    <div id="builderOverlay" className="overlay-container" {...props}>
+      {renderHeader()}
       {renderSidebar()}
+      {renderBody()}
     </div>
   );
 };
+
 export default DegreeBuilderOverlay;
