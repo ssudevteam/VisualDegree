@@ -6,8 +6,8 @@ export default function ModeSelector({ setMode }) {
     <div
       style={{
         position: "absolute",
-        bottom: "130px",
-        right: "20px",
+        bottom: "40px",
+        right: "60px",
         gap: "10px",
         zIndex: "1",
       }}>
