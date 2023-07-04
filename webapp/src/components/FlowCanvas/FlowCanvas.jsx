@@ -110,15 +110,7 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
   };
 
   return (
-    <div
-      id="flowCanvas"
-      className="flow-canvas"
-      style={{
-        width: "100%",
-        height: "100vh",
-        backgroundColor: "whitesmoke",
-      }}
-      {...props}>
+    <div id="flowCanvas" className="flow-canvas" {...props}>
       <ModeContext.Provider value={{ mode }}>
         <ModeSelector setMode={setMode} />
         <ReactFlow
@@ -143,7 +135,13 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
             onChange={onCanvasChange}
             flowInstance={rfInstance}
           />
-          <Controls />
+          <Controls
+            position="bottom-right"
+            style={{
+              bottom: "15px",
+              right: "-10px",
+            }}
+          />
           <Background size="1" />
         </ReactFlow>
       </ModeContext.Provider>

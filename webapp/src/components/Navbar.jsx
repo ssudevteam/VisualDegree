@@ -1,9 +1,11 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef } from "react";
 
-const Banner = forwardRef(({ label, title, children, ...props }, ref) => {
-  useEffect(() => {}, []);
-
-  return <div {...props}>{children}</div>;
+const Navbar = forwardRef(({ children, ...props }, ref) => {
+  return (
+    <div id="navbar" className="navbar" {...props}>
+      {children}
+    </div>
+  );
 });
 
-export default Banner;
+export default Navbar;
