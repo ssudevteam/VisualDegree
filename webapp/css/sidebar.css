@@ -3,12 +3,13 @@
   max-width: 18%;
   min-width: 200px;
   height: 100%;
-  position: fixed !important;
+  /*position: fixed !important;*/
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   z-index: 1;
+  padding: 10px;
   background-color: whitesmoke;
   box-sizing: border-box;
 }
@@ -59,21 +60,4 @@
 
 .scrollbar-thumb-gray::-webkit-scrollbar-thumb:hover {
   background-color: gray;
-}
-
-#builderSidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 250px; /* Adjust the width as needed */
-  background-color: #fff; /* Adjust the background color as needed */
-  z-index: 1000;
-  overflow-y: auto;
-  transition: transform 0.3s;
-}
-
-#builderView {
-  padding-left: 250px; /* Adjust the padding-left to match the width of the sidebar */
-  transition: padding-left 0.3s;
 }
