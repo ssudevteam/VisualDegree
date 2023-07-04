@@ -1,14 +1,12 @@
-import React, { createRef, useState, useEffect, useCallback } from "react";
-import Banner from "../../components/Banner";
-import Sidebar from "../../components/Sidebar";
+import React, { useState, useCallback } from "react";
 import Navbar from "../../components/Navbar";
 import FontSelector from "../../components/UserSettings/FontSelector";
 import LanguageSelector from "../../components/UserSettings/LanguageSelector";
 import csNodes from "../../reactflow/data/cs_flow_nodes";
+import Overlay from "../../components/Overlay";
+
 import "../../../css/builder.css";
-import "../../../css/banner.css";
 import "../../../css/navbar.css";
-import "../../../css/sidebar.css";
 import "../../../css/overlay.css";
 
 const DegreeBuilderOverlay = (props) => {
@@ -18,40 +16,12 @@ const DegreeBuilderOverlay = (props) => {
     "Psychology",
     "Business",
   ];
+
   const [selectedDegree, setSelectedDegree] = useState("");
   const [degreeName, setDegreeName] = useState("");
   const [degreeList, setDegreeList] = useState(initialDegreeList);
   const [courseList, setCourseList] = useState([]);
-  const sidebarRef = createRef();
   const label = "VisualDegree";
-
-  useEffect(() => {
-    // TEMPORARY
-    setDegreeList([
-      "Computer Science",
-      "Mathematics",
-      "Psychology",
-      "Business",
-    ]);
-    handleNavOpen();
-    updateCourseListCallback(degreeName);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const sidebar = document.getElementById("builderSidebar");
-      if (sidebar && sidebar.style.display !== "none") {
-        resizeViewport();
-      } else {
-        resizeViewportNoSidebar();
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.addEventListener("resize", handleResize);
-    };
-  }, []);
 
   const updateCourseListCallback = useCallback(
     (degree) => {
@@ -119,12 +89,6 @@ const DegreeBuilderOverlay = (props) => {
             );*/
   };
 
-  // const updateCourseList = async (degreeName) => {
-  //     const courses = await getCoursesForDegree(degreeName);
-  //     setCourseList(courses);
-  //     // renderCourseListBox();
-  // }
-
   const renderCourseListBox = () => {
     if (!courseList || courseList.length === 0) {
       return <></>;
@@ -168,134 +132,11 @@ const DegreeBuilderOverlay = (props) => {
     );
   };
 
-  const handleNavOpen = () => {
-    resizeViewport();
-  };
-
-  const handleNavClose = () => {
-    resizeViewportNoSidebar();
-  };
-
-  const resizeViewport = () => {
-    const sidebar = document.getElementById("builderSidebar");
-    const header = document.getElementById("builderHeader");
-    if (header && sidebar) {
-      const animateLeft = async () => {
-        header.style.transition = "padding-left 0.7s ease-in-out";
-        // Animate the page "shrink" right
-        setTimeout(() => {
-          header.style.paddingLeft = sidebar.offsetWidth + "px";
-        }, 0.1);
-      };
-      animateLeft().then();
-
-      if (sidebar) {
-        sidebar.style.display = "block";
-      }
-    }
-
-    // Resize the nav buttons
-    const navButton = document.getElementById("sidebarNavButton");
-    if (navButton) {
-      navButton.style.width = "100%";
-      navButton.style.height = "auto";
-    }
-
-    const bannerNav = document.getElementById("bannerNavButton");
-    if (bannerNav) {
-      bannerNav.style.display = "none";
-    }
-
-    const bannerLabel = document.getElementById("bannerLabel");
-    if (bannerLabel) {
-      bannerLabel.hidden = true;
-    }
-
-    // Resize the banner label to fit the title
-    const bannerDegreeName = document.getElementById("bannerDegreeName");
-    if (bannerDegreeName) {
-      bannerDegreeName.style.marginTop = "3px";
-      bannerDegreeName.style.paddingLeft = "10px";
-    }
-  };
-  const resizeViewportNoSidebar = () => {
-    const sidebar = document.getElementById("builderSidebar");
-    if (sidebar) {
-      sidebar.style.display = "none";
-    }
-
-    const elements = [];
-    elements.push(document.getElementById("builderHeader"));
-    const banner = document.getElementById("builderBanner");
-    elements.push(banner);
-    const bannerNavButton = document.getElementById("bannerNavButton");
-    elements.push(bannerNavButton);
-    elements.forEach((element) => {
-      if (element) {
-        element.style = "";
-      }
-    });
-
-    const bannerLabel = document.getElementById("bannerLabel");
-    if (bannerLabel) {
-      bannerLabel.hidden = false;
-    }
-
-    const bannerDegreeName = document.getElementById("bannerDegreeName");
-    if (bannerDegreeName) {
-      bannerDegreeName.style.paddingLeft = "0";
-    }
-
-    if (bannerNavButton && banner) {
-      bannerNavButton.style.setProperty(
-        "height",
-        banner.clientHeight + "px",
-        "important"
-      );
-    }
-  };
-
-  const renderNavButton = () => {
-    return (
-      <button
-        id="sidebarNavButton"
-        className="sidebar-banner banner-button banner-sonoma"
-        onClick={handleNavClose}>
-        <h5>{label}</h5>
-      </button>
-    );
-  };
-
-  const renderBanner = () => {
-    return (
-      <Banner id="builderBanner" className="banner banner-sonoma">
-        <button
-          id="bannerNavButton"
-          className="banner-button banner-sonoma banner-xlarge"
-          onClick={handleNavOpen}>
-          &#9776;
-        </button>
-        <div style={{ alignItems: "center" }}>
-          <h5
-            id="bannerLabel"
-            style={{
-              paddingTop: "7px",
-              marginBottom: 0,
-            }}>
-            {label}
-          </h5>
-          <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
-            {degreeName}
-          </h3>
-        </div>
-      </Banner>
-    );
-  };
-
   const renderNavbar = () => {
     return (
-      <Navbar id="builderNavbar" className="navbar navbar-material">
-        <div className="container" style={{ alignItems: "left" }}>
+      <Navbar id="builderNavbar" className="navbar">
+        <h4 className="title">Degree Builder</h4>
+        <div className="content">
           <div className="navbarItem selected">
             <span>Major</span>
           </div>
@@ -307,48 +148,43 @@ const DegreeBuilderOverlay = (props) => {
     );
   };
 
-  const renderHeader = () => {
+  const bannerContent = () => {
     return (
-      <div id="builderHeader" className={"overlay-header"}>
-        {renderBanner()}
-        {renderNavbar()}
+      <div style={{ alignItems: "center" }}>
+        <h5
+          id="bannerLabel"
+          className="label"
+          style={{
+            padding: "10px",
+            marginBottom: 0,
+          }}>
+          {label}
+        </h5>
       </div>
     );
   };
 
-  const renderSidebar = () => {
+  const sidebarContent = () => {
     return (
-      <Sidebar
-        id="builderSidebar"
-        className="builder-sidebar"
-        ref={sidebarRef}
-        label={label}>
-        {renderNavButton()}
-        <div
-          id="sidebarContent"
-          className="scrollbar-hidden"
-          style={{
-            padding: 10,
-            minHeight: "100%",
-          }}>
+      <>
+        <div id="sidebarContent" className="scrollbar-hidden">
           {degreeSelectBox()}
           {renderCourseListBox()}
         </div>
         {renderOptions()}
-      </Sidebar>
+      </>
     );
   };
 
-  const renderBody = () => {
-    return <div className="overlay-body">{props.body}</div>;
-  };
-
   return (
-    <div id="builderOverlay" className="overlay-container" {...props}>
-      {renderHeader()}
-      {renderSidebar()}
-      {renderBody()}
-    </div>
+    <Overlay
+      id="builderOverlay"
+      {...props}
+      navbar={renderNavbar()}
+      bannerChildren={bannerContent()}
+      sidebarChildren={sidebarContent()}>
+      {props.children}
+    </Overlay>
   );
 };
 
