@@ -1,80 +1,119 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import Select from "react-select";
 import Navbar from "../../components/Navbar";
 import FontSelector from "../../components/UserSettings/FontSelector";
 import LanguageSelector from "../../components/UserSettings/LanguageSelector";
-import csNodes from "../../reactflow/data/cs_flow_nodes";
 import Overlay from "../../components/Overlay";
 
 import "../../../css/builder.css";
 import "../../../css/navbar.css";
 import "../../../css/overlay.css";
+import "../../../css/sidebar.css";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { GET_PROGRAM, GET_PROGRAMS } from "../../client/queries/programQueries";
+import { Spinner } from "react-bootstrap";
+import { GET_COURSE, GET_COURSES } from "../../client/queries/courseQueries";
 
 const DegreeBuilderOverlay = (props) => {
-  const initialDegreeList = [
-    "Computer Science",
-    "Mathematics",
-    "Psychology",
-    "Business",
-  ];
-
-  const [selectedDegree, setSelectedDegree] = useState("");
-  const [degreeName, setDegreeName] = useState("");
-  const [degreeList, setDegreeList] = useState(initialDegreeList);
-  const [courseList, setCourseList] = useState([]);
+  const [selectedProgram, setSelectedProgram] = useState(null);
+  const [programs, setPrograms] = useState([]);
+  const [programCourses, setProgramCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const label = "VisualDegree";
 
-  const updateCourseListCallback = useCallback(
-    (degree) => {
-      if (degree === "Computer Science") {
-        setCourseList(csNodes);
+  const {
+    loading: queryLoading,
+    error: queryError,
+    data: queryData,
+  } = useQuery(GET_PROGRAMS);
+
+  const [queryCourseData, {}] = useLazyQuery(GET_COURSE);
+
+  useEffect(() => {
+    if (queryData) {
+      const programs = [...queryData.programs].sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      });
+
+      setPrograms(programs);
+      setLoading(queryLoading);
+    }
+    if (queryError) {
+      setError(queryError);
+      setLoading(queryLoading);
+    }
+  }, [queryData, queryError, queryLoading]);
+
+  const handleProgramSelection = async (selection) => {
+    let program = selection.value;
+    setSelectedProgram(program);
+
+    if (program && program.courses) {
+      setLoading(true);
+
+      const courses = [];
+      for (const course of program.courses) {
+        try {
+          const { data } = await queryCourseData({
+            variables: {
+              id: course.id,
+            },
+          });
+          courses.push(data.course);
+        } catch (error) {
+          console.error(`Error loading Courses: ${error}`);
+        }
+      }
+
+      if (courses.length > 0) {
+        courses.sort((a, b) => {
+          return `${a.prefix + a.code}`.localeCompare(`${b.prefix + b.code}`);
+        });
+        setProgramCourses(courses);
       } else {
-        setCourseList([]);
+        setProgramCourses(null);
       }
-    },
-    [csNodes]
-  );
-
-  const handleDegreeSelect = async (event) => {
-    const degree = event.target.value;
-    setSelectedDegree(degree);
-    setDegreeName(degree);
-
-    const setBannerTitle = () => {
-      const banner = document.getElementById("builderBanner");
-      if (banner) {
-        banner.title = degreeName;
-      }
-    };
-    setBannerTitle();
-
-    await updateCourseListCallback(degree);
-    renderCourseListBox();
+      setLoading(false);
+    }
   };
 
   const degreeSelectBox = () => {
+    const options = [];
+
+    programs.map((program) =>
+      options.push({
+        value: program,
+        label: program.name,
+      })
+    );
+
+    if (error) {
+      return <p>Error: {error.message}</p>;
+    }
+
     return (
       <div
         style={{
           display: "grid",
           paddingBottom: "10px",
           borderBottom: "ridge",
+          maxWidth: "100%",
         }}>
-        <label htmlFor="degreeSelect">Select Degree:</label>
-        <select
-          id="degreeSelect"
-          value={selectedDegree}
-          onChange={handleDegreeSelect}>
-          <option value="">-- Select --</option>
-          {degreeList.map((degree, index) => (
-            <option key={index} value={degree}>
-              {degree}
-            </option>
-          ))}
-        </select>
+        <label htmlFor="programSelect">Select Degree Program:</label>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Select
+            id="programSelectBox"
+            onChange={handleProgramSelection}
+            options={options}
+            value={selectedProgram ? {label: selectedProgram.name} : null}
+          />
+        )}
       </div>
     );
   };
-
   const renderOptions = () => {
     // This should be presented somewhere within the overlay that doesn't take up space
     //  consider perhaps using a button on the right-side of the banner that can provide these selectors.
@@ -82,15 +121,15 @@ const DegreeBuilderOverlay = (props) => {
     return <></>;
 
     /*return (
-                <footer id='footer' className='footer banner-sonoma'>
-                    <FontSelector/>
-                    <LanguageSelector/>
-                </footer>
-            );*/
+                    <footer id='footer' className='footer banner-sonoma'>
+                        <FontSelector/>
+                        <LanguageSelector/>
+                    </footer>
+                );*/
   };
 
   const renderCourseListBox = () => {
-    if (!courseList || courseList.length === 0) {
+    if (!programCourses || programCourses.length === 0) {
       return <></>;
     }
 
@@ -114,17 +153,17 @@ const DegreeBuilderOverlay = (props) => {
             borderBottom: "ridge",
             borderRight: "none",
             overflowY: "scroll",
-            maxHeight: "calc(80vh)",
+            maxHeight: "100%",
           }}>
-          {courseList.map((course, index) => (
+          {programCourses?.map((course) => (
             <button
-              key={index}
+              key={course.id}
               style={{
                 width: "100%",
                 border: "none",
                 borderBottom: "ridge",
               }}>
-              {course.data.label.split("-")[0].trim()}
+              {`${course.prefix} ${course.code}`}
             </button>
           ))}
         </div>
@@ -176,16 +215,20 @@ const DegreeBuilderOverlay = (props) => {
     );
   };
 
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <Overlay
       id="builderOverlay"
       {...props}
       navbar={renderNavbar()}
       bannerChildren={bannerContent()}
+      sidebarProps={{
+        className: "sidebar sidebar-card scrollbar-thin",
+      }}
       sidebarChildren={sidebarContent()}>
       {props.children}
     </Overlay>
   );
 };
-
 export default DegreeBuilderOverlay;
