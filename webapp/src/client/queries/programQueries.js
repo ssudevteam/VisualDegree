@@ -6,6 +6,9 @@ const GET_PROGRAM = gql`
       id
       name
       url
+      courses {
+        id
+      }
       programType {
         name
       }
@@ -19,6 +22,9 @@ const GET_PROGRAMS = gql`
       id
       name
       url
+      courses {
+        id
+      }
       programType {
         name
       }
@@ -32,6 +38,9 @@ const GET_PROGRAMS_BY_PROGRAM_TYPE = gql`
       id
       name
       url
+      courses {
+        id
+      }
       programType {
         name
       }
