@@ -251,7 +251,7 @@ const RootQuery = new GraphQLObjectType({
         },
         courses: {
           type: GraphQLList(GraphQLID),
-        }
+        },
       },
       resolve(parent, args) {
         return Program.findById(args.id);

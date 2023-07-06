@@ -108,7 +108,7 @@ const DegreeBuilderOverlay = (props) => {
             id="programSelectBox"
             onChange={handleProgramSelection}
             options={options}
-            value={selectedProgram ? {label: selectedProgram.name} : null}
+            value={selectedProgram ? { label: selectedProgram.name } : null}
           />
         )}
       </div>
