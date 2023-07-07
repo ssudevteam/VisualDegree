@@ -5,6 +5,14 @@ const GET_SCHEDULE = gql`
     schedule(id: $id) {
       id
       name
+      user {
+        id
+        name
+        student_id
+        email
+        unitsEnrolled
+        unitsTaken
+      }
       courses {
         id
         title
@@ -31,6 +39,14 @@ const GET_SCHEDULES = gql`
     schedules {
       id
       name
+      user {
+        id
+        name
+        student_id
+        email
+        unitsEnrolled
+        unitsTaken
+      }
       courses {
         id
         title

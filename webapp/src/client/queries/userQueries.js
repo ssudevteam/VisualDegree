@@ -150,4 +150,28 @@ const GET_USERS_IN_MAJOR = gql`
   }
 `;
 
-export { GET_USER, GET_USERS, GET_USERS_IN_MAJOR };
+const GET_USER_SCHEDULES = gql`
+  query GetUserSchedules($user: ID!) {
+    userSchedules(user: $user) {
+      schedule {
+        id
+        name
+        courses {
+          id
+          title
+          prefix
+          header
+          code
+          description
+          num_units
+          ge_category
+          prerequisites
+          url
+        }
+      }
+    }
+  }
+`;
+
+
+export { GET_USER, GET_USERS, GET_USERS_IN_MAJOR, GET_USER_SCHEDULES };

@@ -184,7 +184,7 @@ const ScheduleType = new GraphQLObjectType({
     user: {
       type: UserType,
       resolve(parent, args) {
-        return User.findById(parent.type_id);
+        return User.findById(parent.user);
       },
     },
     name: {
@@ -313,13 +313,13 @@ const RootQuery = new GraphQLObjectType({
     userSchedules: {
       type: new GraphQLList(ScheduleType),
       args: {
-        schedule: {
+        user: {
           type: GraphQLID,
         },
       },
       resolve(parent, args) {
-        return User.find({
-          schedule: args.schedule,
+        return Schedule.find({
+          user: args.user,
         });
       },
     },

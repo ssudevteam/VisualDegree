@@ -1,10 +1,18 @@
 const { gql } = require("@apollo/client");
 
 const ADD_SCHEDULE = gql`
-  mutation AddSchedule($id: ID!, $name: String!, $courses: [ID]) {
-    addSchedule(userId: $id, name: $name, courses: $courses) {
+  mutation AddSchedule($user: ID!, $name: String!, $courses: [ID]) {
+    addSchedule(user: $user, name: $name, courses: $courses) {
       id
       name
+      user{
+        id
+        name
+        student_id
+        email
+        unitsEnrolled
+        unitsTaken
+      }
       courses {
         id
         title
