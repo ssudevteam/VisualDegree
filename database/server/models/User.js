@@ -41,13 +41,6 @@ const userSchema = new mongoose.Schema(
         default: null,
       },
     ],
-    schedule: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Schedule", // Reference to the 'Schedule' model
-        default: null,
-      },
-    ],
   },
   {
     timestamps: true,

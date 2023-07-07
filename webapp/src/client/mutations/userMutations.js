@@ -36,27 +36,6 @@ const CREATE_USER = gql`
           url
         }
       }
-      schedule {
-        id
-        name
-        courses {
-          id
-          title
-          prefix
-          header
-          code
-          description
-          num_units
-          ge_category
-          prerequisites
-          url
-          department {
-            id
-            name
-            url
-          }
-        }
-      }
     }
   }
 `;
@@ -97,27 +76,6 @@ const UPDATE_USER = gql`
           url
         }
       }
-      schedule {
-        id
-        name
-        courses {
-          id
-          title
-          prefix
-          header
-          code
-          description
-          num_units
-          ge_category
-          prerequisites
-          url
-          department {
-            id
-            name
-            url
-          }
-        }
-      }
     }
   }
 `;
@@ -156,27 +114,6 @@ const DELETE_USER = gql`
           id
           name
           url
-        }
-      }
-      schedule {
-        id
-        name
-        courses {
-          id
-          title
-          prefix
-          header
-          code
-          description
-          num_units
-          ge_category
-          prerequisites
-          url
-          department {
-            id
-            name
-            url
-          }
         }
       }
     }

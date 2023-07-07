@@ -30,22 +30,6 @@ const GET_USER = gql`
         id
         num_units
       }
-      schedule {
-        id
-        name
-        courses {
-          id
-          title
-          prefix
-          header
-          code
-          description
-          num_units
-          ge_category
-          prerequisites
-          url
-        }
-      }
     }
   }
 `;
@@ -80,22 +64,6 @@ const GET_USERS = gql`
         id
         num_units
       }
-      schedule {
-        id
-        name
-        courses {
-          id
-          title
-          prefix
-          header
-          code
-          description
-          num_units
-          ge_category
-          prerequisites
-          url
-        }
-      }
     }
   }
 `;
@@ -129,22 +97,6 @@ const GET_USERS_IN_MAJOR = gql`
         title
         id
         num_units
-      }
-      schedule {
-        id
-        name
-        courses {
-          id
-          title
-          prefix
-          header
-          code
-          description
-          num_units
-          ge_category
-          prerequisites
-          url
-        }
       }
     }
   }
