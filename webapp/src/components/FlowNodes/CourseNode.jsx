@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { OverlayTrigger, Button, Popover } from "react-bootstrap";
 import { Handle, Position, useStore } from "reactflow";
 import "../../reactflow/floating_edges/style.css";
@@ -20,20 +20,20 @@ const CourseNode = ({ data, isConnectable }) => {
     }
   });
 
-  const handleNodeClick = () => {
+  const handleNodeClick = useCallback(() => {
     if (mode !== "move") {
       setShowPopover(!showPopover);
     }
-  };
+  }, [showPopover, setShowPopover]);
 
-  const handleClosePopover = () => {
+  const handleClosePopover = useCallback(() => {
     setShowPopover(false);
-  };
+  }, [setShowPopover]);
 
   const popover = (
     <Popover id="course-popover" className="custom-popover">
       <Popover.Header className="custom-popover-header">
-        <div className="custom-popover-title">{data.label}</div>
+        <h6 className="custom-popover-title">{data?.header}</h6>
         <Button
           variant="link"
           className="custom-popover-close"
@@ -42,7 +42,20 @@ const CourseNode = ({ data, isConnectable }) => {
         </Button>
       </Popover.Header>
       <Popover.Body className="custom-popover-body">
-        <div>{data.desc}</div>
+        <div>
+          <b>Description:</b> {data?.description}
+        </div>
+        <div>
+          <b>Units:</b> {data?.num_units}
+        </div>
+        <div>
+          <b>GE Category:</b> {data?.ge_category ? data.ge_category : "None"}
+        </div>
+        <div>
+          <b>Prerequisites:</b>{" "}
+          {data?.prerequisites ? data.prerequisites : "None"}
+        </div>
+        <a href={data?.url}>View on Sonoma.edu</a>
       </Popover.Body>
     </Popover>
   );
@@ -83,7 +96,7 @@ const CourseNode = ({ data, isConnectable }) => {
           style={{
             marginBottom: "4px",
           }}>
-          {data.label}
+          {data?.header}
         </div>
       </div>
       <OverlayTrigger

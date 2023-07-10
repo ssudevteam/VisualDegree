@@ -1,4 +1,9 @@
-import React, { useState, useCallback, forwardRef } from "react";
+import React, {
+  useState,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import ReactFlow, {
   ReactFlowProvider,
   useNodesState,
@@ -26,7 +31,7 @@ import "../../../css/flow.css";
 // TODO
 // I don't think floating edges is fully implemented
 
-const getNodeId = () => `randomnode_${+new Date()}`; // for addNode function
+const getNodeId = () => `node_${+new Date()}`;
 
 const initialNodes = csNodes;
 const initialEdges = [
@@ -45,24 +50,20 @@ const nodeTypes = {
 const edgeTypes = {
   floating: FloatingEdge,
 };
-console.log(csNodes);
+// console.log(csNodes);
 
-const FlowCanvas = forwardRef((props, forwardRef) => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [rfInstance, setRfInstance] = useState(forwardRef);
-  const [mode, setMode] = useState("move"); // Default mode
-
+const FlowCanvas = forwardRef((props, ref) => {
   const { setViewport } = useReactFlow();
-
-  //   const onMouseMove = (event) => {
-  //     if (mode === "select") {
-  //       // Implement your custom selection box logic here
-  //     }
-  //   };
+  const [rfInstance, setRfInstance] = useState(null);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [mode, setMode] = useState("move");
 
   const onConnect = useCallback(
-    (params) =>
+    (params) => {
+      if (!params) {
+        return;
+      }
       setEdges((eds) =>
         addEdge(
           {
@@ -74,23 +75,60 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
           },
           eds
         )
-      ),
+      );
+    },
     [setEdges]
   );
 
-  const onAdd = useCallback(() => {
-    const newNode = {
-      id: getNodeId(),
-      data: {
-        label: "Added node",
-      },
-      position: {
-        x: Math.random() * window.innerWidth - 100,
-        y: Math.random() * window.innerHeight,
-      },
-    };
-    setNodes((nds) => nds.concat(newNode));
-  }, [setNodes]);
+  const addNode = useCallback(
+    (newNode) => {
+      if (!newNode) {
+        newNode = {
+          data: {
+            header: "Add Text Here",
+          },
+          type: "courseNode",
+          position: {
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+          },
+        };
+      }
+      setNodes((prevNodes) => {
+        if (!newNode.id) {
+          newNode.id = getNodeId();
+        }
+        return [...prevNodes, newNode];
+      });
+    },
+    [setNodes]
+  );
+
+  const removeNode = useCallback(
+    (node) => {
+      const index = nodes.findIndex((currNode) => {
+        return currNode.id === node.id;
+      });
+      if (index !== -1) {
+        setNodes([...nodes.slice(0, index), ...nodes.slice(index + 1)]);
+      }
+    },
+    [nodes, setNodes]
+  );
+
+  const getLastNodePosition = () => {
+    if (nodes.length === 0) {
+      return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    }
+    const node = nodes.at(nodes.length - 1);
+    return { x: node.position.x, y: node.position.y };
+  };
+
+  useImperativeHandle(ref, () => ({
+    addNode,
+    removeNode,
+    getLastNodePosition,
+  }));
 
   const onCanvasChange = (flowObject) => {
     const updateCanvas = async () => {
@@ -105,21 +143,20 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
         });
       }
     };
-
     updateCanvas().then();
   };
 
   return (
-    <div id="flowCanvas" className="flow-canvas" {...props}>
+    <div id="flowCanvas" className="flow-canvas" ref={ref} {...props}>
       <ModeContext.Provider value={{ mode }}>
         <ModeSelector setMode={setMode} />
         <ReactFlow
           nodes={nodes}
           edges={edges}
+          onInit={setRfInstance}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
-          onInit={setRfInstance}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           connectionLineComponent={FloatingConnectionLine}
@@ -131,7 +168,7 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
           // fitViewport={true}
         >
           <FlowButtonPanel
-            onAddNode={onAdd}
+            onNodeAdd={(event) => addNode(event.target.value)}
             onChange={onCanvasChange}
             flowInstance={rfInstance}
           />
@@ -149,8 +186,8 @@ const FlowCanvas = forwardRef((props, forwardRef) => {
   );
 });
 
-export default () => (
+export default forwardRef((props, ref) => (
   <ReactFlowProvider>
-    <FlowCanvas />
+    <FlowCanvas ref={ref} props={props} />
   </ReactFlowProvider>
-);
+));

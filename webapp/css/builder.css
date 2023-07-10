@@ -31,3 +31,16 @@
   grid-column: 1;
   z-index: 1;
 }
+
+.builder-sidebar-button {
+  width: 100%;
+  border: none;
+  border-bottom: ridge;
+  color: #fff !important;
+  background-color: #004c98 !important;
+}
+
+.button-select {
+  color: #fff !important;
+  background-color: #003178 !important;
+}
