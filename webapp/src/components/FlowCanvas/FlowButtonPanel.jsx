@@ -7,8 +7,8 @@ import React from "react";
 
 const flowKey = "example-flow"; // key to save flow to localStorage
 
-const FlowButtonPanel = ({ onAddNode, onChange, flowInstance }) => {
-  const loadFileRef = useRef(null);
+const FlowButtonPanel = ({ onNodeAdd, onChange, flowInstance }) => {
+  const loadFileRef = useRef();
 
   const onLoadButtonClick = () => {
     loadFileRef.current.click();
@@ -84,7 +84,7 @@ const FlowButtonPanel = ({ onAddNode, onChange, flowInstance }) => {
 
   return (
     <Panel id="flowButtonPanel" position="top-right">
-      <Button variant="secondary" onClick={onAddNode}>
+      <Button variant="secondary" onClick={onNodeAdd}>
         Add Course
       </Button>
       <Button variant="secondary" onClick={onSave}>

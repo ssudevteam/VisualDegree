@@ -1,4 +1,4 @@
-import React, { createRef, useState, useEffect, forwardRef } from "react";
+import React, { createRef, forwardRef, useRef, useState } from "react";
 import Banner from "./Banner";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
@@ -21,16 +21,13 @@ const Overlay = forwardRef(
       bannerChildren,
       navbarChildren,
       sidebarChildren,
-      ...rest
+      ...props
     },
     ref
   ) => {
-    if (!ref) {
-      ref = createRef();
-    }
-    const bannerRef = createRef();
-    const navbarRef = createRef();
-    const sidebarRef = createRef();
+    const bannerRef = useRef();
+    const navbarRef = useRef();
+    const sidebarRef = useRef();
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
     const handleNavButtonClick = () => {
@@ -48,7 +45,7 @@ const Overlay = forwardRef(
     };
 
     return (
-      <div id="overlayContainer" className="overlay" ref={ref} {...rest}>
+      <div id="overlayContainer" className="overlay" ref={ref} {...props}>
         {header ? (
           header
         ) : (
@@ -97,11 +94,12 @@ const Overlay = forwardRef(
           body
         ) : (
           <div id="overlayBody" className="body">
-            {rest.children}
+            {props.children}
           </div>
         )}
       </div>
     );
   }
 );
+
 export default Overlay;
