@@ -4,6 +4,7 @@ import { Handle, Position, useStore } from "reactflow";
 import "../../reactflow/floating_edges/style.css";
 import "../../../css/customNodes.css";
 import ModeContext from "../FlowContexts/ModeContext";
+import {Mode} from "../UserSettings/ModeSelector";
 
 const connectionNodeIdSelector = (state) => state.connectionNodeId;
 
@@ -21,10 +22,10 @@ const CourseNode = ({ data, isConnectable }) => {
   });
 
   const handleNodeClick = useCallback(() => {
-    if (mode !== "move") {
+    if (mode === Mode.Describe) {
       setShowPopover(!showPopover);
     }
-  }, [showPopover, setShowPopover]);
+  }, [mode, setShowPopover]);
 
   const handleClosePopover = useCallback(() => {
     setShowPopover(false);

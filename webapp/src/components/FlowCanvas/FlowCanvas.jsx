@@ -23,7 +23,7 @@ import ModeContext from "../../components/FlowContexts/ModeContext";
 import csNodes from "../../reactflow/data/cs_flow_nodes";
 import FloatingEdge from "../../reactflow/floating_edges/FloatingEdge";
 import FloatingConnectionLine from "../../reactflow/floating_edges/FloatingConnectionLine";
-import ModeSelector from "../UserSettings/ModeSelector";
+import ModeSelector, { Mode } from "../UserSettings/ModeSelector";
 
 import "../../reactflow/floating_edges/style.css";
 import "../../../css/flow.css";
@@ -57,7 +57,7 @@ const FlowCanvas = forwardRef((props, ref) => {
   const [rfInstance, setRfInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [mode, setMode] = useState("move");
+  const [mode, setMode] = useState(Mode.Move);
 
   const onConnect = useCallback(
     (params) => {
