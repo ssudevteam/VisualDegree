@@ -18,13 +18,13 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import CourseNode from "../FlowNodes/CourseNode";
 import FlowButtonPanel from "./FlowButtonPanel";
-import ModeContext from "../../components/FlowContexts/ModeContext";
+import { SelectorModeContext } from "../../common/Contexts";
 
 import csNodes from "../../reactflow/data/cs_flow_nodes";
 import FloatingEdge from "../../reactflow/floating_edges/FloatingEdge";
 import FloatingConnectionLine from "../../reactflow/floating_edges/FloatingConnectionLine";
-import ModeSelector, { Mode } from "../UserSettings/ModeSelector";
-
+import ModeSelector from "../UserSettings/ModeSelector";
+import { SelectorMode } from "../../common/Types";
 import "../../reactflow/floating_edges/style.css";
 import "../../../css/flow.css";
 
@@ -57,7 +57,7 @@ const FlowCanvas = forwardRef((props, ref) => {
   const [rfInstance, setRfInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [mode, setMode] = useState(Mode.Move);
+  const [mode, setMode] = useState(SelectorMode.Move);
 
   const onConnect = useCallback(
     (params) => {
@@ -148,7 +148,7 @@ const FlowCanvas = forwardRef((props, ref) => {
 
   return (
     <div id="flowCanvas" className="flow-canvas" ref={ref} {...props}>
-      <ModeContext.Provider value={{ mode }}>
+      <SelectorModeContext.Provider value={mode}>
         <ModeSelector setMode={setMode} />
         <ReactFlow
           nodes={nodes}
@@ -160,8 +160,8 @@ const FlowCanvas = forwardRef((props, ref) => {
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           connectionLineComponent={FloatingConnectionLine}
-          nodesDraggable={mode === "move"} // Only allow dragging nodes in 'move' mode
-          nodesConnectable={mode === "connect"} // Only allow connecting nodes in 'connect' mode
+          nodesDraggable={mode === SelectorMode.Move} // Only allow dragging nodes in 'move' mode
+          nodesConnectable={mode === SelectorMode.Connect} // Only allow connecting nodes in 'connect' mode
           connectionRadius={80}
           selectionMode={SelectionMode.Partial}
           // onPaneClick={(event) => mode === 'move' && onMouseMove(event)} // Custom behavior in 'move' mode
@@ -181,7 +181,7 @@ const FlowCanvas = forwardRef((props, ref) => {
           />
           <Background size="1" />
         </ReactFlow>
-      </ModeContext.Provider>
+      </SelectorModeContext.Provider>
     </div>
   );
 });
