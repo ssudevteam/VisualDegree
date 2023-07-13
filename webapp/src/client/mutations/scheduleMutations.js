@@ -5,7 +5,7 @@ const ADD_SCHEDULE = gql`
     addSchedule(user: $user, name: $name, courses: $courses) {
       id
       name
-      user{
+      user {
         id
         name
         student_id
