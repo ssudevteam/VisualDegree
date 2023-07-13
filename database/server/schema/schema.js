@@ -518,10 +518,10 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (parent, args) => {
         const deletedUser = await User.findByIdAndDelete(args.id);
-    
+
         // Delete all schedules tied to the deleted user
         await Schedule.deleteMany({ _id: { $in: deletedUser.schedule } });
-    
+
         return deletedUser;
       },
     },

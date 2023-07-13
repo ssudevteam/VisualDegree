@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
- function AddScheduleModal() {
+function AddScheduleModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -17,14 +17,11 @@ import Modal from 'react-bootstrap/Modal';
         show={show}
         onHide={handleClose}
         backdrop="static"
-        keyboard={false}
-      >
+        keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Stuff
-        </Modal.Body>
+        <Modal.Body>Stuff</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -37,10 +34,6 @@ import Modal from 'react-bootstrap/Modal';
 }
 
 export default AddScheduleModal;
-
-
-
-
 
 // import { useState } from "react";
 // import { FaUser } from "react-icons/fa";
