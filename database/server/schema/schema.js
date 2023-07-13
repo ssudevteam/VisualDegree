@@ -15,7 +15,6 @@ const {
   GraphQLList,
   GraphQLNonNull,
 } = require("graphql");
-const { SchemaType } = require("mongoose");
 
 // Define UserType schema
 const UserType = new GraphQLObjectType({
@@ -33,12 +32,44 @@ const UserType = new GraphQLObjectType({
     email: {
       type: GraphQLString,
     },
+    //Aggregate fields
     unitsEnrolled: {
       type: GraphQLString,
+      async resolve(parent, args) {
+        const schedulePromise = Schedule.find({ user: parent.id });
+
+        const schedules = await schedulePromise;
+        let unitsEnrolledSum = 0;
+
+        for (const schedule of schedules) {
+          const coursePromise = Course.find({ _id: { $in: schedule.courses } });
+          const courses = await coursePromise;
+
+          for (const course of courses) {
+            unitsEnrolledSum += parseInt(course.num_units);
+          }
+        }
+
+        return unitsEnrolledSum.toString();
+      },
     },
     unitsTaken: {
       type: GraphQLString,
+      async resolve(parent, args) {
+        let unitsTakenSum = 0;
+
+        for (const courseId of parent.completed_courses) {
+          const course = await Course.findById(courseId);
+
+          if (course) {
+            unitsTakenSum += parseInt(course.num_units);
+          }
+        }
+
+        return unitsTakenSum.toString();
+      },
     },
+
     major: {
       type: ProgramType,
       resolve(parent, args) {
@@ -60,6 +91,16 @@ const UserType = new GraphQLObjectType({
         return Course.find({
           _id: {
             $in: parent.completed_courses,
+          },
+        });
+      },
+    },
+    schedule: {
+      type: new GraphQLList(ScheduleType),
+      resolve(parent, args) {
+        return Schedule.find({
+          _id: {
+            $in: parent.schedule,
           },
         });
       },
@@ -168,6 +209,9 @@ const ProgramType = new GraphQLObjectType({
 const ProgramDistinctType = new GraphQLObjectType({
   name: "ProgramType",
   fields: () => ({
+    id: {
+      type: GraphQLID,
+    },
     name: {
       type: GraphQLString,
     },
@@ -181,14 +225,14 @@ const ScheduleType = new GraphQLObjectType({
     id: {
       type: GraphQLID,
     },
+    name: {
+      type: GraphQLString,
+    },
     user: {
       type: UserType,
       resolve(parent, args) {
         return User.findById(parent.user);
       },
-    },
-    name: {
-      type: GraphQLString,
     },
     courses: {
       type: new GraphQLList(CourseType),
@@ -245,6 +289,9 @@ const RootQuery = new GraphQLObjectType({
       args: {
         id: {
           type: GraphQLID,
+        },
+        courses: {
+          type: GraphQLList(GraphQLID),
         },
       },
       resolve(parent, args) {
@@ -309,20 +356,6 @@ const RootQuery = new GraphQLObjectType({
         return Schedule.find({});
       },
     },
-    // Fetch the schedules for a specific user given a user ID
-    userSchedules: {
-      type: new GraphQLList(ScheduleType),
-      args: {
-        user: {
-          type: GraphQLID,
-        },
-      },
-      resolve(parent, args) {
-        return Schedule.find({
-          user: args.user,
-        });
-      },
-    },
     // Fetch all courses in a department
     coursesByDepartment: {
       type: new GraphQLList(CourseType),
@@ -332,9 +365,11 @@ const RootQuery = new GraphQLObjectType({
         },
       },
       resolve(parent, args) {
-        return Course.find({
+        return Course.find(
+          Course.find({
             department_id: args.departmentId,
-        })
+          })
+        );
       },
     },
     // Fetch all programs in a program type based on type ID
@@ -400,12 +435,6 @@ const Mutation = new GraphQLObjectType({
         email: {
           type: GraphQLNonNull(GraphQLString),
         },
-        unitsEnrolled: {
-          type: GraphQLString,
-        },
-        unitsTaken: {
-          type: GraphQLString,
-        },
         major: {
           type: GraphQLNonNull(GraphQLID),
         },
@@ -415,17 +444,19 @@ const Mutation = new GraphQLObjectType({
         completed_courses: {
           type: GraphQLList(GraphQLID),
         },
+        schedule: {
+          type: GraphQLList(GraphQLID),
+        },
       },
       resolve(parent, args) {
         const user = new User({
           name: args.name,
           student_id: args.student_id,
           email: args.email,
-          unitsEnrolled: args.unitsEnrolled,
-          unitsTaken: args.unitsTaken,
           major: args.major,
           minor: args.minor,
           completed_courses: args.completed_courses,
+          schedule: args.schedule,
         });
         return user.save();
       },
@@ -433,7 +464,7 @@ const Mutation = new GraphQLObjectType({
     updateUser: {
       type: UserType,
       args: {
-        id: {
+        userID: {
           type: GraphQLNonNull(GraphQLID),
         }, // User ID to identify the user to be updated
         name: {
@@ -445,12 +476,6 @@ const Mutation = new GraphQLObjectType({
         email: {
           type: GraphQLString,
         },
-        unitsEnrolled: {
-          type: GraphQLString,
-        },
-        unitsTaken: {
-          type: GraphQLString,
-        },
         major: {
           type: GraphQLID,
         },
@@ -460,20 +485,22 @@ const Mutation = new GraphQLObjectType({
         completed_courses: {
           type: GraphQLList(GraphQLID),
         },
+        schedule: {
+          type: GraphQLList(GraphQLID),
+        },
       },
       resolve(parent, args) {
         return User.findByIdAndUpdate(
-          args.id,
+          args.userID,
           {
             $set: {
               name: args.name,
               student_id: args.student_id,
               email: args.email,
-              unitsEnrolled: args.unitsEnrolled,
-              unitsTaken: args.unitsTaken,
               major: args.major,
               minor: args.minor,
               completed_courses: args.completed_courses,
+              schedule: args.schedule,
             },
           },
           {
@@ -485,14 +512,38 @@ const Mutation = new GraphQLObjectType({
     deleteUser: {
       type: UserType,
       args: {
-        id: {
+        userID: {
           type: GraphQLNonNull(GraphQLID),
         }, // User ID to identify the user to be deleted
       },
       resolve(parent, args) {
-        return User.findByIdAndDelete(args.id);
+        return User.findByIdAndDelete(args.userID);
       },
     },
+    addCourseToCompletedCourses: {
+      type: UserType,
+      args: {
+        userID: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+        courseId: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+      },
+      async resolve(parent, args) {
+        const user = await User.findById(args.userID);
+
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        user.completed_courses.push(args.courseId);
+        await user.save();
+
+        return user;
+      },
+    },
+
     addCourse: {
       type: CourseType,
       args: {
@@ -546,7 +597,7 @@ const Mutation = new GraphQLObjectType({
     updateCourse: {
       type: CourseType,
       args: {
-        id: {
+        courseID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Course ID to identify the course to be updated
         title: {
@@ -582,7 +633,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Course.findByIdAndUpdate(
-          args.id,
+          args.courseID,
           {
             $set: {
               title: args.title,
@@ -606,12 +657,12 @@ const Mutation = new GraphQLObjectType({
     deleteCourse: {
       type: CourseType,
       args: {
-        id: {
+        courseID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Course ID to identify the course to be deleted
       },
       resolve(parent, args) {
-        return Course.findByIdAndDelete(args.id);
+        return Course.findByIdAndDelete(args.courseID);
       },
     },
     addDepartment: {
@@ -635,7 +686,7 @@ const Mutation = new GraphQLObjectType({
     updateDepartment: {
       type: DepartmentType,
       args: {
-        id: {
+        departmentID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Department ID to identify the department to be updated
         name: {
@@ -647,7 +698,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Department.findByIdAndUpdate(
-          args.id,
+          args.departmentID,
           {
             $set: {
               name: args.name,
@@ -663,12 +714,12 @@ const Mutation = new GraphQLObjectType({
     deleteDepartment: {
       type: DepartmentType,
       args: {
-        id: {
+        departmentID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Department ID to identify the department to be deleted
       },
       resolve(parent, args) {
-        return Department.findByIdAndDelete(args.id);
+        return Department.findByIdAndDelete(args.departmentID);
       },
     },
     addProgram: {
@@ -704,7 +755,7 @@ const Mutation = new GraphQLObjectType({
     updateProgram: {
       type: ProgramType,
       args: {
-        id: {
+        programID: {
           type: GraphQLNonNull(GraphQLID),
         },
         name: {
@@ -725,7 +776,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Program.findByIdAndUpdate(
-          args.id,
+          args.programID,
           {
             $set: {
               name: args.name,
@@ -744,12 +795,12 @@ const Mutation = new GraphQLObjectType({
     deleteProgram: {
       type: ProgramType,
       args: {
-        id: {
+        programID: {
           type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve(parent, args) {
-        return Program.findByIdAndDelete(args.id);
+        return Program.findByIdAndDelete(args.programID);
       },
     },
     addProgramDistinct: {
@@ -769,7 +820,7 @@ const Mutation = new GraphQLObjectType({
     updateProgramDistinct: {
       type: ProgramDistinctType,
       args: {
-        id: {
+        programDistinctID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Program Distinct ID to identify the program distinct to be updated
         name: {
@@ -778,7 +829,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return ProgramDistinct.findByIdAndUpdate(
-          args.id,
+          args.programDistinctID,
           {
             $set: {
               name: args.name,
@@ -793,47 +844,55 @@ const Mutation = new GraphQLObjectType({
     deleteProgramDistinct: {
       type: ProgramDistinctType,
       args: {
-        id: {
+        programDistinctID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Program Distinct ID to identify the program distinct to be deleted
       },
       resolve(parent, args) {
-        return ProgramDistinct.findByIdAndDelete(args.id);
+        return ProgramDistinct.findByIdAndDelete(args.programDistinctID);
       },
     },
     addSchedule: {
       type: ScheduleType,
       args: {
-        name: {
-          type: GraphQLNonNull(GraphQLString),
-        },
         user: {
           type: GraphQLNonNull(GraphQLID),
         },
-        courses: {
-          type: GraphQLList(GraphQLID),
+        name: {
+          type: GraphQLNonNull(GraphQLString),
         },
       },
-      resolve(parent, args) {
-        const schedule = new Schedule({
-          name: args.name,
-          user: args.user,
-          courses: args.courses,
-        });
-        return schedule.save();
+      resolve: async (parent, args) => {
+        try {
+          const schedule = new Schedule({
+            name: args.name,
+            user: args.user,
+          });
+
+          // Save the schedule
+          const savedSchedule = await schedule.save();
+
+          // Find the user by user_id and update the schedule array
+          const user = await User.findByIdAndUpdate(
+            args.user,
+            { $push: { schedule: savedSchedule._id } },
+            { new: true }
+          );
+
+          return savedSchedule;
+        } catch (err) {
+          throw new Error("Failed to add schedule: " + err.message);
+        }
       },
     },
     updateSchedule: {
       type: ScheduleType,
       args: {
-        id: {
+        scheduleId: {
           type: GraphQLNonNull(GraphQLID),
-        }, // Schedule ID to identify the schedule to be updated
+        },
         name: {
           type: GraphQLString,
-        },
-        user: {
-          type: GraphQLNonNull(GraphQLID),
         },
         courses: {
           type: GraphQLList(GraphQLID),
@@ -841,11 +900,10 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Schedule.findByIdAndUpdate(
-          args.id,
+          args.scheduleId,
           {
             $set: {
               name: args.name,
-              user: args.user,
               courses: args.courses,
             },
           },
@@ -858,12 +916,55 @@ const Mutation = new GraphQLObjectType({
     deleteSchedule: {
       type: ScheduleType,
       args: {
-        id: {
+        scheduleId: {
           type: GraphQLNonNull(GraphQLID),
-        }, // Schedule ID to identify the schedule to be deleted
+        },
       },
       resolve(parent, args) {
-        return Schedule.findByIdAndDelete(args.id);
+        // Remove the schedule from the user's schedule array
+        User.updateOne(
+          { schedule: args.scheduleId },
+          { $pull: { schedule: args.scheduleId } }
+        ).exec();
+
+        // Delete the schedule
+        return Schedule.findByIdAndDelete(args.scheduleId);
+      },
+    },
+    addCourseToSchedule: {
+      type: ScheduleType,
+      args: {
+        scheduleId: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+        courseId: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+      },
+      resolve(parent, args) {
+        return Schedule.findByIdAndUpdate(
+          args.scheduleId,
+          { $push: { courses: args.courseId } },
+          { new: true }
+        );
+      },
+    },
+    dropCourseToSchedule: {
+      type: ScheduleType,
+      args: {
+        scheduleId: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+        courseId: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+      },
+      resolve(parent, args) {
+        return Schedule.findByIdAndUpdate(
+          args.scheduleId,
+          { $pull: { courses: args.courseId } },
+          { new: true }
+        );
       },
     },
   },
