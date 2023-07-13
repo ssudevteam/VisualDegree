@@ -3,14 +3,12 @@ import Spinner from "../../components/Spinner";
 import Sidebar from "../../components/Sidebar";
 import Banner from "../../components/Banner";
 import Navbar from "../../components/Navbar";
-
 import Courses from "../../components/DbAccessComponents/courseComponents/Courses";
 import Programs from "../../components/DbAccessComponents/programComponents/Programs";
 import Departments from "../../components/DbAccessComponents/departmentComponents/Departments";
 import Schedules from "../../components/DbAccessComponents/scheduleComponents/Schedules";
 import CoursesInDepartment from "../../components/DbAccessComponents/courseComponents/CoursesInDepartment";
 import SSU_programs from "../../reactflow/data/SSU_programs";
-
 import "../../../css/banner.css";
 import "../../../css/navbar.css";
 import "../../../css/sidebar.css";
