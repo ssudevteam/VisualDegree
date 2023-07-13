@@ -292,6 +292,14 @@ this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names`):a
     schedule(id: $id) {
       id
       name
+      user {
+        id
+        name
+        student_id
+        email
+        unitsEnrolled
+        unitsTaken
+      }
       courses {
         id
         title
@@ -316,6 +324,14 @@ this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names`):a
     schedules {
       id
       name
+      user {
+        id
+        name
+        student_id
+        email
+        unitsEnrolled
+        unitsTaken
+      }
       courses {
         id
         title

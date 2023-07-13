@@ -1,4 +1,4 @@
-const { gql } = require("@apollo/client");
+import { gql } from "@apollo/client";
 
 const ADD_SCHEDULE = gql`
   mutation AddSchedule($user: ID!, $name: String!, $courses: [ID]) {
@@ -86,7 +86,7 @@ const DELETE_SCHEDULE = gql`
   }
 `;
 
-module.exports = {
+export {
   ADD_SCHEDULE,
   UPDATE_SCHEDULE,
   DELETE_SCHEDULE,
