@@ -3737,11 +3737,3 @@
 20230707	05:14:46	f307a115-8156-4a84-add1-58e7de29e7e5	GET	/app	undefined
 20230707	05:14:46	b5d3165e-816e-44bd-a5f4-4133fa3bb1b4	GET	/webapp/assets/index-f1f6b436.js	http://localhost:3000
 20230707	05:14:46	e0b7e3af-20e3-4954-8a54-31e15597507a	GET	/webapp/assets/index-f0afdc56.css	undefined
-20230712	00:41:34	f9e6f4fd-415b-4693-b2ca-654d226e42d6	GET	/	undefined
-20230712	00:41:34	42a85269-b53a-4d1c-a494-d8bff5e2c569	GET	/website/landingPage/landing.css	undefined
-20230712	00:41:34	1f37b345-9e25-488c-9941-ca4b00acc901	GET	/website/main.js	http://localhost:3000
-20230712	00:41:34	8a1f6b15-42be-41b6-b500-6e19f8c609b8	GET	/website/assets/images/hero_c.png	undefined
-20230712	00:41:34	9ec36efa-240e-465b-9f25-8d016d0186a0	GET	/favicons/vd_favicon32.png	undefined
-20230712	00:41:36	9ae761e1-796e-4f23-9f78-93f1442ddc5f	GET	/app	undefined
-20230712	00:41:36	6591ad39-3aa5-4770-b6b1-35e818b3af36	GET	/webapp/assets/index-7b0f3b89.js	http://localhost:3000
-20230712	00:41:36	bc294665-78b8-4aa1-8e6f-944305d2f11b	GET	/webapp/assets/index-f0afdc56.css	undefined

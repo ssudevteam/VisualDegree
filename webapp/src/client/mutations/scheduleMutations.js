@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+const { gql } = require("@apollo/client");
 
 const ADD_SCHEDULE = gql`
   mutation AddSchedule($user: ID!, $name: String!, $courses: [ID]) {
@@ -86,59 +86,7 @@ const DELETE_SCHEDULE = gql`
   }
 `;
 
-const ADD_COURSE_TO_SCHEDULE = gql`
-  mutation AddCourseToSchedule($scheduleId: ID!, courseID: ID!) {
-    deleteSchedule(scheduleId: $scheduleId, courseID: $courseID) {
-      id
-      name
-      courses {
-        id
-        title
-        prefix
-        header
-        code
-        description
-        num_units
-        ge_category
-        prerequisites
-        url
-        department {
-          id
-          name
-          url
-        }
-      }
-    }
-  }
-`;
-
-const DROP_COURSE_FROM_SCHEDULE = gql`
-  mutation AddCourseToSchedule($scheduleId: ID!, courseID: ID!) {
-    deleteSchedule(scheduleId: $scheduleId, courseID: $courseID) {
-      id
-      name
-      courses {
-        id
-        title
-        prefix
-        header
-        code
-        description
-        num_units
-        ge_category
-        prerequisites
-        url
-        department {
-          id
-          name
-          url
-        }
-      }
-    }
-  }
-`;
-
-export {
+export  {
   ADD_SCHEDULE,
   UPDATE_SCHEDULE,
   DELETE_SCHEDULE,
