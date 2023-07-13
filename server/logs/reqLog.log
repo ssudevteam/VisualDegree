@@ -3734,3 +3734,6 @@
 20230703	03:35:21	19265cfc-aefe-4535-a245-3db094581c94	GET	/api	undefined
 20230703	03:35:21	b811bcc8-46a1-4daf-a60a-02e1e0a70b30	GET	/webapp/assets/index-a70a01e5.js	http://localhost:3000
 20230703	03:35:21	d72bc20d-b4c9-4e62-99fa-e6fb0f90f400	GET	/webapp/assets/index-661e3bda.css	undefined
+20230707	05:14:46	f307a115-8156-4a84-add1-58e7de29e7e5	GET	/app	undefined
+20230707	05:14:46	b5d3165e-816e-44bd-a5f4-4133fa3bb1b4	GET	/webapp/assets/index-f1f6b436.js	http://localhost:3000
+20230707	05:14:46	e0b7e3af-20e3-4954-8a54-31e15597507a	GET	/webapp/assets/index-f0afdc56.css	undefined
