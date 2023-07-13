@@ -1,23 +1,56 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../../../css/editor_toolbar.css";
 
+export const Mode = {
+  Move: "move",
+  Connect: "connect",
+  Describe: "describe"
+};
+
 export default function ModeSelector({ setMode }) {
+  const [currButtonId, setCurrButtonId] = useState("buttonMove");
+
+  useEffect(() => {
+    document.getElementById(currButtonId)?.classList.toggle("select", true);
+  },[]);
+
+  const handleModeSelection = useCallback((event, mode) => {
+    const button = event.target;
+    if (currButtonId === button.id) {
+      return;
+    }
+    document.getElementById(currButtonId)?.classList.toggle("select", false);
+    button.classList.toggle("select", true);
+    setMode(mode);
+    setCurrButtonId(button.id);
+  }, [currButtonId, setMode, setCurrButtonId]);
+
   return (
     <div
+      id="modeSelector"
       style={{
         position: "absolute",
         bottom: "40px",
         right: "60px",
         gap: "10px",
-        zIndex: "1",
+        zIndex: "1"
       }}>
-      <button className="btn btn-tool" onClick={() => setMode("move")}>
+      <button
+        id="buttonMove"
+        className="btn btn-tool"
+        onClick={(event) => handleModeSelection(event, Mode.Move)}>
         👆
       </button>
-      <button className="btn btn-tool" onClick={() => setMode("connect")}>
+      <button
+        id="buttonConnect"
+        className="btn btn-tool"
+        onClick={(event) => handleModeSelection(event, Mode.Connect)}>
         🔗
       </button>
-      <button className="btn btn-tool" onClick={() => setMode("describe")}>
+      <button
+        id="buttonDescribe"
+        className="btn btn-tool"
+        onClick={(event) => handleModeSelection(event, Mode.Describe)}>
         🔍
       </button>
     </div>

@@ -8,6 +8,7 @@
 
 .custom-popover {
   transition: opacity 0.08s;
+  z-index: 1;
 }
 
 .custom-popover-header {
