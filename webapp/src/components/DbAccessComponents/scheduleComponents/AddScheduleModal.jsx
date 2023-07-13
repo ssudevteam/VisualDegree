@@ -60,17 +60,15 @@ function AddScheduleModal() {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button 
-            className="bg-gray-700 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded" 
-            onClick={handleClose}
-            >
-              Close
+          <button
+            className="bg-gray-700 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
+            onClick={handleClose}>
+            Close
           </button>
-          <button 
-            className="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded" 
-            form="editModal"
-            >
-              Create
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
+            form="editModal">
+            Create
           </button>
         </Modal.Footer>
       </Modal>

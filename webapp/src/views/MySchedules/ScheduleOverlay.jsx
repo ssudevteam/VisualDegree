@@ -74,8 +74,7 @@ const ScheduleOverlay = () => {
                 paddingTop: "7px",
                 marginBottom: 0,
                 marginRight: "10px",
-              }}
-            >
+              }}>
               {showSchedules}
             </h5>
             <h3 id="bannerDegreeName" style={{ marginTop: 0 }}>
@@ -120,20 +119,22 @@ const ScheduleOverlay = () => {
           display: "grid",
           paddingBottom: "10px",
           borderBottom: "ridge",
-        }}
-      >
+        }}>
         <label htmlFor="ScheduleSelect">Select Schedule:</label>
         <select
           id="scheduleSelect"
           value={selectedSchedule}
-          onChange={handleScheduleSelect}
-        >
+          onChange={handleScheduleSelect}>
           <option value="">-- Select --</option>
-          {data.schedules.map((schedule) => ( // Correct the variable name
-            <option key={schedule.id} value={schedule.id}>
-              {schedule.name}
-            </option>
-          ))}
+          {data.schedules.map(
+            (
+              schedule // Correct the variable name
+            ) => (
+              <option key={schedule.id} value={schedule.id}>
+                {schedule.name}
+              </option>
+            )
+          )}
         </select>
       </div>
     );
