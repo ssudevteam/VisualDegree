@@ -516,7 +516,7 @@ const Mutation = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLID),
         }, // User ID to identify the user to be deleted
       },
-      async resolve(parent, args) {
+      resolve: async (parent, args) => {
         const deletedUser = await User.findByIdAndDelete(args.id);
     
         // Delete all schedules tied to the deleted user
@@ -535,7 +535,7 @@ const Mutation = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLID),
         },
       },
-      async resolve(parent, args) {
+      resolve: async (parent, args) => {
         const user = await User.findById(args.id);
 
         if (!user) {
@@ -800,6 +800,7 @@ const Mutation = new GraphQLObjectType({
     deleteProgram: {
       type: ProgramType,
       args: {
+        id: {
         programID: {
           type: GraphQLNonNull(GraphQLID),
         },
@@ -849,6 +850,7 @@ const Mutation = new GraphQLObjectType({
     deleteProgramDistinct: {
       type: ProgramDistinctType,
       args: {
+        id: {
         programDistinctID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Program Distinct ID to identify the program distinct to be deleted

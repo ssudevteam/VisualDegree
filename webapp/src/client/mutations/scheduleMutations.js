@@ -112,7 +112,6 @@ const ADD_COURSE_TO_SCHEDULE = gql`
   }
 `;
 
-
 const DROP_COURSE_FROM_SCHEDULE = gql`
   mutation dropCourseFromSchedule($id: ID!, $courseID: ID!) {
     dropCourseFromSchedule(id: $id, courseID: $courseID) {
