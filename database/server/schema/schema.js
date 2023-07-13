@@ -801,11 +801,12 @@ const Mutation = new GraphQLObjectType({
       type: ProgramType,
       args: {
         id: {
+        programID: {
           type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve(parent, args) {
-        return Program.findByIdAndDelete(args.id);
+        return Program.findByIdAndDelete(args.programID);
       },
     },
     addProgramDistinct: {
@@ -850,11 +851,12 @@ const Mutation = new GraphQLObjectType({
       type: ProgramDistinctType,
       args: {
         id: {
+        programDistinctID: {
           type: GraphQLNonNull(GraphQLID),
         }, // Program Distinct ID to identify the program distinct to be deleted
       },
       resolve(parent, args) {
-        return ProgramDistinct.findByIdAndDelete(args.id);
+        return ProgramDistinct.findByIdAndDelete(args.programDistinctID);
       },
     },
     addSchedule: {
