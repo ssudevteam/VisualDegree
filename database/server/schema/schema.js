@@ -516,8 +516,13 @@ const Mutation = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLID),
         }, // User ID to identify the user to be deleted
       },
-      resolve(parent, args) {
-        return User.findByIdAndDelete(args.userID);
+      async resolve(parent, args) {
+        const deletedUser = await User.findByIdAndDelete(args.userID);
+    
+        // Delete all schedules tied to the deleted user
+        await Schedule.deleteMany({ _id: { $in: deletedUser.schedule } });
+    
+        return deletedUser;
       },
     },
     addCourseToCompletedCourses: {
