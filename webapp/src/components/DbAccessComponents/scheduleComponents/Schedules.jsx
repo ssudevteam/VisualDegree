@@ -14,22 +14,23 @@ const Schedules = () => {
 
   return (
     <>
-      <AddScheduleModal />
-      <div className="table-container">
-        <table className="table table-hover mt-3">
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.schedules.map((schedule) => (
-              <ScheduleRow key={schedule.id} schedule={schedule} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <AddScheduleModal />
+    <div className="table-container">
+      <table className="table table-hover mt-3">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.schedules.map((schedule) => (
+            <ScheduleRow key={schedule.id} schedule={schedule} />
+          ))}
+        </tbody>
+      </table>
+    </div>
     </>
+    
   );
 };
 
