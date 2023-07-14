@@ -1,42 +1,79 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_SCHEDULE } from "../../../client/mutations/scheduleMutations";
+import { GET_SCHEDULES } from "../../../client/queries/scheduleQueries";
+import { GET_USERS } from "../../../client/queries/userQueries";
 
 function AddScheduleModal() {
   const [show, setShow] = useState(false);
+  const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
+
+  const [addSchedule] = useMutation(ADD_SCHEDULE, {
+    update(cache, { data: { addSchedule } }) {
+      const { schedules } = cache.readQuery({ query: GET_SCHEDULES });
+      cache.writeQuery({
+        query: GET_SCHEDULES,
+        data: { schedules: [...schedules, addSchedule] },
+      });
+    },
+  });
+
+  const { loading, error, data } = useQuery(GET_USERS);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (name === "" || userId === "") {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    addSchedule({
+      variables: { name, userId },
+    });
+
+    setName("");
+    setUserId("");
+    handleClose();
+  };
+
+  if (loading) return null;
+  if (error) return "Something Went Wrong";
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
         Add Schedule
       </Button>
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}>
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Create Schedule</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form id="editModal" className="w-full max-w-sm">
+          <form onSubmit={handleSubmit} id="submit" className="w-full max-w-sm">
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  for="ID">
-                  User ID
+                  htmlFor="name"
+                >
+                  Schedule Name
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  id="ID"
+                  id="name"
                   type="text"
-                  value="User ID"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
             </div>
@@ -44,17 +81,25 @@ function AddScheduleModal() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  for="Schedule Name">
-                  Schedule Name
+                  htmlFor="userId"
+                >
+                  User
                 </label>
               </div>
               <div className="md:w-2/3">
-                <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  id="Schedule Name"
-                  type="text"
-                  value="Fall 2020"
-                />
+                <select
+                  id="userId"
+                  className="form-select"
+                  value={userId}
+                  onChange={(e) => setUserId(e.target.value)}
+                >
+                  <option value="">Select User</option>
+                  {data.users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </form>
@@ -62,12 +107,14 @@ function AddScheduleModal() {
         <Modal.Footer>
           <button
             className="bg-gray-700 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Close
           </button>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
-            form="editModal">
+            form="submit"
+          >
             Create
           </button>
         </Modal.Footer>
@@ -77,115 +124,3 @@ function AddScheduleModal() {
 }
 
 export default AddScheduleModal;
-
-// import { useState } from "react";
-// import { FaUser } from "react-icons/fa";
-// import { useMutation } from "@apollo/Schedule";
-// import { ADD_SCHEDULE } from "../mutations/ScheduleMutations";
-// import { GET_SCHEDULES } from "../queries/ScheduleQueries";
-
-// const AddScheduleModal = () => {
-//   const [name, setName] = useState("");
-//   const [userId, setUserId] = useState("");
-
-//   const [addSchedule] = useMutation(ADD_SCHEDULE, {
-//     variables: { name, userId },
-//     update(cache, { data: { addSchedule } }) {
-//       const { schedules } = cache.readQuery({ query: GET_SCHEDULES });
-
-//       cache.writeQuery({
-//         query: GET_SCHEDULES,
-//         data: { schedules: [...schedules, addSchedule] },
-//       });
-//     },
-//   });
-
-//   const onSubmit = (e) => {
-//     e.preventDefault();
-
-//     if (name === "" || userId) {
-//       return alert("Please fill in all fields");
-//     }
-
-//     addSchedule(name, userId);
-
-//     setName("");
-//     userId("");
-//   };
-
-//   return (
-//     <>
-//       <button
-//         type="button"
-//         className="btn btn-secondary"
-//         data-bs-toggle="modal"
-//         data-bs-target="#addScheduleModal"
-//         onClick={() => setShowAddScheduleModal(true)}>
-//         <div className="d-flex align-items-center">
-//           <FaList className="icon" />
-//           <div>Add Schedule</div>
-//         </div>
-//       </button>
-
-//       <div
-//         className="modal fade"
-//         id="addScheduleModal"
-//         tabIndex="-1"
-//         aria-labelledby="addScheduleModalLabel"
-//         aria-hidden="true">
-//         <div className="modal-dialog">
-//           <div className="modal-content">
-//             <div className="modal-header">
-//               <h5 className="modal-title" id="addScheduleModalLabel">
-//                 Add Schedule
-//               </h5>
-//               <button
-//                 type="button"
-//                 className="btn-close"
-//                 data-bs-dismiss="modal"
-//                 aria-label="Close"></button>
-//             </div>
-//             <div className="modal-body">
-//               <form onSubmit={onSubmit}>
-//                 <div className="mb-3">
-//                   <label htmlFor="name" className="form-label">
-//                     Name
-//                   </label>
-//                   <input
-//                     type="text"
-//                     className="form-control"
-//                     id="name"
-//                     value={name}
-//                     onChange={(e) => setName(e.target.value)}
-//                   />
-//                 </div>
-
-//                 <div className="mb-3">
-//                   <label htmlFor="userId" className="form-label">
-//                     User ID
-//                   </label>
-//                   <input
-//                     type="text"
-//                     className="form-control"
-//                     id="userId"
-//                     value={userId}
-//                     onChange={(e) => setUserId(e.target.value)}
-//                   />
-//                 </div>
-
-//                 <button
-//                   type="submit"
-//                   className="btn btn-secondary"
-//                   data-bs-dismiss="modal">
-//                   Submit
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default AddScheduleModal;

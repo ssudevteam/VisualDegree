@@ -429,7 +429,6 @@ const Mutation = new GraphQLObjectType({
         major: { type: GraphQLNonNull(GraphQLID) },
         minor: { type: GraphQLID },
         completed_courses: { type: GraphQLList(GraphQLID) },
-        schedule: { type: GraphQLList(GraphQLID) },
       },
       resolve(parent, args) {
         const user = new User({
@@ -439,7 +438,6 @@ const Mutation = new GraphQLObjectType({
           major: args.major,
           minor: args.minor,
           completed_courses: args.completed_courses,
-          schedule: args.schedule,
         });
         return user.save();
       },
