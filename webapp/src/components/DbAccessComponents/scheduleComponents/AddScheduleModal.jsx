@@ -9,7 +9,7 @@ import { GET_USERS } from "../../../client/queries/userQueries";
 function AddScheduleModal() {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
-  const [userId, setUserId] = useState("");
+  const [user, setUserId] = useState("");
 
   const [addSchedule] = useMutation(ADD_SCHEDULE, {
     update(cache, { data: { addSchedule } }) {
@@ -29,13 +29,13 @@ function AddScheduleModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "" || userId === "") {
+    if (name === "" || user === "") {
       alert("Please fill in all fields");
       return;
     }
 
     addSchedule({
-      variables: { name, userId },
+      variables: { user, name },
     });
 
     setName("");
@@ -81,16 +81,16 @@ function AddScheduleModal() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="userId"
+                  htmlFor="user"
                 >
                   User
                 </label>
               </div>
               <div className="md:w-2/3">
                 <select
-                  id="userId"
+                  id="user"
                   className="form-select"
-                  value={userId}
+                  value={user}
                   onChange={(e) => setUserId(e.target.value)}
                 >
                   <option value="">Select User</option>
