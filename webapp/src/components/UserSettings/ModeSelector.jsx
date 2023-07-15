@@ -4,7 +4,7 @@ import "../../../css/editor_toolbar.css";
 export const Mode = {
   Move: "move",
   Connect: "connect",
-  Describe: "describe"
+  Describe: "describe",
 };
 
 export default function ModeSelector({ setMode }) {
@@ -12,18 +12,21 @@ export default function ModeSelector({ setMode }) {
 
   useEffect(() => {
     document.getElementById(currButtonId)?.classList.toggle("select", true);
-  },[]);
+  }, []);
 
-  const handleModeSelection = useCallback((event, mode) => {
-    const button = event.target;
-    if (currButtonId === button.id) {
-      return;
-    }
-    document.getElementById(currButtonId)?.classList.toggle("select", false);
-    button.classList.toggle("select", true);
-    setMode(mode);
-    setCurrButtonId(button.id);
-  }, [currButtonId, setMode, setCurrButtonId]);
+  const handleModeSelection = useCallback(
+    (event, mode) => {
+      const button = event.target;
+      if (currButtonId === button.id) {
+        return;
+      }
+      document.getElementById(currButtonId)?.classList.toggle("select", false);
+      button.classList.toggle("select", true);
+      setMode(mode);
+      setCurrButtonId(button.id);
+    },
+    [currButtonId, setMode, setCurrButtonId]
+  );
 
   return (
     <div
@@ -33,7 +36,7 @@ export default function ModeSelector({ setMode }) {
         bottom: "40px",
         right: "60px",
         gap: "10px",
-        zIndex: "1"
+        zIndex: "1",
       }}>
       <button
         id="buttonMove"

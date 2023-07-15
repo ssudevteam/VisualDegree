@@ -4,7 +4,7 @@ import { Handle, Position, useStore } from "reactflow";
 import "../../reactflow/floating_edges/style.css";
 import "../../../css/customNodes.css";
 import ModeContext from "../FlowContexts/ModeContext";
-import {Mode} from "../UserSettings/ModeSelector";
+import { Mode } from "../UserSettings/ModeSelector";
 
 const connectionNodeIdSelector = (state) => state.connectionNodeId;
 
