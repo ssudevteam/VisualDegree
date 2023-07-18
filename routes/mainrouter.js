@@ -14,4 +14,8 @@ router.get("/app", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
 });
 
+router.get("/schedules", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
+});
+
 module.exports = router;
