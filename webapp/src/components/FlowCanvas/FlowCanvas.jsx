@@ -1,37 +1,31 @@
-import React, {
-  useState,
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-} from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import ReactFlow, {
   ReactFlowProvider,
-  useNodesState,
-  useEdgesState,
-  addEdge,
   useReactFlow,
-  MarkerType,
   Background,
   Controls,
   SelectionMode,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import CourseNode from "../FlowNodes/CourseNode";
+
 import FlowButtonPanel from "./FlowButtonPanel";
-import ModeContext from "../../components/FlowContexts/ModeContext";
+import { FlowNodesContext, SelectorModeContext } from "../../common/Contexts";
 
-import csNodes from "../../reactflow/data/cs_flow_nodes";
-import FloatingEdge from "../../reactflow/floating_edges/FloatingEdge";
 import FloatingConnectionLine from "../../reactflow/floating_edges/FloatingConnectionLine";
-import ModeSelector, { Mode } from "../UserSettings/ModeSelector";
+import ModeSelector from "../UserSettings/ModeSelector";
+import {
+  SelectorMode,
+  CourseNodeType,
+  FloatingEdgeType,
+  FlowNodeTypes,
+  DefaultEdgeOptions,
+} from "../../common/Types";
+import csNodes from "../../reactflow/data/cs_flow_nodes";
 
-import "../../reactflow/floating_edges/style.css";
 import "../../../css/flow.css";
 
 // TODO
 // I don't think floating edges is fully implemented
-
-const getNodeId = () => `node_${+new Date()}`;
 
 const initialNodes = csNodes;
 const initialEdges = [
@@ -44,91 +38,78 @@ const initialEdges = [
   },
 ];
 
-const nodeTypes = {
-  courseNode: CourseNode,
+const connectionLineStyle = {
+  strokeWidth: 3,
+  stroke: "black",
 };
-const edgeTypes = {
-  floating: FloatingEdge,
-};
-// console.log(csNodes);
 
-const FlowCanvas = forwardRef((props, ref) => {
-  const { setViewport } = useReactFlow();
+const FlowCanvas = ({ selectNode, ...props }) => {
+  const { setViewport, setCenter, getZoom } = useReactFlow();
   const [rfInstance, setRfInstance] = useState(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [mode, setMode] = useState(Mode.Move);
+  const [mode, setMode] = useState(SelectorMode.Move);
+  const [selectedNode, setSelectedNode] = useState(null);
 
-  const onConnect = useCallback(
-    (params) => {
-      if (!params) {
-        return;
-      }
-      setEdges((eds) =>
-        addEdge(
-          {
-            ...params,
-            type: "floating",
-            markerEnd: {
-              type: MarkerType.ArrowClosed,
-            },
-          },
-          eds
-        )
-      );
-    },
-    [setEdges]
-  );
+  const {
+    createNode,
+    addNode,
+    removeNode,
+    nodes,
+    setNodes,
+    onNodesChange,
+    addNodeEdge,
+    removeNodeEdge,
+    edges,
+    setEdges,
+    onEdgesChange,
+  } = useContext(FlowNodesContext);
 
-  const addNode = useCallback(
+  const handleNodeSelection = (node) => {
+    if (selectedNode) {
+      nodes.map((node) => {
+        node.id === selectedNode.id ? (node.selected = false) : node;
+      });
+    }
+    node.selected = true;
+    setSelectedNode(node);
+  };
+
+  const handleCenterViewOnNode = (node) => {
+    setCenter(node.position.x, node.position.y, {
+      duration: 600,
+      zoom: getZoom(),
+    });
+  };
+
+  const selectNodeAndCenterView = (node) => {
+    if (!node) return;
+    handleNodeSelection(node);
+    handleCenterViewOnNode(node);
+  };
+
+  useEffect(() => {
+    selectNodeAndCenterView(selectNode);
+  }, [selectNode]);
+
+  const handleAddNode = useCallback(
     (newNode) => {
       if (!newNode) {
-        newNode = {
+        newNode = createNode({
           data: {
             header: "Add Text Here",
           },
-          type: "courseNode",
-          position: {
-            x: window.innerWidth / 2,
-            y: window.innerHeight / 2,
-          },
-        };
+          type: FlowNodeTypes.Course,
+        });
       }
-      setNodes((prevNodes) => {
-        if (!newNode.id) {
-          newNode.id = getNodeId();
-        }
-        return [...prevNodes, newNode];
-      });
+      addNode(newNode);
+      selectNodeAndCenterView(newNode);
     },
-    [setNodes]
+    [addNode, setCenter, createNode]
   );
 
-  const removeNode = useCallback(
-    (node) => {
-      const index = nodes.findIndex((currNode) => {
-        return currNode.id === node.id;
-      });
-      if (index !== -1) {
-        setNodes([...nodes.slice(0, index), ...nodes.slice(index + 1)]);
-      }
-    },
-    [nodes, setNodes]
+  const onConnect = useCallback(
+    (params) => addNodeEdge(params, edges),
+    [addNodeEdge]
   );
-
-  const getLastNodePosition = () => {
-    if (nodes.length === 0) {
-      return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    }
-    const node = nodes.at(nodes.length - 1);
-    return { x: node.position.x, y: node.position.y };
-  };
-
-  useImperativeHandle(ref, () => ({
-    addNode,
-    removeNode,
-    getLastNodePosition,
-  }));
 
   const onCanvasChange = (flowObject) => {
     const updateCanvas = async () => {
@@ -147,28 +128,31 @@ const FlowCanvas = forwardRef((props, ref) => {
   };
 
   return (
-    <div id="flowCanvas" className="flow-canvas" ref={ref} {...props}>
-      <ModeContext.Provider value={{ mode }}>
+    <div id="flowCanvas" className="flow-canvas" {...props}>
+      <SelectorModeContext.Provider value={mode}>
         <ModeSelector setMode={setMode} />
         <ReactFlow
+          onLoad={setRfInstance}
           nodes={nodes}
           edges={edges}
           onInit={setRfInstance}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
-          nodeTypes={nodeTypes}
-          edgeTypes={edgeTypes}
+          nodeTypes={CourseNodeType}
+          edgeTypes={FloatingEdgeType}
           connectionLineComponent={FloatingConnectionLine}
-          nodesDraggable={mode === "move"} // Only allow dragging nodes in 'move' mode
-          nodesConnectable={mode === "connect"} // Only allow connecting nodes in 'connect' mode
+          defaultEdgeOptions={DefaultEdgeOptions}
+          connectionLineStyle={connectionLineStyle}
+          nodesDraggable={mode === SelectorMode.Move} // Only allow dragging nodes in 'move' mode
+          nodesConnectable={mode === SelectorMode.Connect} // Only allow connecting nodes in 'connect' mode
           connectionRadius={80}
           selectionMode={SelectionMode.Partial}
           // onPaneClick={(event) => mode === 'move' && onMouseMove(event)} // Custom behavior in 'move' mode
           // fitViewport={true}
         >
           <FlowButtonPanel
-            onNodeAdd={(event) => addNode(event.target.value)}
+            onNodeAdd={(event) => handleAddNode(event.target.value)}
             onChange={onCanvasChange}
             flowInstance={rfInstance}
           />
@@ -179,15 +163,15 @@ const FlowCanvas = forwardRef((props, ref) => {
               right: "-10px",
             }}
           />
-          <Background size="1" />
+          <Background variant="lines" lineWidth="0.8" />
         </ReactFlow>
-      </ModeContext.Provider>
+      </SelectorModeContext.Provider>
     </div>
   );
-});
+};
 
-export default forwardRef((props, ref) => (
+export default ({ selectNode, ...props }) => (
   <ReactFlowProvider>
-    <FlowCanvas ref={ref} props={props} />
+    <FlowCanvas selectNode={selectNode} props={props} />
   </ReactFlowProvider>
-));
+);

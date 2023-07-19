@@ -1,41 +1,35 @@
 import React from "react";
 import { getBezierPath } from "reactflow";
-import { getEdgeParams } from "./utils.jsx";
 
-function FloatingConnectionLine({
-  targetX,
-  targetY,
-  sourcePosition,
-  targetPosition,
-  sourceNode,
-}) {
-  if (!sourceNode) {
+const FloatingConnectionLine = ({
+  fromX,
+  fromY,
+  fromPosition,
+  fromNode,
+  toX,
+  toY,
+  toPosition,
+  connectionLineType,
+  connectionLineStyle,
+}) => {
+  if (!fromNode) {
     return null;
   }
 
-  const targetNode = {
-    id: "connection-target",
-    width: 1,
-    height: 1,
-    position: {
-      x: targetX,
-      y: targetY,
-    },
-  };
-
-  const { sx, sy } = getEdgeParams(sourceNode, targetNode);
   const [edgePath] = getBezierPath({
-    sourceX: sx,
-    sourceY: sy,
-    sourcePosition,
-    targetPosition,
-    targetX,
-    targetY,
+    sourceX: fromX,
+    sourceY: fromY,
+    sourcePosition: fromPosition,
+    targetPosition: toPosition,
+    targetX: toX,
+    targetY: toY,
   });
 
   return (
     <g>
       <path
+        style={connectionLineStyle}
+        type={connectionLineType}
         fill="none"
         stroke="#222"
         strokeWidth={1.5}
@@ -43,15 +37,15 @@ function FloatingConnectionLine({
         d={edgePath}
       />
       <circle
-        cx={targetX}
-        cy={targetY}
-        fill="#fff"
+        cx={toX}
+        cy={toY}
+        fill="black"
         r={3}
-        stroke="#222"
+        stroke="black"
         strokeWidth={1.5}
       />
     </g>
   );
-}
+};
 
 export default FloatingConnectionLine;

@@ -1,46 +1,21 @@
-import React, { useRef, useEffect } from "react";
-import { setWindowTitle } from "../../../../utils/html";
-import FlowCanvas from "../../components/FlowCanvas/FlowCanvas";
+import React, { useEffect, useState } from "react";
+
 import DegreeBuilderOverlay from "./DegreeBuilderOverlay";
 
+import FlowCanvas from "../../components/FlowCanvas/FlowCanvas";
+import FlowNodesContextProvider from "../../components/Providers/FlowContextProvider";
+
+import { setWindowTitle } from "../../../../utils/html";
+
 const DegreeBuilderView = () => {
-  const overlayRef = useRef();
-  const flowCanvasRef = useRef();
+  const [selectedNode, setSelectedNode] = useState(null);
 
   useEffect(() => {
     setWindowTitle("VisualDegree | DegreeBuilder");
   }, []);
 
-  const handleAddCourse = (course) => {
-    if (!(flowCanvasRef && flowCanvasRef.current)) {
-      console.log("Error: FlowCanvasRef is null");
-      return;
-    }
-
-    let { lastPosX, lastPosY } = flowCanvasRef.current?.getLastNodePosition();
-
-    if (!lastPosX || !lastPosY) {
-      lastPosX = window.innerWidth / 2;
-      lastPosY = window.innerHeight / 2;
-    }
-
-    const newNode = {
-      id: course.id,
-      data: {
-        ...course,
-      },
-      type: "courseNode",
-      position: {
-        y: lastPosY + Math.random() * 200,
-        x: lastPosX + Math.random() * 200,
-      },
-    };
-
-    flowCanvasRef.current?.addNode(newNode);
-  };
-
-  const handleRemoveCourse = (course) => {
-    flowCanvasRef?.current?.removeNode(course);
+  const handleSelectNode = (node) => {
+    setSelectedNode(node);
   };
 
   return (
@@ -50,12 +25,11 @@ const DegreeBuilderView = () => {
       style={{
         backgroundColor: "whitesmoke",
       }}>
-      <DegreeBuilderOverlay
-        ref={overlayRef}
-        onNodeAdd={handleAddCourse}
-        onNodeRemove={handleRemoveCourse}>
-        <FlowCanvas ref={flowCanvasRef} />
-      </DegreeBuilderOverlay>
+      <FlowNodesContextProvider>
+        <DegreeBuilderOverlay onSelectNode={handleSelectNode}>
+          <FlowCanvas selectNode={selectedNode} />
+        </DegreeBuilderOverlay>
+      </FlowNodesContextProvider>
     </div>
   );
 };

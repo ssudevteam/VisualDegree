@@ -16,7 +16,7 @@ export default defineConfig({
         ws: true,
       },
       "/api": {
-        target: "http://localhost:4000/webapp/api", 
+        target: "http://localhost:4000/webapp/api",
         changeOrigin: true,
         secure: false,
         ws: true,
@@ -28,7 +28,7 @@ export default defineConfig({
         },
       },
       "/schedules": {
-        target: "http://localhost:4000/webapp/schedules", 
+        target: "http://localhost:4000/webapp/schedules",
         changeOrigin: true,
         secure: false,
         ws: true,

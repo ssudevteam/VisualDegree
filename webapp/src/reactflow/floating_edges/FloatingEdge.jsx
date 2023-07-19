@@ -3,7 +3,7 @@ import { useStore, getBezierPath, BaseEdge } from "reactflow";
 
 import { getEdgeParams } from "./utils.jsx";
 
-function FloatingEdge({ id, source, target, markerEnd, style }) {
+const FloatingEdge = ({ id, source, target, markerEnd, style }) => {
   const sourceNode = useStore(
     useCallback((store) => store.nodeInternals.get(source), [source])
   );
@@ -41,6 +41,6 @@ function FloatingEdge({ id, source, target, markerEnd, style }) {
       />
     </>
   );
-}
+};
 
 export default FloatingEdge;

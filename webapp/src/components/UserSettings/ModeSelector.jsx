@@ -1,11 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "../../../css/editor_toolbar.css";
-
-export const Mode = {
-  Move: "move",
-  Connect: "connect",
-  Describe: "describe",
-};
+import { SelectorMode } from "../../common/Types";
 
 export default function ModeSelector({ setMode }) {
   const [currButtonId, setCurrButtonId] = useState("buttonMove");
@@ -41,19 +36,19 @@ export default function ModeSelector({ setMode }) {
       <button
         id="buttonMove"
         className="btn btn-tool"
-        onClick={(event) => handleModeSelection(event, Mode.Move)}>
+        onClick={(event) => handleModeSelection(event, SelectorMode.Move)}>
         👆
       </button>
       <button
         id="buttonConnect"
         className="btn btn-tool"
-        onClick={(event) => handleModeSelection(event, Mode.Connect)}>
+        onClick={(event) => handleModeSelection(event, SelectorMode.Connect)}>
         🔗
       </button>
       <button
         id="buttonDescribe"
         className="btn btn-tool"
-        onClick={(event) => handleModeSelection(event, Mode.Describe)}>
+        onClick={(event) => handleModeSelection(event, SelectorMode.Describe)}>
         🔍
       </button>
     </div>
