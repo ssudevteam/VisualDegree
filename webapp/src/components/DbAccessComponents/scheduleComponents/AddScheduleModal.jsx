@@ -52,7 +52,11 @@ function AddScheduleModal() {
         Add Schedule
       </Button>
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Create Schedule</Modal.Title>
         </Modal.Header>
@@ -62,8 +66,7 @@ function AddScheduleModal() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="name"
-                >
+                  htmlFor="name">
                   Schedule Name
                 </label>
               </div>
@@ -81,8 +84,7 @@ function AddScheduleModal() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="user"
-                >
+                  htmlFor="user">
                   User
                 </label>
               </div>
@@ -91,8 +93,7 @@ function AddScheduleModal() {
                   id="user"
                   className="form-select"
                   value={user}
-                  onChange={(e) => setUserId(e.target.value)}
-                >
+                  onChange={(e) => setUserId(e.target.value)}>
                   <option value="">Select User</option>
                   {data.users.map((user) => (
                     <option key={user.id} value={user.id}>
@@ -107,14 +108,12 @@ function AddScheduleModal() {
         <Modal.Footer>
           <button
             className="bg-gray-700 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
-            onClick={handleClose}
-          >
+            onClick={handleClose}>
             Close
           </button>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
-            form="submit"
-          >
+            form="submit">
             Create
           </button>
         </Modal.Footer>
