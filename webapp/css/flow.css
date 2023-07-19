@@ -1,7 +1,7 @@
 .flow-canvas {
   width: 100%;
   height: 100%;
-  background-color: whitesmoke;
+  background-color: white;
+  border: #9ca3af ridge 2px;
   display: block;
-  padding: 10px;
 }
