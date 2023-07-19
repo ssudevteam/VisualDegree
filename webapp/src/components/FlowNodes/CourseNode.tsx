@@ -1,131 +1,141 @@
 // @ts-ignore
-import React, {useState, useContext, useCallback} from "react";
-import {OverlayTrigger, Button, Popover} from "react-bootstrap";
-import {Handle, Position, useStore} from "reactflow";
-import "../../reactflow/floating_edges/style.css";
+import React, { useState, useContext, useCallback, useEffect } from "react";
+import { OverlayTrigger, Button, Popover } from "react-bootstrap";
+
+import FlowNode from "./FlowNode";
+
+import { SelectorModeContext } from "../../common/Contexts";
+import { CourseNode, SelectorMode } from "../../common/Types";
+
 import "../../../css/customNodes.css";
-import {SelectorModeContext} from "../../common/Contexts";
-import {BaseFlowNode, SelectorMode} from "../../common/Types";
 
-export interface CourseNodeProps {
-    id: number;
-    title?: string;
-    prefix?: string;
-    header?: string;
-    code?: string | number;
-    description?: string;
-    num_units?: string | number;
-    ge_category?: string;
-    prerequisites?: string;
-    url?: string;
-}
+const CourseNodeFC: React.FC<CourseNode> = (props) => {
+  const [showPopover, setShowPopover] = useState(false);
+  const selectedMode = useContext(SelectorModeContext);
+  const [showNode, setShowNode] = useState(true);
 
-export interface CourseNode extends BaseFlowNode<CourseNodeProps> {
-}
+  const { id, data } = props;
+  const {
+    id: courseId,
+    header,
+    description,
+    num_units,
+    ge_category,
+    prerequisites,
+    url,
+  } = data;
 
-const connectionNodeIdSelector = (state) => state.connectionNodeId;
+  useEffect(() => {
+    const closePopoverOnEscape = (event) => {
+      if (event.key.toLowerCase() === "escape" || event.code === "27") {
+        handleClosePopover();
+      }
+    };
+    document.addEventListener("keydown", closePopoverOnEscape);
+    return () => document.removeEventListener("keydown", closePopoverOnEscape);
+  }, []);
 
-const CourseNodeFC: React.FC<CourseNode> = ({data, isConnectable}) => {
-    const [showPopover, setShowPopover] = useState(false);
-    const connectionNodeId = useStore(connectionNodeIdSelector);
-    const isConnecting = !!connectionNodeId;
-    const selectedMode = useContext(SelectorModeContext);
+  const handleNodeClick = useCallback(() => {
+    if (selectedMode === SelectorMode.Describe) {
+      setShowPopover(!showPopover);
+    }
+  }, [selectedMode, setShowPopover]);
 
-    // refactor to useEffect
-    document.addEventListener("keydown", (event) => {
-        if (event.key.toLowerCase() === "escape" || event.code === "27") {
-            handleClosePopover();
-        }
-    });
+  const handleClosePopover = useCallback(() => {
+    setShowPopover(false);
+  }, [setShowPopover]);
 
-    const handleNodeClick = useCallback(() => {
-        if (selectedMode === SelectorMode.Describe) {
-            setShowPopover(!showPopover);
-        }
-    }, [selectedMode, setShowPopover]);
+  const popover = (
+    <Popover id="course-popover" className="custom-popover">
+      <Popover.Header className="custom-popover-header">
+        <h6 className="custom-popover-title">{header}</h6>
+        <Button
+          variant="link"
+          className="custom-popover-close"
+          onClick={handleClosePopover}>
+          <span className="custom-popover-close-icon">X</span>
+        </Button>
+      </Popover.Header>
+      <Popover.Body className="custom-popover-body">
+        <div>
+          <b>Description:</b>
+          {` ${description}`}
+        </div>
+        <div>
+          <b>Units:</b>
+          {` ${num_units}`}
+        </div>
+        <div>
+          <b>GE Category:</b>
+          {` ${ge_category ? ge_category : "None"}`}
+        </div>
+        <div>
+          <b>Prerequisites:</b>
+          {` ${prerequisites ? prerequisites : "None"}`}
+        </div>
+        <a href={url}>View on Sonoma.edu</a>
+      </Popover.Body>
+    </Popover>
+  );
 
-    const handleClosePopover = useCallback(() => {
-        setShowPopover(false);
-    }, [setShowPopover]);
+  const handleCloseNode = () => {
+    setShowNode(false);
+  };
 
-    const popover = (
-        <Popover id="course-popover" className="custom-popover">
-            <Popover.Header className="custom-popover-header">
-                <h6 className="custom-popover-title">{data?.header}</h6>
-                <Button
-                    variant="link"
-                    className="custom-popover-close"
-                    onClick={handleClosePopover}>
-                    <span className="custom-popover-close-icon">X</span>
-                </Button>
-            </Popover.Header>
-            <Popover.Body className="custom-popover-body">
-                <div>
-                    <b>Description:</b> {data?.description}
-                </div>
-                <div>
-                    <b>Units:</b> {data?.num_units}
-                </div>
-                <div>
-                    <b>GE Category:</b> {data?.ge_category ? data.ge_category : "None"}
-                </div>
-                <div>
-                    <b>Prerequisites:</b>{" "}
-                    {data?.prerequisites ? data.prerequisites : "None"}
-                </div>
-                <a href={data?.url}>View on Sonoma.edu</a>
-            </Popover.Body>
-        </Popover>
-    );
-
-    return (
-        <>
-            {!isConnecting && (
-                <Handle
-                    type="source"
-                    position={Position.Right}
-                    className="courseHandle"
-                    id="a" // does this mean all the handles have the same Ids?
-                    onConnect={(params) => console.log("handle onConnect", params)}
-                    isConnectable={isConnectable}
-                />
-            )}
-            <Handle
-                type="target"
-                position={Position.Left}
-                className="courseHandle"
-                isConnectable={isConnectable}
-                isConnectableStart={false}
-            />
-
-            <div
-                className="node-wrapper"
-                onClick={handleNodeClick}
-                style={{
-                    background: "white",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    padding: "8px",
-                    cursor: "pointer",
-                    width: "140px",
-                }}>
-                <div
-                    className="node-label"
-                    style={{
-                        marginBottom: "4px",
-                    }}>
-                    {data?.header}
-                </div>
-            </div>
-            <OverlayTrigger
-                trigger="click"
-                placement="auto"
-                show={handleNodeClick && showPopover}
-                overlay={popover}>
-                <div/>
-            </OverlayTrigger>
-        </>
-    );
+  return (
+    <FlowNode
+      id={id ? id : courseId}
+      onClick={handleNodeClick}
+      show={showNode}
+      {...props}>
+      <Popover.Header
+        className="custom-popover-header"
+        style={{
+          padding: 0,
+          height: "20px",
+          display: "flex",
+          justifyContent: "flex-end",
+          borderRadius: "unset",
+        }}>
+        <Button
+          variant="outline-secondary"
+          onClick={handleCloseNode}
+          style={{
+            padding: 0,
+            width: "20px",
+            height: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderColor: "transparent",
+          }}>
+          <span
+            style={{
+              paddingLeft: "1px",
+              paddingBottom: "1px",
+              fontSize: "small",
+            }}>
+            X
+          </span>
+        </Button>
+      </Popover.Header>
+      <div
+        className="node-label"
+        style={{
+          padding: "8px",
+          marginBottom: "4px",
+        }}>
+        {header}
+      </div>
+      <OverlayTrigger
+        trigger="click"
+        placement="auto"
+        show={handleNodeClick && showPopover}
+        overlay={popover}>
+        <div />
+      </OverlayTrigger>
+    </FlowNode>
+  );
 };
 
 export default CourseNodeFC;
