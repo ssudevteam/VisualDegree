@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "../../../css/editor_toolbar.css";
+import { SelectorMode } from "../../common/Types";
+
 export default function ModeSelector({ setMode }) {
   const [currButtonId, setCurrButtonId] = useState("buttonMove");
 
