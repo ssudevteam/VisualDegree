@@ -1,11 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { setWindowTitle } from "../../../../utils/html";
 import ScheduleOverlay from "./ScheduleOverlay";
 
-const ScheduleView = () => {
+import FlowCanvas from "../../components/FlowCanvas/FlowCanvas";
+import FlowNodesContextProvider from "../../components/Providers/FlowContextProvider";
+
+
+const ScheduleBuilderView = () => {
+  const [selectedNode, setSelectedNode] = useState(null);
+
   useEffect(() => {
-    setWindowTitle("VisualDegree | My Schedules");
+    setWindowTitle("VisualSchedule | ScheduleBuilder");
   }, []);
+
+  const handleSelectNode = (node) => {
+    setSelectedNode(node);
+  };
 
   return (
     <div
@@ -14,9 +24,13 @@ const ScheduleView = () => {
       style={{
         backgroundColor: "whitesmoke",
       }}>
-      <ScheduleOverlay />
+      <FlowNodesContextProvider>
+        <ScheduleOverlay onSelectNode={handleSelectNode}>
+          <FlowCanvas selectNode={selectedNode} />
+        </ScheduleOverlay>
+      </FlowNodesContextProvider>
     </div>
   );
 };
 
-export default ScheduleView;
+export default ScheduleBuilderView;

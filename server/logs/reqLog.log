@@ -3736,4 +3736,24 @@
 20230703	03:35:21	d72bc20d-b4c9-4e62-99fa-e6fb0f90f400	GET	/webapp/assets/index-661e3bda.css	undefined
 20230707	05:14:46	f307a115-8156-4a84-add1-58e7de29e7e5	GET	/app	undefined
 20230707	05:14:46	b5d3165e-816e-44bd-a5f4-4133fa3bb1b4	GET	/webapp/assets/index-f1f6b436.js	http://localhost:3000
-20230707	05:14:46	e0b7e3af-20e3-4954-8a54-31e15597507a	GET	/webapp/assets/index-f0afdc56.css	undefined
+20230707	05:14:46	e0b7e3af-20e3-4954-8a54-31e15597507a	GET	/webapp/assets/index-f0afdc56.css	undefined20230719	18:42:07	7bca0add-7218-440b-87f5-529a1b75e8e1	GET	/	undefined
+20230719	18:42:07	5b01bfd5-bb7b-48e9-98e0-dfbceedc2cb3	GET	/website/landingPage/landing.css	undefined
+20230719	18:42:07	35016839-c586-4723-bf40-b5cf78624264	GET	/website/main.js	http://localhost:3000
+20230719	18:42:07	837b7d71-2b2f-4392-9da8-6fce0a3fc029	GET	/website/assets/images/hero_c.png	undefined
+20230719	18:42:08	7cc05807-bfe3-4bf0-bd3a-633b10fc93cc	GET	/favicons/vd_favicon32.png	undefined
+20230719	18:42:12	4e9688f0-446e-4799-8809-6768dceb7f5a	GET	/schedules	undefined
+20230719	18:42:13	12585171-df75-462c-b0a2-62b4e85a848e	GET	/webapp/assets/index-7e26132d.js	http://localhost:3000
+20230719	18:42:13	4995201b-b484-4927-8780-fc5f5c2a0d58	GET	/webapp/assets/index-ed2db9d9.css	undefined
+20230719	18:42:23	cb8ad9f9-ebdc-4d8d-880b-ea8169eb0af9	GET	/api	undefined
+20230719	18:42:23	78e545a7-ed9f-4b7b-9148-0d0171d70f4e	GET	/webapp/assets/index-7e26132d.js	http://localhost:3000
+20230719	18:42:23	26e9ddec-f18d-4e7e-b0a6-2344fc74a70d	GET	/webapp/assets/index-ed2db9d9.css	undefined
+20230719	18:42:33	3d7b7c66-92bd-4c49-8889-7272d3ed813b	GET	/	undefined
+20230719	18:42:33	72774682-682d-48dc-93a8-eb63f5ab51ef	GET	/website/main.js	http://localhost:3000
+20230719	18:42:33	bdc65482-7074-473a-a6eb-8fdfba4535a0	GET	/website/landingPage/landing.css	undefined
+20230719	18:42:33	2287e973-3e09-47a1-ac77-68cbb3c99355	GET	/website/assets/images/hero_c.png	undefined
+20230719	18:42:34	cf6af557-50db-42ca-96b8-9c0c67b91fc3	GET	/app	undefined
+20230719	18:42:34	7d45845c-518a-4eb4-92b2-67d29156edda	GET	/webapp/assets/index-7e26132d.js	http://localhost:3000
+20230719	18:42:34	8fe88025-2149-45c0-99e2-06752b530239	GET	/webapp/assets/index-ed2db9d9.css	undefined
+20230719	18:42:39	9da8dcc9-2c81-429c-9860-3a075125eaf2	GET	/app	undefined
+20230719	18:42:39	030922c2-00ad-4871-8c05-41cccc67e05c	GET	/webapp/assets/index-7e26132d.js	http://localhost:3000
+20230719	18:42:39	82506cc5-6a0e-4c62-99c2-61e6b4e0d858	GET	/webapp/assets/index-ed2db9d9.css	undefined

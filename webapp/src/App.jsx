@@ -53,6 +53,7 @@ const client = new ApolloClient({
 function App() {
   const degreeBuilderRef = React.useRef();
   const DbHomeRef = React.useRef();
+  const ScheduleRef = React.useRef();
 
   return (
     <ApolloProvider client={client}>
@@ -67,7 +68,9 @@ function App() {
               path="/api"
               element={<DbHomeView forwardRef={DbHomeRef} />}
             />
-            <Route path="/schedules" element={<ScheduleView />} />
+            <Route 
+              path="/schedules" 
+              element={<ScheduleView forwardRef={ScheduleRef} />} />
           </Routes>
         </div>
       </Router>
