@@ -6,7 +6,7 @@ import FlowCanvas from "../../components/FlowCanvas/FlowCanvas";
 import FlowNodesContextProvider from "../../components/Providers/FlowContextProvider";
 
 
-const ScheduleBuilderView = () => {
+const ScheduleView = () => {
   const [selectedNode, setSelectedNode] = useState(null);
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const ScheduleBuilderView = () => {
   );
 };
 
-export default ScheduleBuilderView;
+export default ScheduleView;
