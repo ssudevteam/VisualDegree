@@ -771,12 +771,12 @@ const Mutation = new GraphQLObjectType({
     addCourseToSchedule: {
       type: ScheduleType,
       args: {
-        id: { type: GraphQLNonNull(GraphQLID) },
+        scheduleID: { type: GraphQLNonNull(GraphQLID) },
         courseID: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         return Schedule.findByIdAndUpdate(
-          args.id,
+          args.scheduleID,
           { $push: { courses: args.courseID } },
           { new: true }
         );
@@ -785,12 +785,12 @@ const Mutation = new GraphQLObjectType({
     dropCourseFromSchedule: {
       type: ScheduleType,
       args: {
-        id: { type: GraphQLNonNull(GraphQLID) },
+        scheduleID: { type: GraphQLNonNull(GraphQLID) },
         courseID: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         return Schedule.findByIdAndUpdate(
-          args.id,
+          args.scheduleID,
           { $pull: { courses: args.courseID } },
           { new: true }
         );

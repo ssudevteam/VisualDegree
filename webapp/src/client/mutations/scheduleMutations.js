@@ -87,8 +87,8 @@ const DELETE_SCHEDULE = gql`
 `;
 
 const ADD_COURSE_TO_SCHEDULE = gql`
-  mutation AddCourseToSchedule($id: ID!, $courseID: ID!) {
-    addCourseToSchedule(id: $id, courseID: $courseID) {
+  mutation AddCourseToSchedule($scheduleID: ID!, $courseID: ID!) {
+    addCourseToSchedule(scheduleID: $scheduleID, courseID: $courseID) {
       id
       name
       courses {
@@ -113,8 +113,8 @@ const ADD_COURSE_TO_SCHEDULE = gql`
 `;
 
 const DROP_COURSE_FROM_SCHEDULE = gql`
-  mutation dropCourseFromSchedule($id: ID!, $courseID: ID!) {
-    dropCourseFromSchedule(id: $id, courseID: $courseID) {
+  mutation dropCourseFromSchedule($scheduleID: ID!, $courseID: ID!) {
+    dropCourseFromSchedule(scheduleID: $scheduleID, courseID: $courseID) {
       id
       name
       courses {
