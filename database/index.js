@@ -5,11 +5,7 @@ require("dotenv").config();
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./server/schema/schema");
 const connectDB = require("./server/config/db");
-<<<<<<< HEAD
-const port = process.env.PORT || 8000;
-=======
 const port = 8000;
->>>>>>> e344b9e (firebase auth)
 const app = express();
 
 // Connect to the database
