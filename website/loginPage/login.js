@@ -1,10 +1,13 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../server/firebase";
-
-const googleProvider = new GoogleAuthProvider();
+import { signInWithGoogle } from "../../users/firebase_client";
 
 const GoogleLogin = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
+    // result should probably be a cookie from the server which we want to store somehow..?
+    const result = await signInWithGoogle();
+    //window.location.href = "/app";
   } catch (error) {}
 };
+
+document
+  .getElementById("googleLoginButton")
+  .addEventListener("click", GoogleLogin);

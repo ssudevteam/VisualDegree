@@ -39,14 +39,32 @@ body {
 /*------------ For small screens------------*/
 @media only screen and (max-width: 768px) {
   .box-area {
-    margin: 0 10px;
+    margin: 40px 10px;
+    width: auto; /* Adjust the width for small screens */
+    height: auto; /* Adjust the height for small screens */
   }
+
   .left-box {
-    height: 100px;
-    overflow: hidden;
+    padding: 20px; /* Adjust padding for better spacing on small screens */
   }
-  .right-box {
-    padding: 20px;
+
+  .header-text {
+    text-align: center; /* Center header text on small screens */
+  }
+
+  .input-group {
+    margin-bottom: 15px; /* Add some margin between buttons on small screens */
+  }
+
+  /* Make the buttons full width on small screens */
+  .btn {
+    width: 100%;
+  }
+
+  /* Center the pawprint image on small screens */
+  .pawprint {
+    display: block;
+    margin: 0 auto;
   }
 }
 

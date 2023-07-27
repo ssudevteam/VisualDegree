@@ -32,7 +32,7 @@ export default defineConfig({
     outDir: "../public", // outDir of bundle
     rollupOptions: {
       input: {
-        main: "./website/landingPage/landing.html", // entry html file - landing page
+        landing: "./website/landingPage/landing.html", // entry html file - landing page
         login: "./website/loginPage/login.html",
       },
       output: {
