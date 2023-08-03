@@ -8,7 +8,7 @@
     "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts",
     "test": "vite serve -c webapp/vite.config.ts",
     "setup:db": "cd database && npm install && npm run create-env && npm run dev",
-    "format": "prettier --check --write \"./**/*.{js,jsx}\""
+    "format": "prettier --check --write \"./**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
@@ -31,6 +31,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.0",
     "react-scripts": "5.0.1",
     "reactflow": "^11.7.2",
@@ -43,6 +44,7 @@
     "glob": "^10.2.7",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
+    "react-select": "^5.7.4",
     "rimraf": "^5.0.1",
     "vite-plugin-html-purgecss": "^0.1.1",
     "vite-plugin-static-copy": "^0.16.0"
