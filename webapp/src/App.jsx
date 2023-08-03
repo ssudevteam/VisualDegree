@@ -68,9 +68,10 @@ function App() {
               path="/api"
               element={<DbHomeView forwardRef={DbHomeRef} />}
             />
-            <Route 
-              path="/schedules" 
-              element={<ScheduleView forwardRef={ScheduleRef} />} />
+            <Route
+              path="/schedules"
+              element={<ScheduleView forwardRef={ScheduleRef} />}
+            />
           </Routes>
         </div>
       </Router>

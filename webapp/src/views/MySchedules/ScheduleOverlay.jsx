@@ -25,7 +25,7 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [programs, setPrograms] = useState([]);
   const [programCourses, setProgramCourses] = useState([]);
-  
+
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [schedules, setSchedules] = useState([]);
   const [scheduleCourses, setScheduleCourses] = useState([]);
@@ -39,13 +39,26 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
   const label = "VisualDegree";
 
   // Queries
-  const { loading: queryLoading, error: queryError, data: queryData } = useQuery(GET_PROGRAMS);
-  const [queryCourseData, { loading: courseLoading, error: courseError, data: courseData }] = useLazyQuery(GET_COURSE);
-  const { loading: scheduleLoading, error: scheduleError, data: scheduleData } = useQuery(GET_SCHEDULES);
+  const {
+    loading: queryLoading,
+    error: queryError,
+    data: queryData,
+  } = useQuery(GET_PROGRAMS);
+  const [
+    queryCourseData,
+    { loading: courseLoading, error: courseError, data: courseData },
+  ] = useLazyQuery(GET_COURSE);
+  const {
+    loading: scheduleLoading,
+    error: scheduleError,
+    data: scheduleData,
+  } = useQuery(GET_SCHEDULES);
 
   useEffect(() => {
     if (queryData) {
-      const programs = [...queryData.programs].sort((a, b) => a.name.localeCompare(b.name));
+      const programs = [...queryData.programs].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
       setPrograms(programs);
       setLoading(queryLoading);
     }
@@ -57,7 +70,9 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
 
   useEffect(() => {
     if (!queryLoading && !scheduleLoading && queryData && scheduleData) {
-      const schedules = [...scheduleData.schedules].sort((a, b) => a.name.localeCompare(b.name));
+      const schedules = [...scheduleData.schedules].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
       setSchedules(schedules);
       setLoading(scheduleLoading);
     }
@@ -65,15 +80,22 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       setError(scheduleError);
       setLoading(scheduleLoading);
     }
-  }, [queryData, queryError, queryLoading, scheduleData, scheduleError, scheduleLoading]);
+  }, [
+    queryData,
+    queryError,
+    queryLoading,
+    scheduleData,
+    scheduleError,
+    scheduleLoading,
+  ]);
 
   const handleProgramSelection = async (selection) => {
     let program = selection.value;
     setSelectedProgram(program);
-  
+
     if (program && program.courses) {
       setLoading(true);
-  
+
       const courses = [];
       for (const course of program.courses) {
         try {
@@ -87,14 +109,16 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
           console.error(`Error loading Courses: ${error}`);
         }
       }
-  
+
       if (courses.length > 0) {
-        courses.sort((a, b) => `${a.prefix + a.code}`.localeCompare(`${b.prefix + b.code}`));
+        courses.sort((a, b) =>
+          `${a.prefix + a.code}`.localeCompare(`${b.prefix + b.code}`)
+        );
         setProgramCourses(courses);
       } else {
         setProgramCourses([]);
       }
-  
+
       setLoading(false);
     }
   };
@@ -129,7 +153,9 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
     } else {
       removeNode(course);
       // Remove the course from the addCoursesArray
-      setAddCoursesArray((prevCourses) => prevCourses.filter((c) => c.id !== course.id));
+      setAddCoursesArray((prevCourses) =>
+        prevCourses.filter((c) => c.id !== course.id)
+      );
     }
     toggleButton(courseButton);
   };
@@ -137,10 +163,10 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
   const handleScheduleSelection = async (selection) => {
     const schedule = selection.value;
     setSelectedSchedule(schedule);
-  
+
     if (schedule && schedule.courses) {
       setLoading(true);
-  
+
       const courses = [];
       for (const course of schedule.courses) {
         try {
@@ -154,23 +180,27 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
           console.error(`Error loading Courses: ${error}`);
         }
       }
-  
+
       if (courses.length > 0) {
-        courses.sort((a, b) => `${a.prefix + a.code}`.localeCompare(`${b.prefix + b.code}`));
+        courses.sort((a, b) =>
+          `${a.prefix + a.code}`.localeCompare(`${b.prefix + b.code}`)
+        );
         setScheduleCourses(courses);
       } else {
         setScheduleCourses([]);
       }
-  
+
       setLoading(false);
     }
   };
-  
+
   const handleScheduleCourseSelection = (event) => {
     const courseButton = event.target;
     const courseId = courseButton.dataset.courseid;
 
-    const course = (scheduleCourses || []).find((course) => course.id === courseId); 
+    const course = (scheduleCourses || []).find(
+      (course) => course.id === courseId
+    );
     if (!course) {
       console.log(`Error: Course ${courseId} not found`);
       return;
@@ -194,9 +224,11 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       setAddCoursesArray((prevCourses) => [...prevCourses, course]);
     } else {
       removeNode(course);
-      
+
       // Remove the course from the addCoursesArray
-      setAddCoursesArray((prevCourses) => prevCourses.filter((c) => c.id !== course.id));
+      setAddCoursesArray((prevCourses) =>
+        prevCourses.filter((c) => c.id !== course.id)
+      );
     }
     toggleButton(courseButton);
   };
@@ -238,7 +270,7 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
     if (!programCourses || programCourses.length === 0) {
       return <></>;
     }
-  
+
     return (
       <div
         id="courseList"
@@ -273,9 +305,9 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
         </div>
       </div>
     );
-  };  
+  };
 
-  const renderScheduleSelectBox = () => {    
+  const renderScheduleSelectBox = () => {
     const options = schedules.map((schedule) => ({
       value: schedule,
       label: schedule.name,
@@ -307,20 +339,19 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       </div>
     );
   };
- 
+
   const renderScheduleCoursesListBox = () => {
     if (!scheduleCourses || scheduleCourses.length === 0) {
       return <></>;
     }
-  
+
     return (
       <div
         id="courseList"
         style={{
           paddingTop: "15px",
           position: "relative",
-        }}
-      >
+        }}>
         <h4 style={{ paddingLeft: "10px" }}>Courses</h4>
         <div
           id="courseListBox"
@@ -335,15 +366,13 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
             borderRight: "none",
             overflowY: "scroll",
             maxHeight: "100%",
-          }}
-        >
+          }}>
           {scheduleCourses.map((course) => (
             <button
               key={course.id}
               data-courseid={course.id}
               className="builder-sidebar-button"
-              onClick={handleScheduleCourseSelection}
-            >
+              onClick={handleScheduleCourseSelection}>
               {`${course.prefix} ${course.code}`}
             </button>
           ))}
@@ -354,14 +383,14 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
 
   function updateSchedule(scheduleID, newCourses) {
     const updateSchedules = schedules.map((schedule) => {
-        if (scheduleID == schedule.id) {
-            return { ...schedule, courses: newCourses };
-        }
+      if (scheduleID == schedule.id) {
+        return { ...schedule, courses: newCourses };
+      }
 
-        return schedule;
+      return schedule;
     });
     setSchedules(updateSchedules);
-}
+  }
 
   const renderNavbar = () => {
     return (
@@ -370,7 +399,7 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
         <div className="content">
           <AddScheduleModal />
           <AddCourseToScheduleModal courses={addCoursesArray} />
-          <DropCourseFromScheduleModal updateSchedule={updateSchedule} />        
+          <DropCourseFromScheduleModal updateSchedule={updateSchedule} />
         </div>
       </Navbar>
     );
@@ -416,8 +445,7 @@ const ScheduleOverlay = ({ onSelectNode, onCenterView, ...props }) => {
         className: "sidebar sidebar-card scrollbar-thin",
       }}
       sidebarChildren={sidebarContent()}
-      {...props}
-    >
+      {...props}>
       {props.children}
     </Overlay>
   );
