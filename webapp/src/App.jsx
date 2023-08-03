@@ -6,7 +6,8 @@ import ScheduleView from "./views/MySchedules/ScheduleView";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "../css/App.css";
 
-const isProduction = import.meta.env.PROD;
+const dbPort = 8000;
+const isProduction = import.meta.env.PROD; //env inherited from VITE meaning: if we're running vite build, it's prod and vite serve, it's dev
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -49,8 +50,8 @@ const cache = new InMemoryCache({
 
 const client = new ApolloClient({
   uri: isProduction
-    ? "https://visualdegree.com:8000/graphql" // Production URL
-    : "http://localhost:8000/graphql", // Development URL
+    ? "https://visualdegree.com:" + dbPort + "/graphql" // Production URL
+    : "http://localhost:" + dbPort + "graphql", // Development URL
   cache,
 });
 
