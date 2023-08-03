@@ -3,6 +3,7 @@
 
 # Ignore node_modules directory
 node_modules/
+public/
 /server/logs/
 
 # OS files
