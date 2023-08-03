@@ -18,7 +18,6 @@ function AddCourseToScheduleModal({ courses }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +54,7 @@ function AddCourseToScheduleModal({ courses }) {
           <Modal.Title>Add Course To Schedule</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form onSubmit={handleSubmit} id="submit" className="w-full max-w-sm">
+          <form onSubmit={handleSubmit} id="submit" className="w-full max-w-sm">
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
@@ -102,7 +101,7 @@ function AddCourseToScheduleModal({ courses }) {
                 </select>
               </div>
             </div>
-            </form>
+          </form>
         </Modal.Body>
         <Modal.Footer>
           <button

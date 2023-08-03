@@ -5,7 +5,6 @@ import ScheduleOverlay from "./ScheduleOverlay";
 import FlowCanvas from "../../components/FlowCanvas/FlowCanvas";
 import FlowNodesContextProvider from "../../components/Providers/FlowContextProvider";
 
-
 const ScheduleView = () => {
   const [selectedNode, setSelectedNode] = useState(null);
 

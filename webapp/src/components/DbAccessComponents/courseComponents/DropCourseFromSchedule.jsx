@@ -26,7 +26,9 @@ function DropCourseFromScheduleModal(props) {
   const getSelectedScheduleCourses = () => {
     if (!scheduleID) return []; // Return an empty array if no schedule is selected
 
-    const selectedSchedule = data.schedules.find((schedule) => schedule.id === scheduleID);
+    const selectedSchedule = data.schedules.find(
+      (schedule) => schedule.id === scheduleID
+    );
     return selectedSchedule ? selectedSchedule.courses : [];
   };
 
@@ -52,7 +54,11 @@ function DropCourseFromScheduleModal(props) {
         Drop Course From Schedule
       </Button>
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Drop Course From Schedule</Modal.Title>
         </Modal.Header>
@@ -62,8 +68,7 @@ function DropCourseFromScheduleModal(props) {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="schedules"
-                >
+                  htmlFor="schedules">
                   Schedules
                 </label>
               </div>
@@ -72,8 +77,7 @@ function DropCourseFromScheduleModal(props) {
                   id="schedules"
                   className="form-select"
                   value={scheduleID}
-                  onChange={(e) => setScheduleID(e.target.value)}
-                >
+                  onChange={(e) => setScheduleID(e.target.value)}>
                   <option value="">Select Schedule</option>
                   {data.schedules.map((schedule) => (
                     <option key={schedule.id} value={schedule.id}>
@@ -87,8 +91,7 @@ function DropCourseFromScheduleModal(props) {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="courses"
-                >
+                  htmlFor="courses">
                   Courses
                 </label>
               </div>
@@ -97,8 +100,7 @@ function DropCourseFromScheduleModal(props) {
                   id="courses"
                   className="form-select"
                   value={courseID}
-                  onChange={(e) => setCourseID(e.target.value)}
-                >
+                  onChange={(e) => setCourseID(e.target.value)}>
                   <option value="">Select Course</option>
                   {getSelectedScheduleCourses().map((course) => (
                     <option key={course.id} value={course.id}>
@@ -111,7 +113,7 @@ function DropCourseFromScheduleModal(props) {
           </form>
         </Modal.Body>
         <Modal.Footer>
-        <button
+          <button
             className="bg-gray-700 hover:bg-blue-700 text-blue font-bold py-2 px-3 rounded"
             onClick={handleClose}>
             Close
