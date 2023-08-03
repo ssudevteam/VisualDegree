@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "config/.env" });
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -5,7 +6,7 @@ const errorHandler = require("./server/middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.APP_PORT || 3000;
 const firebase_server = require("./users/init");
 
 const headers1 = "Origin, X-Requested-With, Content-Type, Accept";
