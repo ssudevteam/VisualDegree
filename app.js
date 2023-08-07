@@ -37,6 +37,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/mainrouter"));
 app.use("/api", require("./routes/api"));
 app.use("/api", require("./routes/users"));
+app.use("/blog", require("./blog/server")); // Replace this with the actual path to your blog server
 
 // send to 404 to front end on res.status
 app.all("*", (req, res) => {
