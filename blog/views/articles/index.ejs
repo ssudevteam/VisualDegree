@@ -3,27 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Concert+One&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=VT323&display=swap"
+      rel="stylesheet" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous" />
     <title>Visual Degree Blog</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="container mt-5">
-      <h1 class="mb-4">Blog Articles</h1>
-      <a href="/articles/new" class="btn btn-success"> New Article </a>
+    <div class="container maincontainer mt-5">
+      <h1 class="mb-4 customh1">Dev Blog</h1>
+      <!-- Tag Menu -->
+      <div class="mt-4 d-flex align-items-center justify-content-between mb-4">
+        <form action="/blog" method="GET" class="form-inline mr-auto">
+          <div
+            class="btn-group btn-group-sm"
+            role="group"
+            aria-label="Filter by Tag">
+            <button type="submit" class="btn btn-secondary" name="tag" value="">
+              All
+            </button>
+            <% allTags.forEach((tag) => { %>
+            <button
+              type="submit"
+              class="btn <%= selectedTag === tag ? 'btn-tag-selected' : '' %> btn-<%= getTagColor(allTags.indexOf(tag)) %>"
+              name="tag"
+              value="<%= tag %>">
+              <%= tag %>
+            </button>
+            <% }) %>
+          </div>
+        </form>
+        <!-- New Article Button with Writing Tool Icon -->
+        <a href="/blog/articles/new" class="btn btn-new-article ml-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 30"
+            x="0px"
+            y="0px">
+            <path
+              d="m22.53,7.47l-6-6c-.14-.14-.33-.22-.53-.22h-7c-1.83,0-3.36,1.33-3.68,3.07-1.04-.57-2.38-.43-3.26.45-1.07,1.07-1.07,2.82,0,3.89l3.19,3.19v7.14c0,2.07,1.68,3.75,3.75,3.75h10c2.07,0,3.75-1.68,3.75-3.75v-11c0-.2-.08-.39-.22-.53Zm-5.78-3.66l3.44,3.44h-3.44v-3.44Zm-2.36,13.29l-1.72-.57,1.15-1.15.57,1.72Zm-3.09-1.33l-6.23-6.23,1.77-1.77,6.23,6.23-1.77,1.77ZM3.12,5.83c.49-.49,1.28-.49,1.77,0l.88.88-1.77,1.77-.88-.88c-.49-.49-.49-1.28,0-1.77Zm15.88,15.42h-10c-1.24,0-2.25-1.01-2.25-2.25v-5.64l4.05,4.05c.08.08.18.14.29.18l3.29,1.1c.13.04.27.06.4.06.33,0,.64-.13.88-.37.34-.34.45-.83.3-1.28l-1.1-3.29c-.04-.11-.1-.21-.18-.29l-7.94-7.94v-.58c0-1.24,1.01-2.25,2.25-2.25h6.25v5.25c0,.41.34.75.75.75h5.25v10.25c0,1.24-1.01,2.25-2.25,2.25Z" />
+            <text
+              x="0"
+              y="39"
+              fill="#000000"
+              font-size="5px"
+              font-weight="bold"
+              font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">
+              Created by Arkinasi
+            </text>
+            <text
+              x="0"
+              y="44"
+              fill="#000000"
+              font-size="5px"
+              font-weight="bold"
+              font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">
+              from the Noun Project
+            </text>
+          </svg>
+        </a>
+      </div>
       <% articles.forEach(article =>{ %>
-      <div class="card mt-4">
-        <div class="card-body">
-          <h4 class="card-title"><%= article.title %></h4>
-          <div class="card-subtitle text-muted mb-2">
-            <%= article.createdAt.toLocaleDateString() %></div>
-            <div class="card-text mb-2"><%= article.description %></div>
-        </div>
-           
-        </div>
+      <div class="card">
+        <a href="/blog/articles/<%= article.slug%>" class="card-link">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="card-title"><%= article.title %></h4>
+              <div class="card-subtitle text-muted">
+                <%= formatDate(article.createdAt) %>
+              </div>
+            </div>
+            <div class="card-text mb-1"><%= article.description %></div>
+          </div>
+        </a>
       </div>
       <% }) %>
     </div>

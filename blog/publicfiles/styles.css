@@ -1,0 +1,76 @@
+/* INDEX */
+
+.maincontainer {
+  width: 50% !important;
+}
+
+/* article cards*/
+a.card-link {
+  text-decoration: none; /* Remove underlines */
+  color: inherit; /* Inherit text color from parent */
+}
+
+a.card-link:hover {
+  cursor: pointer !important;
+}
+
+.card-subtitle {
+  font-size: 10px;
+  margin-top: -28px;
+}
+
+.card-body {
+  padding: 10px 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 0;
+  border-bottom: solid 1px rgb(231, 240, 243) !important;
+}
+
+.card:hover .card-title {
+  color: rgb(121, 121, 255);
+}
+
+/* styles.css */
+/* Add this class to the selected tag button */
+.btn-tag-selected {
+  /* Customize the outline style */
+  box-shadow: 0 0 15px #6c4dff !important;
+}
+
+/* styles.css */
+
+.btn-gradient-0 {
+  background-image: linear-gradient(to top, #dcb6ff, #f3e7ff);
+}
+.btn-gradient-1 {
+  background-image: linear-gradient(to top, #f6a5ff, #fbf5ff);
+}
+.btn-gradient-2 {
+  background-image: linear-gradient(to top, #9ce4ff, #fef7ff);
+}
+.btn-gradient-3 {
+  background-image: linear-gradient(to top, #ffecd3, #fff8f0);
+}
+
+/* Additional styling for the button list */
+.btn-group-sm .btn {
+  border: none;
+  border-radius: 10px; /* Adjust the border radius to make buttons slightly rounded */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for a raised effect */
+}
+
+.btn-new-article {
+  opacity: 0.7;
+  width: 29px;
+  padding: 0px;
+  margin-bottom: -7px;
+  margin-right: 10px;
+}
+
+.customh1 {
+  font-size: 20px;
+  font-family: "VT323";
+}

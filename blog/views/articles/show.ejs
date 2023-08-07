@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<script
+  type="text/javascript"
+  src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,17 +11,50 @@
       rel="stylesheet"
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/vs.css" />
     <title>Visual Degree Blog</title>
   </head>
   <body>
-    <div class="container mt-5">
+    <div class="container mt-5 maincontainer mb-5" style="width: 60%">
       <h1 class="mb-1"><%= article.title %></h1>
       <div class="text-muted mb-2">
         <%= article.createdAt.toLocaleDateString() %>
       </div>
-      <a href="/" class="btn btn-secondary">All Articles</a>
-      <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
-      <div><%= article.markdown %></div>
+      <div class="mb-5"><%- article.sanitizedHtml %></div>
+      <a href="/blog" class="btn btn-light">Back</a>
+      <a href="edit/<%= article.id %>" class="btn btn-light">Edit</a>
+      <form
+        action="/blog/articles/<%= article.id%>?_method=DELETE"
+        class="d-inline"
+        method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
     </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"
+      integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script>
+      const customStyles = document.createElement("style");
+      customStyles.innerHTML = `
+        p {
+          margin-bottom: 0 !important;
+        }
+        .ql-syntax{
+          background: #f7f8fa;
+          padding: 20px;
+          border-radius: 5px;
+          width: 95%;
+          margin: auto;
+        }
+      `;
+      document.head.appendChild(customStyles);
+    </script>
+    <script>
+      hljs.highlightAll();
+    </script>
   </body>
 </html>

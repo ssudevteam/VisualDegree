@@ -11,9 +11,9 @@
     <title>Visual Degree Blog</title>
   </head>
   <body>
-    <div class="container mt-5" style="width: 56%">
-      <h1 class="mb-4">New Article</h1>
-      <form action="/blog/articles" method="POST">
+    <div class="container mt-5 maincontainer" style="width: 60%">
+      <h1 class="mb-2 edit-title">Edit</h1>
+      <form action="/blog/articles/<%= article.id %>?_method=PUT" method="POST">
         <%- include('_form_fields') %>
       </form>
     </div>
