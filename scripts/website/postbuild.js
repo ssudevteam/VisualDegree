@@ -14,14 +14,14 @@ fs.readdir(sourceDirectory, (err, files) => {
   files.forEach((file) => {
     const sourcePath = path.join(sourceDirectory, file);
 
-    console.log(file);
+    // console.log(file);
     if (fs.statSync(sourcePath).isDirectory() && file.includes("Page")) {
       const destinationPath = path.join(destinationDirectory, file);
       fs.rename(sourcePath, destinationPath, (err) => {
         if (err) {
           console.error("Error moving directory:", err);
         } else {
-          console.log(`Directory '${file}' moved successfully.`);
+          // console.log(`Directory '${file}' moved successfully.`);
         }
       });
     }
@@ -31,7 +31,7 @@ fs.readdir(sourceDirectory, (err, files) => {
         if (err) {
           console.error("Error moving directory:", err);
         } else {
-          console.log(`Directory '${file}' moved successfully.`);
+          // console.log(`Directory '${file}' moved successfully.`);
         }
       });
     }
@@ -56,7 +56,8 @@ fs.readdir(sourceDirectory2, (err, files) => {
         if (err) {
           console.error("Error moving file:", err);
         } else {
-          console.log(`File '${file}' moved successfully.`);
+          // console.log(`File '${file}' moved successfully.`);
+          console.log("script: postbuild.js completed.");
         }
       });
     }
