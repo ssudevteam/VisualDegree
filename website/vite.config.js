@@ -51,8 +51,8 @@ export default defineConfig({
           if (ext === ".css") {
             // Extract the page name from the assetInfo object
             const pageName = assetInfo.name.split(".").shift();
-            console.log(pageName);
-            console.log(assetInfo.name);
+            // console.log(pageName);
+            // console.log(assetInfo.name);
 
             // Return the desired output path for CSS files
             return `${pageName}Page/${assetInfo.name}`;
