@@ -51,7 +51,7 @@ const cache = new InMemoryCache({
 const client = new ApolloClient({
   uri: isProduction
     ? "https://visualdegree.com:" + dbPort + "/graphql" // Production URL
-    : "http://localhost:" + dbPort + "graphql", // Development URL
+    : "http://localhost:" + dbPort + "/graphql", // Development URL
   cache,
 });
 
@@ -59,6 +59,9 @@ function App() {
   const degreeBuilderRef = React.useRef();
   const DbHomeRef = React.useRef();
   const ScheduleRef = React.useRef();
+
+  // console.log(isProduction);
+  // console.log("http://localhost:" + dbPort + "/graphql");
 
   return (
     <ApolloProvider client={client}>
