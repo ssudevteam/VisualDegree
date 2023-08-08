@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "npm install && npm run build:website && npm run build:webapp && node app",
+    "render": "npm install && cd blog && npm install && cd .. && npm run build:website && npm run build:webapp && node app",
     "build:website": "rimraf ./public/website && vite build -c website/vite.config.js && node scripts/website/postbuild",
-    "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts",
+    "build:webapp": "rimraf ./public/webapp &&VITE_ENV=development vite build -c webapp/vite.config.ts",
+    "build:render": "rimraf ./public/webapp &&VITE_ENV=production vite build -c webapp/vite.config.ts",
     "test": "vite serve -c webapp/vite.config.ts",
     "setup:db": "cd database && npm install && npm run dev",
     "setup:blog": "cd blog && npm install && npm run prod",

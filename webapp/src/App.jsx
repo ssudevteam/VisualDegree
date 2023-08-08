@@ -7,7 +7,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "../css/App.css";
 
 const dbPort = 8000;
-const isProduction = import.meta.env.PROD; //env inherited from VITE meaning: if we're running vite build, it's prod and vite serve, it's dev
+const isProduction = process.env.IS_PRODUCTION;
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -59,9 +59,6 @@ function App() {
   const degreeBuilderRef = React.useRef();
   const DbHomeRef = React.useRef();
   const ScheduleRef = React.useRef();
-
-  // console.log(isProduction);
-  // console.log("http://localhost:" + dbPort + "/graphql");
 
   return (
     <ApolloProvider client={client}>
