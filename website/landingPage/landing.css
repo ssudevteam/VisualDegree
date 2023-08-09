@@ -208,3 +208,12 @@
   width: 200px;
   margin:auto;
 }
+
+.card2{
+  box-shadow: 0rem 0.375rem 1.5rem 0rem rgba(140, 152, 164, 0.18);
+}
+
+.card3{
+  background: linear-gradient(to top, hwb(2103 97% 2%), #FFFFFF);
+}
+
