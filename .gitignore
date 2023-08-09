@@ -1,9 +1,16 @@
 # Personal
 .idea/
+config/.env
+.env
 
 # Ignore node_modules directory
 node_modules/
+public/
 /server/logs/
 
 # OS files
 .DS_**
+public/webapp/index.html
+public/webapp/assets/index-50e751b6.js
+public/website/landingPage/landing.css
+public/website/landingPage/landing.html

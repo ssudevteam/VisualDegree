@@ -6,6 +6,9 @@ import ScheduleView from "./views/MySchedules/ScheduleView";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "../css/App.css";
 
+const dbPort = 8000;
+const isProduction = process.env.IS_PRODUCTION;
+
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
@@ -46,7 +49,9 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: "http://localhost:8000/graphql",
+  uri: isProduction
+    ? "https://visualdegree.com:" + dbPort + "/graphql" // Production URL
+    : "http://localhost:" + dbPort + "/graphql", // Development URL
   cache,
 });
 

@@ -51,6 +51,21 @@
   fill: currentColor;
 }
 
+.navCenterGroup {
+  margin: auto;
+}
+
+.menuBtn {
+  font-weight: 500;
+  margin: 0px 10px;
+  border: none;
+  padding-bottom: 5px;
+}
+
+.menuBtn:active {
+  border: none;
+}
+
 .nav-scroller {
   position: relative;
   z-index: 2;
@@ -98,9 +113,9 @@
 
 #mainsplash {
   position: relative;
-  max-width: 1020px;
+  max-width: 1000px;
   margin: auto;
-  height: 42vh;
+  height: 45vh;
 }
 
 #hero {
@@ -131,13 +146,15 @@
 
 .header-style {
   margin: auto;
-  max-width: 900px;
+  max-width: 1000px;
   padding-left: 2%;
   padding-right: 2%;
 }
 
 .main-action-button {
-  margin-left: auto;
+  /* margin-left: auto; */
+  box-shadow: 0 0.5rem 1.125rem -0.5rem rgba(99,102,241,.9);
+}
 }
 
 /* First Row */
@@ -164,6 +181,9 @@
   justify-content: left;
 }
 
+.text-logo{
+}
+
 .user-picture {
   width: 50px;
   height: 50px;
@@ -183,3 +203,17 @@
 .user-pictures:hover .user-picture {
   transform: translateX(calc(var(--order-factor) * 30px));
 }
+
+.discBtn{
+  width: 200px;
+  margin:auto;
+}
+
+.card2{
+  box-shadow: 0rem 0.375rem 1.5rem 0rem rgba(140, 152, 164, 0.18);
+}
+
+.card3{
+  background: linear-gradient(to top, hwb(2103 97% 2%), #FFFFFF);
+}
+

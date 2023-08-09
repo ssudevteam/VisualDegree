@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "config/.env" });
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -5,7 +6,7 @@ const errorHandler = require("./server/middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.APP_PORT || 3000;
 const firebase_server = require("./users/init");
 
 const headers1 = "Origin, X-Requested-With, Content-Type, Accept";
@@ -36,6 +37,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/mainrouter"));
 app.use("/api", require("./routes/api"));
 app.use("/api", require("./routes/users"));
+app.use("/blog", require("./blog/server")); // Replace this with the actual path to your blog server
 
 // send to 404 to front end on res.status
 app.all("*", (req, res) => {

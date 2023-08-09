@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "start": "npm install && npm run build:website && npm run build:webapp && node app",
+    "render": "npm install && cd blog && npm install && cd .. && npm run build:website && npm run build:webapp && node app",
     "build:website": "rimraf ./public/website && vite build -c website/vite.config.js && node scripts/website/postbuild",
-    "build:webapp": "rimraf ./public/webapp &&vite build -c webapp/vite.config.ts",
+    "build:webapp": "rimraf ./public/webapp && cross-env VITE_ENV=development vite build -c webapp/vite.config.ts",
+    "build:render": "rimraf ./public/webapp && cross-env VITE_ENV=production vite build -c webapp/vite.config.ts",
     "test": "vite serve -c webapp/vite.config.ts",
-    "setup:db": "cd database && npm install && npm run create-env && npm run dev",
+    "setup:db": "cd database && npm install && npm run dev",
+    "setup:blog": "cd blog && npm install && npm run prod",
     "format": "prettier --check --write \"./**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
@@ -20,6 +23,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
     "debug": "~2.6.9",
     "file-saver": "^2.0.5",
@@ -41,6 +45,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "esbuild": "^0.19.0",
     "glob": "^10.2.7",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
