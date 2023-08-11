@@ -164,6 +164,7 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
           }}>
           {programCourses?.map((course) => (
             <button
+              id={`button_${course.id}`}
               key={course.id}
               data-courseid={course.id}
               className="builder-sidebar-button"
@@ -176,20 +177,26 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
     );
   };
 
+  const toggleButton = (buttonId) => {
+    const button = document.getElementById(buttonId);
+    if (button) {
+      button.classList.toggle("button-select");
+    } else {
+      console.error(`Error: Button with id '${buttonId}' not found`);
+    }
+  };
+
   const handleCourseSelection = (event) => {
     const courseButton = event.target;
     const courseId = courseButton.dataset.courseid;
 
     const course = programCourses.find((course) => course.id === courseId);
     if (!course) {
-      console.log(`Error: Course ${courseId} not found`);
+      console.error(`Error: Course ${courseId} not found`);
       return;
     }
 
-    const toggleButton = (button) => {
-      button.classList.toggle("button-select");
-    };
-
+    const buttonId = courseButton.getAttribute("id");
     if (!courseButton.classList.contains("button-select")) {
       const newNode = createNode({
         id: course.id,
@@ -198,11 +205,11 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       });
       addNode(newNode);
       onSelectNode(newNode);
-      newNode.data.eventListener.add("close", toggleButton, [courseButton]);
+      newNode.data.eventListener.add("close", toggleButton, [buttonId]);
     } else {
       removeNode(course);
     }
-    toggleButton(courseButton);
+    toggleButton(buttonId);
   };
 
   const renderNavbar = () => {
