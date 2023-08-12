@@ -2,6 +2,8 @@ import { useCallback, useRef } from "react";
 import { Panel } from "reactflow";
 import { saveAs } from "file-saver";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import { FaSave } from "react-icons/fa"; // You can use this package for icons
 
 import React from "react";
 
@@ -83,32 +85,32 @@ const FlowButtonPanel = ({ onNodeAdd, onChange, flowInstance }) => {
   }, []);
 
   return (
-    <Panel id="flowButtonPanel" position="top-right">
+    <Panel
+      id="flowButtonPanel"
+      position="top-right"
+      style={{ display: "flex" }}>
       <Button variant="secondary" onClick={onNodeAdd}>
         Add Course
       </Button>
-      <Button variant="secondary" onClick={onSave}>
-        Save State
-      </Button>
-      <Button variant="secondary" onClick={onRestore}>
-        Restore
-      </Button>
-      <>
-        <Button variant="secondary" onClick={onLoadButtonClick}>
-          Import
-        </Button>
-        <input
-          ref={loadFileRef}
-          type="file"
-          style={{ display: "none" }}
-          onChange={onFileOpen}
-        />
-      </>
-      <Button variant="secondary" onClick={onSaveFile}>
-        Export
-      </Button>
+      <Dropdown>
+        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+          <FaSave /> {/* Save icon */}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={onSave}>Save State</Dropdown.Item>
+          <Dropdown.Item onClick={onRestore}>Restore</Dropdown.Item>
+          <Dropdown.Item onClick={onLoadButtonClick}>Import</Dropdown.Item>
+          <input
+            ref={loadFileRef}
+            type="file"
+            style={{ display: "none" }}
+            onChange={onFileOpen}
+          />
+          <Dropdown.Item onClick={onSaveFile}>Export</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </Panel>
   );
 };
-
 export default FlowButtonPanel;
