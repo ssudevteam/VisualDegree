@@ -1,0 +1,35 @@
+type Program {
+  id: ID
+  name: String
+  url: String
+  department: Department
+  courses: [Course]
+  programType: ProgramType
+}
+
+extend type Query {
+  program(id: ID!): Program
+  programs: [Program!]!
+  programsByProgramType(type_id: ID!): [Program!]!
+}
+
+extend type Mutation {
+  addProgram(
+    name: String!
+    url: String!
+    department: ID!
+    courses: [ID!]!
+    programType: ID!
+  ): Program
+
+  updateProgram(
+    id: ID!
+    name: String
+    url: String
+    department: ID
+    courses: [ID!]
+    programType: ID
+  ): Program
+
+  deleteProgram(id: ID!): Program
+}

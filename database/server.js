@@ -3,8 +3,8 @@ const express = require("express");
 const colors = require("colors");
 const cors = require("cors");
 const { graphqlHTTP } = require("express-graphql");
-const schema = require("./server/schema/schema");
-const connectDB = require("./server/config/db");
+const schema = require("./schema/schema");
+const connectDB = require("./config/connection");
 const app = express();
 
 const port = process.env.DB_PORT;

@@ -1,0 +1,165 @@
+type Course {
+  id: ID
+  title: String
+  prefix: String
+  header: String
+  code: String
+  description: String
+  num_units: String
+  ge_category: String
+  prerequisites: String
+  url: String
+  department: Department
+}
+
+extend type Query {
+  course(id: ID!): Course
+  courses: [Course!]!
+  coursesByDepartment(departmentId: ID!): [Course!]!
+}
+
+extend type Mutation {
+  addCourse(
+    title: String
+    prefix: String
+    header: String
+    code: String
+    description: String
+    prerequisites: String
+    url: String
+    department: ID
+  ): Course
+
+  updateCourse(
+    id: ID!
+    _: String
+    title: String
+    prefix: String
+    header: String
+    code: String
+    description: String
+    num_units: String
+    ge_category: String
+    prerequisites: String
+    url: String
+    department: ID
+  ): Course
+
+  deleteCourse(id: ID!): Course
+}
+
+type Department {
+  id: ID
+  name: String
+  url: String
+}
+
+extend type Query {
+  department(id: ID!): Department
+  departments: [Department!]!
+}
+
+extend type Mutation {
+  addDepartment(name: String, url: String): Department
+  updateDepartment(id: ID!, name: String, url: String): Department
+  deleteDepartment(id: ID!): Department
+}
+
+type Program {
+  id: ID
+  name: String
+  url: String
+  department: Department
+  courses: [Course]
+  programType: ProgramDistinct
+}
+
+extend type Query {
+  program(id: ID!): Program
+  programs: [Program!]!
+  programsByProgramType(type_id: ID!): [Program!]!
+}
+
+extend type Mutation {
+  addProgram(
+    name: String!
+    url: String!
+    department: ID!
+    courses: String!
+    programType: String!
+  ): Program
+
+  updateProgram(
+    id: ID!
+    _: String
+    name: String
+    url: String
+    department: ID
+    courses: String
+    programType: String
+  ): Program
+
+  deleteProgram(id: ID!): Program
+}
+
+type ProgramType {
+  id: ID
+  name: String
+}
+
+extend type Query {
+  programType(id: ID!): ProgramType
+  programTypes: [ProgramType!]!
+}
+
+extend type Mutation {
+  addProgramType(name: String!): ProgramType
+  updateProgramType(id: ID!, name: String): ProgramType
+  deleteProgramType(id: ID!): ProgramType
+}
+
+type Schedule {
+  id: ID!
+  name: String!
+  user: User
+  courses: [Course]
+}
+
+extend type Query {
+  schedule(id: ID!): Schedule
+  schedules: [Schedule!]!
+}
+
+extend type Mutation {
+  addSchedule(user: String, name: String): Schedule
+  updateSchedule(id: ID!, _: String, user: String, name: String): Schedule
+  deleteSchedule(id: ID!): Schedule
+}
+
+type User {
+  id: ID!
+  name: String!
+  student_id: String!
+  email: String!
+  unitsEnrolled: String
+  unitsTaken: String
+  major: Program
+  minor: Program
+  completed_courses: [Course]
+  schedule: [Schedule]
+}
+
+extend type Query {
+  user(id: ID!): User
+  users: [User!]!
+  userCountByMajor(programID: ID!): [User!]!
+  userCountByUnitsTaken(num_of_units: String!): [User!]!
+}
+
+extend type Mutation {
+  createUser(name: String!, email: String!, major: String!, minor: String): User
+
+  updateUser(args: String): User
+
+  deleteUser(id: ID!): User
+}

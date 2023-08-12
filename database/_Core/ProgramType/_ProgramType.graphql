@@ -1,0 +1,15 @@
+type ProgramType {
+  id: ID
+  name: String
+}
+
+extend type Query {
+  programType(id: ID!): ProgramType
+  programTypes: [ProgramType!]!
+}
+
+extend type Mutation {
+  addProgramType(name: String!): ProgramType
+  updateProgramType(id: ID!, name: String): ProgramType
+  deleteProgramType(id: ID!): ProgramType
+}

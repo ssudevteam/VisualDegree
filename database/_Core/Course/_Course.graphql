@@ -1,0 +1,48 @@
+type Course {
+  id: ID
+  title: String
+  prefix: String
+  header: String
+  code: String
+  description: String
+  num_units: String
+  ge_category: String
+  prerequisites: String
+  url: String
+  department: Department
+}
+
+extend type Query {
+  course(id: ID!): Course
+  courses: [Course!]!
+  coursesByDepartment(departmentId: ID!): [Course!]!
+}
+
+extend type Mutation {
+  addCourse(
+    title: String!
+    prefix: String!
+    header: String!
+    code: String!
+    description: String
+    prerequisites: String
+    url: String
+    department: ID
+  ): Course
+
+  updateCourse(
+    id: ID!
+    title: String
+    prefix: String
+    header: String
+    code: String
+    description: String
+    num_units: String
+    ge_category: String
+    prerequisites: String
+    url: String
+    department: ID
+  ): Course
+
+  deleteCourse(id: ID!): Course
+}

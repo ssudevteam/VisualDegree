@@ -1,0 +1,37 @@
+type User {
+  id: ID!
+  name: String!
+  student_id: String!
+  email: String!
+  unitsEnrolled: String
+  unitsTaken: String
+  major: Program
+  minor: Program
+  completed_courses: [Course]
+  schedule: [Schedule]
+}
+
+extend type Query {
+  user(id: ID!): User
+  users: [User!]!
+  userCountByMajor(programID: ID!): [User!]!
+  userCountByUnitsTaken(num_of_units: String!): [User!]!
+}
+
+extend type Mutation {
+  createUser(
+    name: String!
+    email: String!
+    major: String!
+    minor: String
+  ): User
+
+  updateUser(
+    args: String
+  ): User
+
+  deleteUser(
+    id: ID!
+  ): User
+
+}
