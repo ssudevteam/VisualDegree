@@ -3,9 +3,9 @@ import Select from "react-select";
 import { Spinner } from "react-bootstrap";
 
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { GET_PROGRAMS } from "../../client/queries/programQueries";
-import { GET_COURSE } from "../../client/queries/courseQueries";
-import { GET_SCHEDULES } from "../../client/queries/scheduleQueries";
+import { GET_PROGRAMS } from "../../graphql/queries/program";
+import { GET_COURSE } from "../../graphql/queries/course";
+import { GET_SCHEDULES } from "../../graphql/queries/schedule";
 import AddScheduleModal from "../../components/DbAccessComponents/scheduleComponents/AddScheduleModal";
 import AddCourseToScheduleModal from "../../components/DbAccessComponents/courseComponents/AddCourseToScheduleModal";
 import DropCourseFromScheduleModal from "../../components/DbAccessComponents/courseComponents/DropCourseFromSchedule";

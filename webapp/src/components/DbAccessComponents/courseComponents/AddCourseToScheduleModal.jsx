@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_COURSE_TO_SCHEDULE } from "../../../client/mutations/scheduleMutations";
-import { GET_SCHEDULES } from "../../../client/queries/scheduleQueries";
+import { ADD_COURSE_TO_SCHEDULE } from "../../../graphql/mutations/schedule";
+import { GET_SCHEDULES } from "../../../graphql/queries/schedule";
 
 function AddCourseToScheduleModal({ courses }) {
   const [show, setShow] = useState(false);

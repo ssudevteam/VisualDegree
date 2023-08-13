@@ -48,4 +48,21 @@ const GET_PROGRAMS_BY_PROGRAM_TYPE = gql`
   }
 `;
 
-export { GET_PROGRAM, GET_PROGRAMS, GET_PROGRAMS_BY_PROGRAM_TYPE };
+const GET_COURSES_BY_PROGRAM = gql`
+  query Program($programId: ID!) {
+    program(id: $programId) {
+      courses {
+        code
+        title
+        id
+      }
+    }
+  }
+`;
+
+export {
+  GET_PROGRAM,
+  GET_PROGRAMS,
+  GET_PROGRAMS_BY_PROGRAM_TYPE,
+  GET_COURSES_BY_PROGRAM,
+};

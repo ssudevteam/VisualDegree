@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import ScheduleRow from "../scheduleComponents/ScheduleRow";
-import { GET_SCHEDULES } from "../../../client/queries/scheduleQueries";
+import { GET_SCHEDULES } from "../../../graphql/queries/schedule";
 import "../../../../css/DbAccessData.css";
 import AddScheduleModal from "./AddScheduleModal";
 

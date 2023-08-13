@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
-import { GET_COURSE } from "../../../client/queries/courseQueries";
+import { GET_COURSE } from "../../../graphql/queries/course";
 import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
 const CourseModal = ({ courseId, closeModal }) => {

@@ -1,0 +1,978 @@
+{
+  "data": {
+    "programs": [
+      {
+        "name": "Anthropology, Minor",
+        "id": "64795b9708db5d81e7110aed"
+      },
+      {
+        "name": "American Multicultural Studies, Minor",
+        "id": "64795b9708db5d81e7110aee"
+      },
+      {
+        "name": "Art, Minor",
+        "id": "64795b9708db5d81e7110aef"
+      },
+      {
+        "name": "Cultural Resources Management, M.A",
+        "id": "64795b9708db5d81e7110af0"
+      },
+      {
+        "name": "Ecology and Evolutionary Biology Concentration",
+        "id": "64795b9708db5d81e7110af1"
+      },
+      {
+        "name": "Biology, Minor",
+        "id": "64795b9708db5d81e7110af2"
+      },
+      {
+        "name": "Special Concentration",
+        "id": "64795b9708db5d81e7110af3"
+      },
+      {
+        "name": "Museum and Gallery Methods, Career Minor",
+        "id": "64795b9708db5d81e7110af4"
+      },
+      {
+        "name": "Accounting Concentration",
+        "id": "64795b9708db5d81e7110af5"
+      },
+      {
+        "name": "Biology, M.S",
+        "id": "64795b9708db5d81e7110af6"
+      },
+      {
+        "name": "American Multicultural Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110af7"
+      },
+      {
+        "name": "Molecular Cell Biology Concentration",
+        "id": "64795b9708db5d81e7110af8"
+      },
+      {
+        "name": "Art History, Minor",
+        "id": "64795b9708db5d81e7110af9"
+      },
+      {
+        "name": "Art: Studio Concentration, Minor",
+        "id": "64795b9708db5d81e7110afa"
+      },
+      {
+        "name": "American Multicultural Studies, B.A",
+        "id": "64795b9708db5d81e7110afb"
+      },
+      {
+        "name": "Marine Biology Concentration",
+        "id": "64795b9708db5d81e7110afc"
+      },
+      {
+        "name": "Physiology Concentration",
+        "id": "64795b9708db5d81e7110afd"
+      },
+      {
+        "name": "Management Concentration",
+        "id": "64795b9708db5d81e7110afe"
+      },
+      {
+        "name": "Business Administration, Minor",
+        "id": "64795b9708db5d81e7110aff"
+      },
+      {
+        "name": "Financial Management Concentration",
+        "id": "64795b9708db5d81e7110b00"
+      },
+      {
+        "name": "Anthropology, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b01"
+      },
+      {
+        "name": "French Language Certificate for Wine Business",
+        "id": "64795b9708db5d81e7110b02"
+      },
+      {
+        "name": "Biology with a Concentration in Molecular Cell Biology, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b03"
+      },
+      {
+        "name": "Finance Concentration",
+        "id": "64795b9708db5d81e7110b04"
+      },
+      {
+        "name": "Executive Master of Business Administration, MBA",
+        "id": "64795b9708db5d81e7110b05"
+      },
+      {
+        "name": "Biology, B.A., Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b06"
+      },
+      {
+        "name": "Business Administration with a Concentration in Management, B.S",
+        "id": "64795b9708db5d81e7110b07"
+      },
+      {
+        "name": "Biology, B.A",
+        "id": "64795b9708db5d81e7110b08"
+      },
+      {
+        "name": "Anthropology, B.A",
+        "id": "64795b9708db5d81e7110b09"
+      },
+      {
+        "name": "Art: Studio Concentration, B.F.A",
+        "id": "64795b9708db5d81e7110b0a"
+      },
+      {
+        "name": "Biology with a Concentration in Physiology, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b0b"
+      },
+      {
+        "name": "Biology with a Concentration in Zoology, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b0c"
+      },
+      {
+        "name": "Biology with a Concentration in Ecology and Evolutionary Biology, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b0d"
+      },
+      {
+        "name": "Biology, B.S., Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b0e"
+      },
+      {
+        "name": "Art History, B.A., Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b0f"
+      },
+      {
+        "name": "Biology with a Concentration in Marine Biology, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b10"
+      },
+      {
+        "name": "Zoology Concentration",
+        "id": "64795b9708db5d81e7110b11"
+      },
+      {
+        "name": "Chemistry, B.A",
+        "id": "64795b9708db5d81e7110b12"
+      },
+      {
+        "name": "Professional Sales Certificate",
+        "id": "64795b9708db5d81e7110b13"
+      },
+      {
+        "name": "Chemistry, B.S",
+        "id": "64795b9708db5d81e7110b14"
+      },
+      {
+        "name": "Marketing Concentration",
+        "id": "64795b9708db5d81e7110b15"
+      },
+      {
+        "name": "Wine Business Strategies Concentration",
+        "id": "64795b9708db5d81e7110b16"
+      },
+      {
+        "name": "Business Administration, B.S",
+        "id": "64795b9708db5d81e7110b17"
+      },
+      {
+        "name": "Biology, B.S",
+        "id": "64795b9708db5d81e7110b18"
+      },
+      {
+        "name": "Business Administration, MBA",
+        "id": "64795b9708db5d81e7110b19"
+      },
+      {
+        "name": "Business Administration, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b1a"
+      },
+      {
+        "name": "Applied Arts, Minor",
+        "id": "64795b9708db5d81e7110b1b"
+      },
+      {
+        "name": "Biochemistry, B.S",
+        "id": "64795b9708db5d81e7110b1c"
+      },
+      {
+        "name": "Art History, B.A",
+        "id": "64795b9708db5d81e7110b1d"
+      },
+      {
+        "name": "Art: Studio Concentration, B.A",
+        "id": "64795b9708db5d81e7110b1e"
+      },
+      {
+        "name": "Chicano and Latino Studies, Minor",
+        "id": "64795b9708db5d81e7110b1f"
+      },
+      {
+        "name": "Computer Science, Minor",
+        "id": "64795b9708db5d81e7110b20"
+      },
+      {
+        "name": "Chicano and Latino Studies, B.A",
+        "id": "64795b9708db5d81e7110b21"
+      },
+      {
+        "name": "Criminology and Criminal Justice Studies, Minor",
+        "id": "64795b9708db5d81e7110b22"
+      },
+      {
+        "name": "Chemistry, Minor",
+        "id": "64795b9708db5d81e7110b23"
+      },
+      {
+        "name": "Economics, Minor",
+        "id": "64795b9708db5d81e7110b24"
+      },
+      {
+        "name": "Early Childhood Special Education Added Authorization",
+        "id": "64795b9708db5d81e7110b25"
+      },
+      {
+        "name": "Education Specialist Intern Program",
+        "id": "64795b9708db5d81e7110b26"
+      },
+      {
+        "name": "Option I - Clinical Mental Health Counseling (MFT & LPCC), M.A",
+        "id": "64795b9708db5d81e7110b27"
+      },
+      {
+        "name": "Education with an Emphasis in Reading and Language, M.A",
+        "id": "64795b9708db5d81e7110b28"
+      },
+      {
+        "name": "Biochemistry, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b29"
+      },
+      {
+        "name": "Administrative Service Credentials",
+        "id": "64795b9708db5d81e7110b2a"
+      },
+      {
+        "name": "Option II - School Counseling/Pupil Personnel Services Credential, M.A",
+        "id": "64795b9708db5d81e7110b2b"
+      },
+      {
+        "name": "Educational Leadership, M.A",
+        "id": "64795b9708db5d81e7110b2c"
+      },
+      {
+        "name": "Economics, B.A",
+        "id": "64795b9708db5d81e7110b2d"
+      },
+      {
+        "name": "Bilingual Authorization (Spanish)",
+        "id": "64795b9708db5d81e7110b2e"
+      },
+      {
+        "name": "Chicano and Latino Studies, Teacher Preparation Track, Multiple Subjects Program, B.A., Sample Four-Year Program",
+        "id": "64795b9708db5d81e7110b2f"
+      },
+      {
+        "name": "Chemistry, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b30"
+      },
+      {
+        "name": "Education, M.A",
+        "id": "64795b9708db5d81e7110b31"
+      },
+      {
+        "name": "Criminology and Criminal Justice Studies, B.A",
+        "id": "64795b9708db5d81e7110b32"
+      },
+      {
+        "name": "Chemistry, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b33"
+      },
+      {
+        "name": "Single Subject (Secondary Schools) Teaching Credential",
+        "id": "64795b9708db5d81e7110b34"
+      },
+      {
+        "name": "Communication Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b35"
+      },
+      {
+        "name": "Early Childhood Studies Integrated Teacher Education Program-Special Education, B.A. Sample Two-Year Transfer Plan",
+        "id": "64795b9708db5d81e7110b36"
+      },
+      {
+        "name": "Child Development Permit",
+        "id": "64795b9708db5d81e7110b37"
+      },
+      {
+        "name": "Communication Studies, B.A",
+        "id": "64795b9708db5d81e7110b38"
+      },
+      {
+        "name": "Education, Minor",
+        "id": "64795b9708db5d81e7110b39"
+      },
+      {
+        "name": "California Multiple Subject Teaching Credential",
+        "id": "64795b9708db5d81e7110b3a"
+      },
+      {
+        "name": "Education with a Concentration in Curriculum, Teaching, and Learning (CTL), M.A",
+        "id": "64795b9708db5d81e7110b3b"
+      },
+      {
+        "name": "Preliminary Education Specialist Credential in Mild/Moderate Support Needs (MMSN) or Extensive Support Needs (ESN)",
+        "id": "64795b9708db5d81e7110b3c"
+      },
+      {
+        "name": "Clear Education Specialist Credential",
+        "id": "64795b9708db5d81e7110b3d"
+      },
+      {
+        "name": "Early Childhood Studies Integrated Teacher Education Program, Special Education, B.A",
+        "id": "64795b9708db5d81e7110b3e"
+      },
+      {
+        "name": "Chicano and Latino Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b3f"
+      },
+      {
+        "name": "Early Childhood Studies, Minor",
+        "id": "64795b9708db5d81e7110b40"
+      },
+      {
+        "name": "Computer Science, B.S. Sample Four-Year Program",
+        "id": "64795b9708db5d81e7110b41"
+      },
+      {
+        "name": "Early Childhood Studies with a Concentration in Community, Health and Social Services for Children Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b42"
+      },
+      {
+        "name": "Electrical Engineering, Minor",
+        "id": "64795b9708db5d81e7110b43"
+      },
+      {
+        "name": "Early Childhood Studies, Development Concentration, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b44"
+      },
+      {
+        "name": "Criminology and Criminal Justice Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b45"
+      },
+      {
+        "name": "Early Childhood Studies, Education Concentration, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b46"
+      },
+      {
+        "name": "Early Childhood Studies with a Concentration in Early Care and Education, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b47"
+      },
+      {
+        "name": "Economics, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b48"
+      },
+      {
+        "name": "Electrical Engineering, B.S",
+        "id": "64795b9708db5d81e7110b49"
+      },
+      {
+        "name": "Early Childhood Studies, B.A",
+        "id": "64795b9708db5d81e7110b4a"
+      },
+      {
+        "name": "Electrical and Computer Engineering, M.S",
+        "id": "64795b9708db5d81e7110b4b"
+      },
+      {
+        "name": "Counseling, M.A",
+        "id": "64795b9708db5d81e7110b4c"
+      },
+      {
+        "name": "Early Childhood Education, M.A",
+        "id": "64795b9708db5d81e7110b4d"
+      },
+      {
+        "name": "Film Studies, Minor",
+        "id": "64795b9708db5d81e7110b4e"
+      },
+      {
+        "name": "Computer Science, B.S",
+        "id": "64795b9708db5d81e7110b4f"
+      },
+      {
+        "name": "Early Childhood Studies Integrated Teacher Education Program, Special Education, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b50"
+      },
+      {
+        "name": "English, M.A",
+        "id": "64795b9708db5d81e7110b51"
+      },
+      {
+        "name": "Earth and Environmental Science, B.S. Sample Two-Year Plan",
+        "id": "64795b9708db5d81e7110b52"
+      },
+      {
+        "name": "English, Minor",
+        "id": "64795b9708db5d81e7110b53"
+      },
+      {
+        "name": "Interdisciplinary General Education Program Lower-Division",
+        "id": "64795b9708db5d81e7110b54"
+      },
+      {
+        "name": "Global Studies, Minor",
+        "id": "64795b9708db5d81e7110b55"
+      },
+      {
+        "name": "English, B.A",
+        "id": "64795b9708db5d81e7110b56"
+      },
+      {
+        "name": "Interdisciplinary Concentration",
+        "id": "64795b9708db5d81e7110b57"
+      },
+      {
+        "name": "Global Studies, B.A",
+        "id": "64795b9708db5d81e7110b58"
+      },
+      {
+        "name": "Geography and Environment, Minor",
+        "id": "64795b9708db5d81e7110b59"
+      },
+      {
+        "name": "Interdisciplinary Studies, M.A./M.S",
+        "id": "64795b9708db5d81e7110b5a"
+      },
+      {
+        "name": "History, M.A",
+        "id": "64795b9708db5d81e7110b5b"
+      },
+      {
+        "name": "History, Minor",
+        "id": "64795b9708db5d81e7110b5c"
+      },
+      {
+        "name": "Film Studies, M.A",
+        "id": "64795b9708db5d81e7110b5d"
+      },
+      {
+        "name": "Integrative Studies, Minor",
+        "id": "64795b9708db5d81e7110b5e"
+      },
+      {
+        "name": "Mathematics, B.A",
+        "id": "64795b9708db5d81e7110b5f"
+      },
+      {
+        "name": "Applied Statistics, B.A",
+        "id": "64795b9708db5d81e7110b60"
+      },
+      {
+        "name": "Electrical Engineering, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b61"
+      },
+      {
+        "name": "History, B.A",
+        "id": "64795b9708db5d81e7110b62"
+      },
+      {
+        "name": "Paleontology, Minor",
+        "id": "64795b9708db5d81e7110b63"
+      },
+      {
+        "name": "Kinesiology, B.S",
+        "id": "64795b9708db5d81e7110b64"
+      },
+      {
+        "name": "Geology, B.S. Sample Two-Year Plan",
+        "id": "64795b9708db5d81e7110b65"
+      },
+      {
+        "name": "Lifetime Physical Activity Concentration",
+        "id": "64795b9708db5d81e7110b66"
+      },
+      {
+        "name": "English with a Concentration in Literature, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b67"
+      },
+      {
+        "name": "Exercise Science Concentration",
+        "id": "64795b9708db5d81e7110b68"
+      },
+      {
+        "name": "English with a Concentration in Creative Writing, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b69"
+      },
+      {
+        "name": "Linguistics, Minor",
+        "id": "64795b9708db5d81e7110b6a"
+      },
+      {
+        "name": "Human Development, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b6b"
+      },
+      {
+        "name": "Environmental Science, Geography and Management, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b6c"
+      },
+      {
+        "name": "Earth and Environmental Science, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b6d"
+      },
+      {
+        "name": "Geology, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b6e"
+      },
+      {
+        "name": "Global Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b6f"
+      },
+      {
+        "name": "History, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b70"
+      },
+      {
+        "name": "Environmental Studies, Geography and Planning, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b71"
+      },
+      {
+        "name": "Human Development, B.A",
+        "id": "64795b9708db5d81e7110b72"
+      },
+      {
+        "name": "Area Studies Through Study Abroad",
+        "id": "64795b9708db5d81e7110b73"
+      },
+      {
+        "name": "Development Concentration",
+        "id": "64795b9708db5d81e7110b74"
+      },
+      {
+        "name": "Jewish Studies, Minor",
+        "id": "64795b9708db5d81e7110b75"
+      },
+      {
+        "name": "Liberal Studies (Saturday Degree Completion), B.A",
+        "id": "64795b9708db5d81e7110b76"
+      },
+      {
+        "name": "Kinesiology, Exercise Science Concentration, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b77"
+      },
+      {
+        "name": "Kinesiology with a Concentration in Lifetime Physical Activity Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b78"
+      },
+      {
+        "name": "Mathematics with a Concentration in Pure Mathematics, B.A",
+        "id": "64795b9708db5d81e7110b79"
+      },
+      {
+        "name": "Kinesiology with a Interdisciplinary Concentration Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b7a"
+      },
+      {
+        "name": "Special Major: German Cultural Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b7b"
+      },
+      {
+        "name": "Human Development, B.A. Sample Two-Year Plan",
+        "id": "64795b9708db5d81e7110b7c"
+      },
+      {
+        "name": "Liberal Studies (Hutchins) B.A",
+        "id": "64795b9708db5d81e7110b7d"
+      },
+      {
+        "name": "Environmental Studies, Geography, and Planning, B.A",
+        "id": "64795b9708db5d81e7110b7e"
+      },
+      {
+        "name": "Geology, B.S",
+        "id": "64795b9708db5d81e7110b7f"
+      },
+      {
+        "name": "Environmental Science, Geography, and Management, B.S",
+        "id": "64795b9708db5d81e7110b80"
+      },
+      {
+        "name": "Bachelor of Arts in the Special Major: German Cultural Studies",
+        "id": "64795b9708db5d81e7110b81"
+      },
+      {
+        "name": "Earth and Environmental Science, B.A",
+        "id": "64795b9708db5d81e7110b82"
+      },
+      {
+        "name": "Applied Statistics, Minor",
+        "id": "64795b9708db5d81e7110b83"
+      },
+      {
+        "name": "Math for Teachers, Minor",
+        "id": "64795b9708db5d81e7110b84"
+      },
+      {
+        "name": "Statistics, Minor",
+        "id": "64795b9708db5d81e7110b85"
+      },
+      {
+        "name": "Mathematics, Minor",
+        "id": "64795b9708db5d81e7110b86"
+      },
+      {
+        "name": "Mathematics, B.S",
+        "id": "64795b9708db5d81e7110b87"
+      },
+      {
+        "name": "Applied Mathematics Concentration",
+        "id": "64795b9708db5d81e7110b88"
+      },
+      {
+        "name": "Mathematics Secondary Teaching Concentration",
+        "id": "64795b9708db5d81e7110b89"
+      },
+      {
+        "name": "Bi-Disciplinary Mathematics, B.A. and Physics, B.A. Sample Two-Year Plan",
+        "id": "64795b9708db5d81e7110b8a"
+      },
+      {
+        "name": "Music, Minor",
+        "id": "64795b9708db5d81e7110b8b"
+      },
+      {
+        "name": "German, Minor",
+        "id": "64795b9708db5d81e7110b8c"
+      },
+      {
+        "name": "Music with a Concentration in Liberal Arts, B.A",
+        "id": "64795b9708db5d81e7110b8d"
+      },
+      {
+        "name": "Spanish, M.A",
+        "id": "64795b9708db5d81e7110b8e"
+      },
+      {
+        "name": "Spanish, Minor",
+        "id": "64795b9708db5d81e7110b8f"
+      },
+      {
+        "name": "Philosophy, Science, Technology, and Ethics Concentration, B.A",
+        "id": "64795b9708db5d81e7110b90"
+      },
+      {
+        "name": "French, Minor",
+        "id": "64795b9708db5d81e7110b91"
+      },
+      {
+        "name": "Philosophy, Pre-Law and Ethics Concentration, B.A",
+        "id": "64795b9708db5d81e7110b92"
+      },
+      {
+        "name": "Philosophy, Social Justice Concentration, B.A",
+        "id": "64795b9708db5d81e7110b93"
+      },
+      {
+        "name": "Bi-disciplinary Mathematics Concentration",
+        "id": "64795b9708db5d81e7110b94"
+      },
+      {
+        "name": "Native American Studies, Minor",
+        "id": "64795b9708db5d81e7110b95"
+      },
+      {
+        "name": "Statistics, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b96"
+      },
+      {
+        "name": "Philosophy, Minor",
+        "id": "64795b9708db5d81e7110b97"
+      },
+      {
+        "name": "Mathematics with a Concentration in Applied Mathematics B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b98"
+      },
+      {
+        "name": "Statistics, B.S",
+        "id": "64795b9708db5d81e7110b99"
+      },
+      {
+        "name": "Spanish, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b9a"
+      },
+      {
+        "name": "Applied Statistics, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b9b"
+      },
+      {
+        "name": "Mathematics Secondary Teaching Concentration, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110b9c"
+      },
+      {
+        "name": "Philosophy, B.A",
+        "id": "64795b9708db5d81e7110b9d"
+      },
+      {
+        "name": "Music, B.A",
+        "id": "64795b9708db5d81e7110b9e"
+      },
+      {
+        "name": "Philosophy, The Good Life Concentration, B.A",
+        "id": "64795b9708db5d81e7110b9f"
+      },
+      {
+        "name": "Traditional Post-Licensure Program, B.S",
+        "id": "64795b9708db5d81e7110ba0"
+      },
+      {
+        "name": "Mathematics with a Concentration in Pure Mathematics, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110ba1"
+      },
+      {
+        "name": "Music, Jazz Studies Concentration, B.M",
+        "id": "64795b9708db5d81e7110ba2"
+      },
+      {
+        "name": "Bi-Disciplinary Mathematics, B.A. and Physics, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110ba3"
+      },
+      {
+        "name": "Nursing, B.S",
+        "id": "64795b9708db5d81e7110ba4"
+      },
+      {
+        "name": "French, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110ba5"
+      },
+      {
+        "name": "French, B.A",
+        "id": "64795b9708db5d81e7110ba6"
+      },
+      {
+        "name": "Music, Liberal Arts Concentration, B.A., Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110ba7"
+      },
+      {
+        "name": "Music, Performance Concentration, B.M",
+        "id": "64795b9708db5d81e7110ba8"
+      },
+      {
+        "name": "Music, Music Education Concentration, Instrumental Track, B.M. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110ba9"
+      },
+      {
+        "name": "Music, Performance Concentration, B.M. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110baa"
+      },
+      {
+        "name": "Music, Music Education Concentration, Choral Track, B.M. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bab"
+      },
+      {
+        "name": "Spanish, B.A",
+        "id": "64795b9708db5d81e7110bac"
+      },
+      {
+        "name": "Music, Composition Concentration, B.M. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bad"
+      },
+      {
+        "name": "Music, Jazz Studies Concentration, B.M. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bae"
+      },
+      {
+        "name": "Pre-Licensure B.S.N",
+        "id": "64795b9708db5d81e7110baf"
+      },
+      {
+        "name": "Music, B.M",
+        "id": "64795b9708db5d81e7110bb0"
+      },
+      {
+        "name": "Nursing- Family Nurse Practitioner, M.S",
+        "id": "64795b9708db5d81e7110bb1"
+      },
+      {
+        "name": "Music, Composition Concentration, B.M",
+        "id": "64795b9708db5d81e7110bb2"
+      },
+      {
+        "name": "Music, Liberal Arts Concentration, B.A",
+        "id": "64795b9708db5d81e7110bb3"
+      },
+      {
+        "name": "Music, Music Education Concentration, B.M",
+        "id": "64795b9708db5d81e7110bb4"
+      },
+      {
+        "name": "Physical Science with Concentration in Teaching, B.A",
+        "id": "64795b9708db5d81e7110bb5"
+      },
+      {
+        "name": "Physics, Minor",
+        "id": "64795b9708db5d81e7110bb6"
+      },
+      {
+        "name": "Astrophysics Concentration",
+        "id": "64795b9708db5d81e7110bb7"
+      },
+      {
+        "name": "Psychology, Minor",
+        "id": "64795b9708db5d81e7110bb8"
+      },
+      {
+        "name": "Physical Science with Concentration in Foundational Health, B.A",
+        "id": "64795b9708db5d81e7110bb9"
+      },
+      {
+        "name": "Astronomy, Minor",
+        "id": "64795b9708db5d81e7110bba"
+      },
+      {
+        "name": "Physics, B.A",
+        "id": "64795b9708db5d81e7110bbb"
+      },
+      {
+        "name": "Sociology, Minor",
+        "id": "64795b9708db5d81e7110bbc"
+      },
+      {
+        "name": "Political Science, Minor",
+        "id": "64795b9708db5d81e7110bbd"
+      },
+      {
+        "name": "Philosophy, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bbe"
+      },
+      {
+        "name": "Physics, B.S",
+        "id": "64795b9708db5d81e7110bbf"
+      },
+      {
+        "name": "Theatre Arts, Minor",
+        "id": "64795b9708db5d81e7110bc0"
+      },
+      {
+        "name": "Family Nurse Practitioner, Post-Master's Certificate",
+        "id": "64795b9708db5d81e7110bc1"
+      },
+      {
+        "name": "Physical Science, B.A",
+        "id": "64795b9708db5d81e7110bc2"
+      },
+      {
+        "name": "Psychology, Depth Psychology Emphasis, M.A",
+        "id": "64795b9708db5d81e7110bc3"
+      },
+      {
+        "name": "Physical Science (with no listed concentration), B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bc4"
+      },
+      {
+        "name": "Physical Science with Concentration in Foundational Health, B.A., Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bc5"
+      },
+      {
+        "name": "Sociology, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bc6"
+      },
+      {
+        "name": "Queer Studies, Minor",
+        "id": "64795b9708db5d81e7110bc7"
+      },
+      {
+        "name": "Physical Science with Concentration in Teaching, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bc8"
+      },
+      {
+        "name": "Women's and Gender Studies, B.A",
+        "id": "64795b9708db5d81e7110bc9"
+      },
+      {
+        "name": "Master's in Public Administration, M.P.A",
+        "id": "64795b9708db5d81e7110bca"
+      },
+      {
+        "name": "Political Science, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bcb"
+      },
+      {
+        "name": "Psychology, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bcc"
+      },
+      {
+        "name": "Physics, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bcd"
+      },
+      {
+        "name": "Theatre Arts with Concentration in Technical Theatre, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bce"
+      },
+      {
+        "name": "Organization Development, M.A",
+        "id": "64795b9708db5d81e7110bcf"
+      },
+      {
+        "name": "Dance, B.A",
+        "id": "64795b9708db5d81e7110bd0"
+      },
+      {
+        "name": "Sociology, B.A",
+        "id": "64795b9708db5d81e7110bd1"
+      },
+      {
+        "name": "Cultural/Critical Pathway",
+        "id": "64795b9708db5d81e7110bd2"
+      },
+      {
+        "name": "Physics, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bd3"
+      },
+      {
+        "name": "Theatre Arts with Concentration in Acting, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bd4"
+      },
+      {
+        "name": "Dance, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bd5"
+      },
+      {
+        "name": "Women's and Gender Studies, Minor",
+        "id": "64795b9708db5d81e7110bd6"
+      },
+      {
+        "name": "Women's and Gender Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bd7"
+      },
+      {
+        "name": "Theatre Arts with Concentration in Technical Theatre, B.A",
+        "id": "64795b9708db5d81e7110bd8"
+      },
+      {
+        "name": "Psychology, B.A",
+        "id": "64795b9708db5d81e7110bd9"
+      },
+      {
+        "name": "Community/Clinical Pathway",
+        "id": "64795b9708db5d81e7110bda"
+      },
+      {
+        "name": "Physics with a Concentration in Astrophysics, B.S. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bdb"
+      },
+      {
+        "name": "Political Science, B.A",
+        "id": "64795b9708db5d81e7110bdc"
+      },
+      {
+        "name": "Theatre Arts with Concentration in Acting, B.A",
+        "id": "64795b9708db5d81e7110bdd"
+      },
+      {
+        "name": "Theatre Arts with Concentration in Theatre Studies, B.A. Sample Four-Year Plan",
+        "id": "64795b9708db5d81e7110bde"
+      },
+      {
+        "name": "Theatre Arts with Concentration in Theatre Studies, B.A",
+        "id": "64795b9708db5d81e7110bdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+type Schedule {
+  id: ID!
+  name: String!
+  user: User
+  courses: [Course]
+}
+
+extend type Query {
+  schedule(id: ID!): Schedule
+  schedules: [Schedule!]!
+}
+
+extend type Mutation {
+  addSchedule(user: String, name: String): Schedule
+  updateSchedule(id: ID!, _: String, user: String, name: String): Schedule
+  deleteSchedule(id: ID!): Schedule
+  addCourseToSchedule(scheduleID: ID!, courseID: ID!): Schedule
+  dropCourseFromSchedule(scheduleID: ID!, courseID: ID!): Schedule
+}

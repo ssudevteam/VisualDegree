@@ -4,8 +4,8 @@ import { Spinner } from "react-bootstrap";
 import button from "bootstrap/js/src/button";
 
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { GET_PROGRAMS } from "../../client/queries/programQueries";
-import { GET_COURSE } from "../../client/queries/courseQueries";
+import { GET_PROGRAMS } from "../../graphql/queries/program";
+import { GET_COURSE } from "../../graphql/queries/course";
 
 import Navbar from "../../components/Navbar";
 import Overlay from "../../components/Overlay";
