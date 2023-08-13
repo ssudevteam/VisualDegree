@@ -1,3 +1,6 @@
+// compileschema
+// Takes all .graphql typedefs in _Types and outputs them to ./schema.graphql
+
 const fs = require("fs");
 const path = require("path");
 
@@ -28,6 +31,20 @@ const getGraphqlFilesFromDirectory = (directory) => {
 
 const combinedGraphqlContent =
   getGraphqlFilesFromDirectory(rootDir).join("\n\n");
+
+const cachingconfig = `
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+  inheritMaxAge: Boolean
+) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION`;
+
+combinedGraphqlContent.join(cachingconfig);
 
 const outputPath = path.join(rootDir, "schema.graphql");
 fs.writeFileSync(outputPath, combinedGraphqlContent);

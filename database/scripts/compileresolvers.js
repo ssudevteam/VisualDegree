@@ -1,3 +1,6 @@
+// compileresolvers.js
+// compiles resolver files to provide to apollo-server init params
+
 const glob = require("glob");
 const path = require("path");
 
