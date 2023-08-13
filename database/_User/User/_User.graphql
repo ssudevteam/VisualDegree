@@ -1,7 +1,7 @@
 type User {
   id: ID!
   name: String!
-  student_id: String!
+  student_id: String
   email: String!
   unitsEnrolled: String
   unitsTaken: String
