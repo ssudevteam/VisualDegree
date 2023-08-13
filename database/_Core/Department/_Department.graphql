@@ -1,4 +1,4 @@
-type Department {
+type Department @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
   url: String

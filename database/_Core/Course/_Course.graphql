@@ -1,4 +1,4 @@
-type Course {
+type Course @cacheControl(maxAge: 7776000) {
   id: ID
   title: String
   prefix: String

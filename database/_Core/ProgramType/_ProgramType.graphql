@@ -1,4 +1,4 @@
-type ProgramType {
+type ProgramType @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
 }
