@@ -8,9 +8,15 @@ export default defineConfig({
   plugins: [react()],
   resolve: {},
   server: {
+    open: "/app",
     port: 4000,
     proxy: {
-      "/app": "http://localhost:4000/webapp/app",
+      "/app": {
+        target: "http://localhost:4000/webapp/app",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
       "/api/": {
         target: "http://localhost:3000",
         changeOrigin: true,
@@ -31,6 +37,12 @@ export default defineConfig({
       },
       "/schedules": {
         target: "http://localhost:4000/webapp/schedules",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      "/welcome": {
+        target: "http://localhost:4000/webapp/welcome",
         changeOrigin: true,
         secure: false,
         ws: true,
