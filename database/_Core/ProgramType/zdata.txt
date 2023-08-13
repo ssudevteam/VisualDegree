@@ -1,0 +1,50 @@
+{
+  "data": {
+    "programTypes": [
+      {
+        "id": "64796e0ad4ea07c70ad09fea",
+        "name": "Minor"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09feb",
+        "name": "Masters"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09fec",
+        "name": "Concentration"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09fed",
+        "name": "Sample Four-Year Plans"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09fee",
+        "name": "Major"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09fef",
+        "name": "Certificate"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09ff0",
+        "name": "Credential"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09ff1",
+        "name": "Added Authorization"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09ff2",
+        "name": "Sample Two-Year Transfer Plans"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09ff3",
+        "name": "Other Programs"
+      },
+      {
+        "id": "64796e0ad4ea07c70ad09ff4",
+        "name": "Pathway"
+      }
+    ]
+  }
+}
