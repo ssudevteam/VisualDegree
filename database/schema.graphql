@@ -171,10 +171,7 @@ extend type Query {
 
 extend type Mutation {
   createUser(name: String!, email: String!, major: String!, minor: String): User
-
   updateUser(args: String): User
-
   deleteUser(id: ID!): User
-
   addCourseToCompletedCourses(id: ID!, courseId: ID!): User
 }
