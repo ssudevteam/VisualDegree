@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DegreeBuilderView from "./views/DegreeBuilder/DegreeBuilderView";
 import DbHomeView from "./views/DbAccess/DbHomeView";
 import ScheduleView from "./views/MySchedules/ScheduleView";
+import OnboardingPage from "./views/OnboardingPage/OnboardingPage";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "../css/App.css";
 
@@ -22,6 +23,7 @@ function App() {
   const degreeBuilderRef = React.useRef();
   const DbHomeRef = React.useRef();
   const ScheduleRef = React.useRef();
+  const OnboardingRef = React.useRef();
 
   return (
     <ApolloProvider client={client}>
@@ -39,6 +41,10 @@ function App() {
             <Route
               path="/schedules"
               element={<ScheduleView forwardRef={ScheduleRef} />}
+            />
+            <Route
+              path="/welcome"
+              element={<OnboardingPage forwardRef={OnboardingRef} />}
             />
           </Routes>
         </div>
