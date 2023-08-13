@@ -2,25 +2,48 @@ require("dotenv").config({ path: "../config/.env" });
 const express = require("express");
 const colors = require("colors");
 const cors = require("cors");
-const { graphqlHTTP } = require("express-graphql");
-const schema = require("./schema/schema");
 const connectDB = require("./config/connection");
 const app = express();
-
+const http = require("http");
+const { ApolloServer } = require("apollo-server-express");
+const {
+  ApolloServerPluginCacheControl,
+} = require("@apollo/server/plugin/cacheControl");
+const responseCachePlugin = require("apollo-server-plugin-response-cache");
+const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
+const fs = require("fs");
+const path = require("path");
 const port = process.env.DB_PORT;
+const resolvers = require("./scripts/compileresolvers");
 
-// Connect to the database
-connectDB();
+const startServer = async () => {
+  // Connect to the database
+  connectDB();
 
-app.use(cors());
+  app.use(cors());
 
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    //GraphiQL graphical interface accessible at the /graphql endpoint only in dev.
-    graphiql: process.env.NODE_ENV === "development",
-  })
-);
+  app.use("/views", express.static(path.join(__dirname, "views")));
+  app.get("/voyager", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "voyager.html"));
+  });
 
-app.listen(port, console.log(`Server running on port ${port}`.cyan));
+  // Load your schema.graphql
+  const typeDefs = fs.readFileSync(
+    path.join(__dirname, "schema.graphql"),
+    "utf8"
+  );
+
+  // Set up Apollo Server
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [responseCachePlugin.default()],
+  });
+
+  await server.start();
+  server.applyMiddleware({ app, path: "/graphql" });
+
+  app.listen(port, console.log(`Server running on port ${port}`.cyan));
+};
+
+startServer();

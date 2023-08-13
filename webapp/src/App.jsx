@@ -9,44 +9,7 @@ import "../css/App.css";
 const dbPort = 8000;
 const isProduction = process.env.IS_PRODUCTION;
 
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        user: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-        course: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-        department: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-        program: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-        programType: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-        schedule: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-      },
-    },
-  },
-});
+const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   uri: isProduction

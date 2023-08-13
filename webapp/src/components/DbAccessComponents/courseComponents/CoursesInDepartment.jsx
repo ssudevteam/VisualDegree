@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import CourseRow from "../courseComponents/CourseRow";
-import { GET_COURSES_BY_DEPARTMENT } from "../../../client/queries/courseQueries";
+import { GET_COURSES_BY_DEPARTMENT } from "../../../graphql/queries/course";
 import "../../../../css/DbAccessData.css";
 
 const CoursesInDepartment = ({ departmentId }) => {

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_SCHEDULE } from "../../../client/mutations/scheduleMutations";
-import { GET_SCHEDULES } from "../../../client/queries/scheduleQueries";
-import { GET_USERS } from "../../../client/queries/userQueries";
+import { ADD_SCHEDULE } from "../../../graphql/mutations/schedule";
+import { GET_SCHEDULES } from "../../../graphql/queries/schedule";
+import { GET_USERS } from "../../../graphql/queries/user";
 
 function AddScheduleModal() {
   const [show, setShow] = useState(false);

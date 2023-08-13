@@ -1,4 +1,15 @@
-type Course {
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+  inheritMaxAge: Boolean
+) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
+type Course @cacheControl(maxAge: 7776000) {
   id: ID
   title: String
   prefix: String
@@ -12,13 +23,13 @@ type Course {
   department: Department
 }
 
-extend type Query {
+type Query {
   course(id: ID!): Course
   courses: [Course!]!
   coursesByDepartment(departmentId: ID!): [Course!]!
 }
 
-extend type Mutation {
+type Mutation {
   addCourse(
     title: String
     prefix: String
@@ -48,7 +59,7 @@ extend type Mutation {
   deleteCourse(id: ID!): Course
 }
 
-type Department {
+type Department @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
   url: String
@@ -65,13 +76,13 @@ extend type Mutation {
   deleteDepartment(id: ID!): Department
 }
 
-type Program {
+type Program @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
   url: String
   department: Department
   courses: [Course]
-  programType: ProgramDistinct
+  programType: ProgramType
 }
 
 extend type Query {
@@ -102,7 +113,7 @@ extend type Mutation {
   deleteProgram(id: ID!): Program
 }
 
-type ProgramType {
+type ProgramType @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
 }
@@ -134,6 +145,8 @@ extend type Mutation {
   addSchedule(user: String, name: String): Schedule
   updateSchedule(id: ID!, _: String, user: String, name: String): Schedule
   deleteSchedule(id: ID!): Schedule
+  addCourseToSchedule(scheduleID: ID!, courseID: ID!): Schedule
+  dropCourseFromSchedule(scheduleID: ID!, courseID: ID!): Schedule
 }
 
 type User {
@@ -162,4 +175,6 @@ extend type Mutation {
   updateUser(args: String): User
 
   deleteUser(id: ID!): User
+
+  addCourseToCompletedCourses(id: ID!, courseId: ID!): User
 }

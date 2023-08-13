@@ -1,6 +1,5 @@
 const express = require("express");
 const Article = require("./../models/article");
-const { listenerCount } = require("../../database/server/models/Program");
 const router = express.Router();
 
 router.get("/new", function (req, res) {

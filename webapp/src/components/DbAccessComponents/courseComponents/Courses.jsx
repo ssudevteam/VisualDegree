@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import CourseRow from "../courseComponents/CourseRow";
-import { GET_COURSES } from "../../../client/queries/courseQueries";
+import { GET_COURSES } from "../../../graphql/queries/course";
 import "../../../../css/DbAccessData.css"; // Update the CSS file path
 
 const Courses = () => {

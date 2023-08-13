@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
-import { GET_DEPARTMENT } from "../../../client/queries/departmentQueries";
+import { GET_DEPARTMENT } from "../../../graphql/queries/department";
 import "../../../../css/DbAccessData.css";
 
 export default function DepartmentModal({ departmentId, closeModal }) {

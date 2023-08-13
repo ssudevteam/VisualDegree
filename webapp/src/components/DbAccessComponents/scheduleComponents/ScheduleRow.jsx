@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import CourseList from "../courseComponents/CourseList";
 import { FaTrash } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
-import { DELETE_SCHEDULE } from "../../../client/mutations/scheduleMutations";
-import { GET_SCHEDULES } from "../../../client/queries/scheduleQueries";
+import { DELETE_SCHEDULE } from "../../../graphql/mutations/schedule";
+import { GET_SCHEDULES } from "../../../graphql/queries/schedule";
 
 const ScheduleRow = ({ schedule }) => {
   const [dropDownListOpen, setDropDownListOpen] = useState(false);

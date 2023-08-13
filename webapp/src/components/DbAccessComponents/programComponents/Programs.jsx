@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
 import ProgramRow from "./ProgramRow";
-import { GET_PROGRAMS } from "../../../client/queries/programQueries";
+import { GET_PROGRAMS } from "../../../graphql/queries/program";
 import "../../../../css/DbAccessData.css";
 
 const Programs = () => {

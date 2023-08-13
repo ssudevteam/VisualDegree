@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../Spinner";
-import { GET_PROGRAM } from "../../../client/queries/programQueries";
+import { GET_PROGRAM } from "../../../graphql/queries/program";
 import "../../../../css/DbAccessData.css";
 
 const ProgramModal = ({ programId, closeModal }) => {

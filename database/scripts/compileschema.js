@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const rootDir = "./"; // starting root directory
+const rootDir = __dirname; // starting root directory
 
 const getGraphqlFilesFromDirectory = (directory) => {
   let graphqlContents = [];
@@ -29,7 +29,7 @@ const getGraphqlFilesFromDirectory = (directory) => {
 const combinedGraphqlContent =
   getGraphqlFilesFromDirectory(rootDir).join("\n\n");
 
-const outputPath = path.join("./schema.graphql");
+const outputPath = path.join(rootDir, "schema.graphql");
 fs.writeFileSync(outputPath, combinedGraphqlContent);
 
 console.log("Master schema.graphql created!");
