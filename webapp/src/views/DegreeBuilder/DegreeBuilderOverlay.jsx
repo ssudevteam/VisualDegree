@@ -1,32 +1,32 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Select from "react-select";
-import { Spinner } from "react-bootstrap";
+import {Spinner} from "react-bootstrap";
 import button from "bootstrap/js/src/button";
 
-import { useLazyQuery, useQuery } from "@apollo/client";
-import { GET_PROGRAMS } from "../../graphql/queries/program";
-import { GET_COURSE } from "../../graphql/queries/course";
+import {useLazyQuery, useQuery} from "@apollo/client";
+import {GET_PROGRAMS} from "../../graphql/queries/program";
+import {GET_COURSE} from "../../graphql/queries/course";
 
 import Navbar from "../../components/Navbar";
 import Overlay from "../../components/Overlay";
 import FontSelector from "../../components/UserSettings/FontSelector";
 import LanguageSelector from "../../components/UserSettings/LanguageSelector";
 
-import { FlowNodesContext } from "../../common/Contexts";
-import { FlowNodeTypes } from "../../common/Types";
+import {FlowNodesContext} from "../../common/Contexts";
+import {FlowNodeTypes} from "../../common/Types";
 
 import "../../../css/builder.css";
 import "../../../css/navbar.css";
 import "../../../css/overlay.css";
 import "../../../css/sidebar.css";
 
-const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
+const DegreeBuilderOverlay = ({onSelectNode, onCenterView, ...props}) => {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [programs, setPrograms] = useState([]);
   const [programCourses, setProgramCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { nodes, setNodes, addNode, removeNode, createNode } =
+  const {nodes, setNodes, addNode, removeNode, createNode} =
     useContext(FlowNodesContext);
   const label = "VisualDegree";
 
@@ -69,7 +69,7 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       const courses = [];
       for (const course of program.courses) {
         try {
-          const { data } = await queryCourseData({
+          const {data} = await queryCourseData({
             variables: {
               id: course.id,
             },
@@ -91,26 +91,6 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (!programCourses && (nodes ? nodes.length > 0 : false)) {
-      setNodes(null);
-      return;
-    }
-    programCourses.map(
-      (course) => {
-        const newNode = createNode({
-          id: course.id,
-          type: FlowNodeTypes.Course,
-          data: course,
-        });
-        if (course.pre) addNode(newNode);
-        onSelectNode(newNode);
-        addCloseEvent(newNode);
-      },
-      [createNode, addNode, onSelectNode, addCloseEvent]
-    );
-  }, [programCourses]);
 
   const renderProgramSelectBox = () => {
     const options = [];
@@ -136,13 +116,13 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
         }}>
         <label htmlFor="programSelect">Select Degree Program:</label>
         {loading ? (
-          <Spinner />
+          <Spinner/>
         ) : (
           <Select
             id="programSelectBox"
             onChange={handleProgramSelection}
             options={options}
-            value={selectedProgram ? { label: selectedProgram.name } : null}
+            value={selectedProgram ? {label: selectedProgram.name} : null}
           />
         )}
       </div>
@@ -174,7 +154,7 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
           paddingTop: "15px",
           position: "relative",
         }}>
-        <h4 style={{ paddingLeft: "10px" }}>Courses</h4>
+        <h4 style={{paddingLeft: "10px"}}>Courses</h4>
         <div
           id="courseListBox"
           className="course-list-box scrollbar-thin scrollbar-track-lightgray scrollbar-thumb-hover-darkgray"
@@ -256,7 +236,7 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
 
   const bannerContent = () => {
     return (
-      <div style={{ alignItems: "center" }}>
+      <div style={{alignItems: "center"}}>
         <h5
           id="bannerLabel"
           className="label"
