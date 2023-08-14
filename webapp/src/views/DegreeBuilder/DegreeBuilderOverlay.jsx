@@ -26,7 +26,8 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
   const [programCourses, setProgramCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { addNode, removeNode, createNode } = useContext(FlowNodesContext);
+  const { nodes, setNodes, addNode, removeNode, createNode } =
+    useContext(FlowNodesContext);
   const label = "VisualDegree";
 
   const {
@@ -51,6 +52,12 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       setLoading(queryLoading);
     }
   }, [queryData, queryError, queryLoading]);
+
+  const addCloseEvent = (node) => {
+    node.data.eventListener.add("close", toggleCourseNode, [
+      `button_${node.data.id}`,
+    ]);
+  };
 
   const handleProgramSelection = async (selection) => {
     let program = selection.value;
@@ -84,6 +91,26 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!programCourses && (nodes ? nodes.length > 0 : false)) {
+      setNodes(null);
+      return;
+    }
+    programCourses.map(
+      (course) => {
+        const newNode = createNode({
+          id: course.id,
+          type: FlowNodeTypes.Course,
+          data: course,
+        });
+        if (course.pre) addNode(newNode);
+        onSelectNode(newNode);
+        addCloseEvent(newNode);
+      },
+      [createNode, addNode, onSelectNode, addCloseEvent]
+    );
+  }, [programCourses]);
 
   const renderProgramSelectBox = () => {
     const options = [];
@@ -177,7 +204,7 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
     );
   };
 
-  const toggleButton = (buttonId) => {
+  const toggleCourseNode = (buttonId) => {
     const button = document.getElementById(buttonId);
     if (button) {
       button.classList.toggle("button-select");
@@ -196,7 +223,6 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       return;
     }
 
-    const buttonId = courseButton.getAttribute("id");
     if (!courseButton.classList.contains("button-select")) {
       const newNode = createNode({
         id: course.id,
@@ -205,11 +231,11 @@ const DegreeBuilderOverlay = ({ onSelectNode, onCenterView, ...props }) => {
       });
       addNode(newNode);
       onSelectNode(newNode);
-      newNode.data.eventListener.add("close", toggleButton, [buttonId]);
+      addCloseEvent(newNode);
     } else {
       removeNode(course);
     }
-    toggleButton(buttonId);
+    toggleCourseNode(courseButton.id);
   };
 
   const renderNavbar = () => {
