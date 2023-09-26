@@ -1,9 +1,9 @@
 {
   "name": "visualdegree",
-  "version": "0.0.0",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
-    "start": "npm install && npm run build:website && npm run build:webapp && node app",
+    "start": "concurrently \"npm run db\" \"npm run test\"",
     "render": "npm install && cd blog && npm install && cd .. && npm run build:website && npm run build:webapp && node app",
     "build:website": "rimraf ./public/website && vite build -c website/vite.config.js && node scripts/website/postbuild",
     "build:webapp": "rimraf ./public/webapp && cross-env VITE_ENV=development vite build -c webapp/vite.config.ts",
@@ -37,6 +37,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-draggable-svg": "^0.0.3",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.0",
     "react-scripts": "5.0.1",
@@ -50,6 +52,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
+    "concurrently": "^8.2.0",
     "esbuild": "^0.19.0",
     "eslint": "^8.47.0",
     "eslint-plugin-react-hooks": "^4.6.0",

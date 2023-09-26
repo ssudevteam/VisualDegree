@@ -175,3 +175,5 @@ extend type Mutation {
   deleteUser(id: ID!): User
   addCourseToCompletedCourses(id: ID!, courseId: ID!): User
 }
+
+# add manually

@@ -1,7 +1,7 @@
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://dandrepairshop.com",
-  "https://dandrepairshop.com",
+  "https://www.visualdegree.com",
+  "https://visualdegree.com",
 ];
 
 //local hosts to allow to access the REST api

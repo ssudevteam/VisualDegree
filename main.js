@@ -5,9 +5,9 @@ const path = require("path");
 const errorHandler = require("./server/middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const corsOptions = require("./config/corsOptions");
+const corsOptions = require("./server/config/corsOptions");
 const PORT = process.env.APP_PORT || 3000;
-const firebase_server = require("./users/init");
+const firebase_server = require("./users/init"); // I'm not sure if this needs to be here
 
 const headers1 = "Origin, X-Requested-With, Content-Type, Accept";
 const headers2 =
@@ -34,9 +34,9 @@ app.use(cookieParser());
 
 // route public folder structures for style.css and images etc.
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/", require("./routes/mainrouter"));
-app.use("/api", require("./routes/api"));
-app.use("/api", require("./routes/users"));
+app.use("/", require("./server/routes/mainrouter"));
+app.use("/api", require("./server/routes/api"));
+app.use("/api", require("./server/routes/users"));
 app.use("/blog", require("./blog/server")); // Replace this with the actual path to your blog server
 
 // send to 404 to front end on res.status
@@ -57,6 +57,7 @@ app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-/* fragments */
+/* ... [Unused] */
+// Logger
 // const { logger } = require("./server/middleware/logger");
 // app.use(logger); logger disabled until we figure out how to implement a real logging system

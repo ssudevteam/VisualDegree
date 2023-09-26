@@ -12,13 +12,13 @@ type Course @cacheControl(maxAge: 7776000) {
   department: Department
 }
 
-extend type Query {
+type Query {
   course(id: ID!): Course
   courses: [Course!]!
   coursesByDepartment(departmentId: ID!): [Course!]!
 }
 
-extend type Mutation {
+type Mutation {
   addCourse(
     title: String!
     prefix: String!
