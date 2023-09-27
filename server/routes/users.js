@@ -8,6 +8,10 @@ const router = express.Router();
 // server responds with a cookie that represents the login session
 // cookie is then passed by the header defined in app.js throughout all app routes
 router.post("/validate-idtoken", (req, res) => {
+
+  // -------------------------------------------------
+  // Security TODO:
+  // -------------------------------------------------
   // Get the ID token passed and the CSRF token.
   const idToken = req.body.token.toString();
 
