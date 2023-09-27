@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "config/.env" });
+require("dotenv").config({ path: ".env" });
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -34,9 +34,9 @@ app.use(cookieParser());
 
 // route public folder structures for style.css and images etc.
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/", require("./server/routes/mainrouter"));
-app.use("/api", require("./server/routes/api"));
-app.use("/api", require("./server/routes/users"));
+app.use("/", require("./routes/mainrouter"));
+app.use("/api", require("./routes/api"));
+app.use("/api", require("./routes/users"));
 app.use("/blog", require("./blog/server")); // Replace this with the actual path to your blog server
 
 // send to 404 to front end on res.status

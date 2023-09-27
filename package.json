@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"npm run db\" \"npm run test\"",
-    "render": "npm install && cd blog && npm install && cd .. && npm run build:website && npm run build:webapp && node app",
+    "render": "npm install && cd blog && npm install && cd .. && npm run build:website && npm run build:webapp && node main",
     "build:website": "rimraf ./public/website && vite build -c website/vite.config.js && node scripts/website/postbuild",
     "build:webapp": "rimraf ./public/webapp && cross-env VITE_ENV=development vite build -c webapp/vite.config.ts",
     "build:render": "rimraf ./public/webapp && cross-env VITE_ENV=production vite build -c webapp/vite.config.ts",

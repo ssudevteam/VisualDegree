@@ -13,6 +13,8 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
 });
 
+
+
 // // Import the queries
 // const {
 //   GET_COURSE,

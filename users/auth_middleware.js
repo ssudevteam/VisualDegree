@@ -1,13 +1,6 @@
 // Import Firebase Admin initialized instance to middleware
 const firebase = require("firebase-admin");
-// import firebase from "firebase";
-
-// TODO - possibly on our mongo db
-// const roleRanks = {
-//   superAdmin: 1,
-//   admin: 2,
-//   user: 3,
-// };
+const fetch = require('node-fetch');
 
 // Checks if a user is authenticated from firebase admin
 module.exports.isAuthorized = async (req, res, next) => {
@@ -42,30 +35,52 @@ module.exports.decodeFirebaseSessionCookie = (req, res, next) => {
     });
 };
 
-// TODO
+module.exports.fetchAccount = async (req, res, next) => {
+  if (req.account && req.account.firebaseID) {
+      // Fetch user data from your app's database using the Firebase ID
+      const user = await fetchUserData(req.account.firebaseID);
 
-// // Checks if a user has the required permission from token claims stored in firebase admin for the user
-// module.exports.hasAdminRole = async (req, res, next) => {
-//   try {
-//     const roleRequest = await firebase.database().ref("roles").once("value");
-//     const rolesPayload = roleRequest.val();
-//     const role = rolesPayload.find((role) => role.id === roleRanks.admin);
+      // If user data found in your app's database, attach it to req.user
+      if (user) {
+          req.user = user;
+          next();
+      } else {
+          console.log("User data not found in our app's database. Taking appropriate action...");
+          // Decide on how you want to handle this scenario. You might want to:
+          // 1. Redirect to /app/welcome
+          // 2. Log the user out and ask them to re-login.
+          // 3. Or any other action that fits your application's needs.
+          res.redirect("/some-appropriate-endpoint");
+      }
+  } else {
+      console.log("User not logged in, redirecting...");
+      res.redirect("/login");
+  }
+};
 
-//     if (req.user.roleId <= role.id) {
-//       next();
-//     } else {
-//       return res.status(403).json({
-//         error: {
-//           message: "You are not permitted to access this resource",
-//         },
-//       });
-//     }
-//   } catch (error) {
-//     return res.status(500).json({
-//       error: {
-//         message:
-//           "An error occurred while getting user access. Please try again",
-//       },
-//     });
-//   }
-// };
+// Implementation of User Lookup
+async function fetchUserData(firebaseID) {
+  const query = `
+      query GetUserByFirebaseID($firebaseID: String!) {
+          user(where: { firebaseID: $firebaseID }) {
+              id
+              name
+              // ... other fields you might want
+          }
+      }
+  `;
+
+  const response = await fetch('http://localhost:3000/graphql', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          query: query,
+          variables: { firebaseID: firebaseID }
+      })
+  });
+
+  const { data } = await response.json();
+  return data.user;
+}
