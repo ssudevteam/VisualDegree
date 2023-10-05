@@ -33,6 +33,7 @@
     "fuse.js": "^6.6.2",
     "fuze": "^0.0.1",
     "graphql": "^16.6.0",
+    "http-proxy-middleware": "^2.0.6",
     "mongoose": "^7.2.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",

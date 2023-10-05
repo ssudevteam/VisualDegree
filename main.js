@@ -6,6 +6,7 @@ const errorHandler = require("./server/middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const corsOptions = require("./server/config/corsOptions");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const PORT = process.env.APP_PORT || 3000;
 const firebase_server = require("./users/init"); // I'm not sure if this needs to be here
 
@@ -52,6 +53,16 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 Not Found");
   }
 });
+
+app.use(
+  '/__/auth/',
+  createProxyMiddleware({
+    target: 'https://visual-degree-f99a8.firebaseapp.com',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/__/auth': '/__/auth',
+    },
+  }));
 
 app.use(errorHandler);
 
