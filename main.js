@@ -1,23 +1,24 @@
 require("dotenv").config({ path: ".env" });
+
+/* 1. Express Server */
 const express = require("express");
 const app = express();
 const path = require("path");
 const errorHandler = require("./server/middleware/errorHandler");
 const cookieParser = require("cookie-parser");
+const PORT = process.env.APP_PORT || 3000;
+
+/* 2. CORS and headers */
 const cors = require("cors");
 const corsOptions = require("./server/config/corsOptions");
-const { createProxyMiddleware } = require('http-proxy-middleware');
-const PORT = process.env.APP_PORT || 3000;
-const firebase_server = require("./users/init"); // I'm not sure if this needs to be here
-
 const headers1 = "Origin, X-Requested-With, Content-Type, Accept";
 const headers2 =
   "Authorization, Access-Control-Allow-Credentials, x-access-token";
+/*               */
 
-/* Cross Origin Requests*/
+
+/* 2a. Header Fields */
 app.use(cors(corsOptions));
-
-/* Header Fields */
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
   res.header(
@@ -29,18 +30,19 @@ app.use((req, res, next) => {
   next();
 });
 
-// process json
+/* 1a. Express Server */
 app.use(express.json());
 app.use(cookieParser());
+app.use(errorHandler);
 
-// route public folder structures for style.css and images etc.
-app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/", require("./routes/mainrouter"));
-app.use("/api", require("./routes/api"));
-app.use("/api", require("./routes/users"));
-app.use("/blog", require("./blog/server")); // Replace this with the actual path to your blog server
+// Top Level Routing
+app.use("/", express.static(path.join(__dirname, "public"))); // public static html site routing
+app.use("/", require("./routes/mainrouter")); // main navigation routing
+app.use("/api", require("./routes/api"));     // Api level routing
+app.use("/blog", require("./blog/server"));   // Blog level routing
 
-// send to 404 to front end on res.status
+/* HTML Messages   */
+// 404
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
@@ -53,22 +55,7 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 Not Found");
   }
 });
+/*               */
 
-app.use(
-  '/__/auth/',
-  createProxyMiddleware({
-    target: 'https://visual-degree-f99a8.firebaseapp.com',
-    changeOrigin: true,
-    pathRewrite: {
-      '^/__/auth': '/__/auth',
-    },
-  }));
-
-app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-/* ... [Unused] */
-// Logger
-// const { logger } = require("./server/middleware/logger");
-// app.use(logger); logger disabled until we figure out how to implement a real logging system
