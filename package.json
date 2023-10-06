@@ -28,8 +28,6 @@
     "date-fns": "^2.29.3",
     "debug": "~2.6.9",
     "file-saver": "^2.0.5",
-    "firebase": "^9.22.2",
-    "firebase-admin": "^11.9.0",
     "fuse.js": "^6.6.2",
     "fuze": "^0.0.1",
     "graphql": "^16.6.0",
