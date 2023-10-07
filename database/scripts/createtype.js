@@ -4,21 +4,77 @@
 
 const fs = require("fs");
 const path = require("path");
+const readline = require("readline");
 
-const createType = (typeName) => {
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+const promptUserForInput = (question) => {
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      resolve(answer);
+    });
+  });
+};
+
+const createType = async () => {
+  // Prompt user for typename
+  const typeName = await promptUserForInput("Enter the type name: ");
   const typeDir = path.join(__dirname, "../", typeName);
+  const typeToLower = typeName.toLowerCase();
 
-  // Create the directory for type
   if (!fs.existsSync(typeDir)) {
     fs.mkdirSync(typeDir, { recursive: true });
   }
 
+  const GraphQLToMongooseTypeMap = {
+    ID: "mongoose.Schema.Types.ObjectId",
+    String: "String",
+    Int: "Number",
+    Float: "Number",
+    Boolean: "Boolean",
+  };
+
+  const displayGraphQLTypes = () => {
+    console.log("Available GraphQL Primitive Types:");
+    for (const type in GraphQLToMongooseTypeMap) {
+      console.log(`- ${type}`);
+    }
+  };
+
+  // Prompt user for fields
+  let fields = {};
+  let moreFields = true;
+  displayGraphQLTypes();
+  while (moreFields) {
+    const fieldInput = await promptUserForInput(
+      "Enter field in the format name:type (or 'done' to finish): "
+    );
+
+    if (fieldInput === "done") {
+      moreFields = false;
+    } else {
+      const [fieldName, fieldType] = fieldInput.split(":");
+      if (!GraphQLToMongooseTypeMap[fieldType]) {
+        console.log("Invalid GraphQL type. Please use one from the list.");
+        continue;
+      }
+      fields[fieldName] = GraphQLToMongooseTypeMap[fieldType];
+    }
+  }
+
   // Create Mongoose model .js file
+  let mongooseFields = Object.entries(fields)
+    .map(([key, value]) => `  ${key}: ${value},`)
+    .join("\n");
+
   const modelContent = `
 const mongoose = require('mongoose');
 
 const ${typeName}Schema = new mongoose.Schema({
-    // TODO: Define your mongo schema here
+${mongooseFields}
 });
 
 module.exports = mongoose.model('${typeName}', ${typeName}Schema);
@@ -27,10 +83,14 @@ module.exports = mongoose.model('${typeName}', ${typeName}Schema);
   fs.writeFileSync(path.join(typeDir, `model.js`), modelContent.trim());
 
   // Create .graphql file for GraphQL type definitions
+  let graphqlFields = Object.keys(fields)
+    .map((key) => `  ${key}: ${fields[key]}!`)
+    .join("\n");
+
   const graphqlContent = `
 type ${typeName} {
-    id: ID!
-    # TODO: Add other fields here
+  id: ID!
+${graphqlFields}
 }
 `;
 
@@ -45,9 +105,7 @@ type ${typeName} {
 `;
   fs.writeFileSync(path.join(typeDir, `resolvers.js`), resolversContent.trim());
 
-  /* not using queries */
-
-  const typeToLower = typeName.toLowerCase();
+  // ... [Queries]
   // Create queries.js for GraphQL queries related to this type
   const queriesContent = `
   // TODO: Define queries for ${typeName}
@@ -63,32 +121,30 @@ module.exports = queries;
 
   fs.writeFileSync(path.join(typeDir, `queries.js`), queriesContent.trim());
 
+  // ... [Mutations]
   // Create mutations.js for GraphQL mutations
   const mutationsContent = `
   // TODO: Define mutations for ${typeName}
   const ${typeName} = require("./model");
 
 const mutations = {
-  add${typeName}: async (_, { name, //fields }) => {
-    const program = new Program({
-        // fields
+  add${typeName}: async (_, { ${graphqlFields} }) => {
+    const ${typeToLower} = new ${typeName}({
+      ${graphqlFields}
     });
     return await ${typeToLower}.save();
   },
-  updateProgram: async (_, args) => {
+  update${typeName}: async (_, args) => {
     // Prepare the update object
     let updateData = {};
 
     // Dynamically set provided fields
     for (let key in args) {
       if (args[key] !== undefined && key !== "id") {
-        // TO REPLACE: rules for replacing certain keys with certain types
-        if (key === "department") updateData["department_id"] = args[key];
-        else if (key === "programType") updateData["type_id"] = args[key];
-        else updateData[key] = args[key];
+        updateData[key] = args[key];
       }
     }
-
+    
     return await ${typeName}.findByIdAndUpdate(
       args.id,
       { $set: updateData },
@@ -107,14 +163,8 @@ module.exports = mutations;
   fs.writeFileSync(path.join(typeDir, `mutations.js`), mutationsContent.trim());
 
   console.log(`${typeName} type boilerplate created successfully!`);
+
+  rl.close();
 };
 
-// Take the type name from command line arguments
-const typeName = process.argv[2];
-
-if (!typeName) {
-  console.error("Please provide a type name!");
-  process.exit(1);
-}
-
-createType(typeName);
+createType();

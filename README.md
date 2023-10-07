@@ -1,31 +1,45 @@
 # VisualDegree
-___
+
+---
+
 ## Installation and Building Instructions:
 
 From the root directory, the following options are available:
 
-1. `npm start` installs, builds, and runs the application. They can also be called separately:
-    - `npm run build:website` builds the website
-    - `npm run build:webapp` builds the webapp
-    - `node app` starts the express server
-2. `npm run setup:db` installs, builds, and start the database server
-3. `npm test` starts the local vite server, which handles auto-reloading
-4. `npm run format` formats the code for all `.js` and `.jsx` files
+1. WebApp Dev: `npm start` concurrently runs database and webapp with vite hotreloading on localhost:4000/app
+2. Production Test: `npm run render` bundles/builds webapp + website and runs on localhost:3000
+3. Database Dev: `npm run setup:db` installs and start the database server in nodemon dev mode
+4. Code Formatting: `npm run format` formats the code for all `.js` and `.jsx` files
 
 ## Routes:
 
-- / - Index, shows landingPage
-- /app - React-flow app
-- /api - Api stub
+express server
+
+- localhost:3000/ - Index, shows landingPage
+- localhost:3000/blog - Blog
+- localhost:3000/login - Firebase auth page
+
+vite server (routes also supported by express server once built)
+
+- localhost:4000 /app - React-flow app
+- localhost:4000 /schedules - User Schedules stub
+- localhost:4000 /welcome - onboarding
+- localhost:4000 /api - apiView
+
+database server
+
+- localhost:8000/graphql - api endpoint and sandbox
+- localhost:8000/voyager - quick GQL typedef viewer
 
 ## Directory Map:
 
-/public/\* -Viteified source files  
-/scripts - Various scripts we might need to run for development  
+/public/\* - Vite-built source files  
+/server - elements of the root main.js express server
 /webapp - Codebase for the one-page webapp  
-/website - Codebase for the multi-page website: landingPage... we'll add a signUp page, etc.
+/website - Codebase for the multi-page website: landingPage/login
 
-___
+---
+
 ## Contributing:
 
 Fork the repository, make your changes, and open a pull request.

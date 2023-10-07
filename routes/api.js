@@ -1,3 +1,5 @@
+/* Routing for /api */
+
 const express = require("express");
 const router = express.Router();
 const path = require("path");
@@ -12,6 +14,8 @@ const client = new ApolloClient({
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
 });
+
+
 
 // // Import the queries
 // const {

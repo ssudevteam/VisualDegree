@@ -1,16 +1,11 @@
-require("dotenv").config({ path: "../config/.env" });
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
-const colors = require("colors");
 const cors = require("cors");
+const colors = require("colors");
 const connectDB = require("./config/connection");
 const app = express();
-const http = require("http");
 const { ApolloServer } = require("apollo-server-express");
-const {
-  ApolloServerPluginCacheControl,
-} = require("@apollo/server/plugin/cacheControl");
 const responseCachePlugin = require("apollo-server-plugin-response-cache");
-const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 const fs = require("fs");
 const path = require("path");
 const port = process.env.DB_PORT;
@@ -27,7 +22,9 @@ const startServer = async () => {
     res.sendFile(path.join(__dirname, "views", "voyager.html"));
   });
 
-  // Load your schema.graphql
+  // Load typeDefs from schema.graphql
+
+  // TODO some validation check that modules are in sync
   const typeDefs = fs.readFileSync(
     path.join(__dirname, "schema.graphql"),
     "utf8"

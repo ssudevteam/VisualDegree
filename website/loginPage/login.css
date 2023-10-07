@@ -24,8 +24,12 @@ body {
 /*------------ Login container ------------*/
 .box-area {
   margin-top: 70px;
-  width: 820px;
-  height: 480px;
+  width: 980px;
+  height: 560px;
+}
+
+.form-area {
+  height: 660px;
 }
 
 /*------------ Right box ------------*/

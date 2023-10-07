@@ -149,6 +149,7 @@ extend type Mutation {
   dropCourseFromSchedule(scheduleID: ID!, courseID: ID!): Schedule
 }
 
+
 type User {
   id: ID!
   name: String!
@@ -170,8 +171,18 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(name: String!, email: String!, major: String!, minor: String): User
+   createUserWithFirebaseID(
+        firebaseID: String!
+        name: String!
+        student_id: String!
+        email: String!
+        major: String
+        minor: String
+    ): User
   updateUser(args: String): User
   deleteUser(id: ID!): User
   addCourseToCompletedCourses(id: ID!, courseId: ID!): User
 }
+
+
+# add manually
