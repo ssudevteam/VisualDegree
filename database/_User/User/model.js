@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    firebaseID: {
+    googleID: {
       type: String,
       required: true,
       immutable: true,

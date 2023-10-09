@@ -1,6 +1,6 @@
 type User {
   id: ID!
-  firebaseID: String!
+  googleID: String!
   name: String!
   student_id: String
   email: String!
@@ -20,13 +20,9 @@ extend type Query {
 }
 
 extend type Mutation {
-   createUserWithFirebaseID(
-        firebaseID: String!
-        name: String!
-        student_id: String!
+   createUserWithGoogleID(
+        googleID: String!
         email: String!
-        major: String
-        minor: String
     ): User
   updateUser(args: String): User
   deleteUser(id: ID!): User
