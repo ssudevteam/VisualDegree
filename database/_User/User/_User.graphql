@@ -1,7 +1,8 @@
 type User {
   id: ID!
   googleID: String!
-  name: String!
+  displayName: String!
+  name: String
   student_id: String
   email: String!
   unitsEnrolled: String
@@ -15,6 +16,7 @@ type User {
 extend type Query {
   user(id: ID!): User
   users: [User!]!
+  userByGoogleID(googleID: String!): User
   userCountByMajor(programID: ID!): [User!]!
   userCountByUnitsTaken(num_of_units: String!): [User!]!
 }
@@ -23,6 +25,7 @@ extend type Mutation {
    createUserWithGoogleID(
         googleID: String!
         email: String!
+        displayName: String!
     ): User
   updateUser(args: String): User
   deleteUser(id: ID!): User

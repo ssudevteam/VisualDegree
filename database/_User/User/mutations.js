@@ -2,7 +2,8 @@ const User = require("./model");
 const Schedule = require("../Schedule/model");
 
 const mutations = {
-    createUserWithGoogleID: async (_, { googleID, email }) => {
+    // CREATE
+    createUserWithGoogleID: async (_, { googleID, email, displayName }) => {
         const existingUser = await User.findOne({ googleID: googleID });
         if (existingUser) {
             throw new Error("User with this Google ID already exists.");
@@ -11,10 +12,12 @@ const mutations = {
         const user = new User({
             googleID,
             email,
+            displayName
         });
         
         return await user.save();
       },
+  // UPDATE
   updateUser: async (_, args) => {
     // Extract the ID from the arguments
     const { id } = args;
