@@ -1,3 +1,0 @@
-# Users
-
-Auth0 Implementation ...
