@@ -2,17 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    firebaseID: {
-      type: String,
-      required: true,
-      immutable: true,
-    },
-    name: {
-      type: String,
-      required: true,
-      immutable: true,
-    },
-    student_id: {
+    googleID: {
       type: String,
       required: true,
       immutable: true,
@@ -20,6 +10,18 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+    },
+    displayName: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      immutable: true,
+    },
+    student_id: {
+      type: String,
+      immutable: true,
     },
     unitsEnrolled: {
       type: String,
@@ -32,7 +34,6 @@ const userSchema = new mongoose.Schema(
     major: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Program", // Reference to the 'Program' model
-      required: true,
     },
     minor: {
       type: mongoose.Schema.Types.ObjectId,

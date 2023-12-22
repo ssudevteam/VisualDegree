@@ -2,24 +2,22 @@ const User = require("./model");
 const Schedule = require("../Schedule/model");
 
 const mutations = {
-    createUserWithFirebaseID: async (_, { firebaseID, name, student_id, email, major, minor }) => {
-        const existingUser = await User.findOne({ firebaseID: firebaseID });
+    // CREATE
+    createUserWithGoogleID: async (_, { googleID, email, displayName }) => {
+        const existingUser = await User.findOne({ googleID: googleID });
         if (existingUser) {
-            throw new Error("User with this Firebase ID already exists.");
+            throw new Error("User with this Google ID already exists.");
         }
 
         const user = new User({
-            firebaseID,
-            name,
-            student_id,
+            googleID,
             email,
-            major,
-            minor,
-            completed_courses: [], // Assuming no courses completed on account creation
+            displayName
         });
         
         return await user.save();
       },
+  // UPDATE
   updateUser: async (_, args) => {
     // Extract the ID from the arguments
     const { id } = args;

@@ -9,6 +9,11 @@ directive @cacheControl(
   inheritMaxAge: Boolean
 ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
 
+
+#------------#
+# Course     #
+#------------#
+
 type Course @cacheControl(maxAge: 7776000) {
   id: ID
   title: String
@@ -59,6 +64,11 @@ type Mutation {
   deleteCourse(id: ID!): Course
 }
 
+
+#------------#
+# Department #
+#------------#
+
 type Department @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
@@ -76,6 +86,10 @@ extend type Mutation {
   deleteDepartment(id: ID!): Department
 }
 
+
+#------------#
+#   Program  #
+#------------#
 type Program @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
@@ -113,6 +127,10 @@ extend type Mutation {
   deleteProgram(id: ID!): Program
 }
 
+#------------#
+#ProgramType #
+#------------#
+
 type ProgramType @cacheControl(maxAge: 7776000) {
   id: ID
   name: String
@@ -128,6 +146,10 @@ extend type Mutation {
   updateProgramType(id: ID!, name: String): ProgramType
   deleteProgramType(id: ID!): ProgramType
 }
+
+#------------#
+# Schedule   #
+#------------#
 
 type Schedule {
   id: ID!
@@ -148,12 +170,15 @@ extend type Mutation {
   addCourseToSchedule(scheduleID: ID!, courseID: ID!): Schedule
   dropCourseFromSchedule(scheduleID: ID!, courseID: ID!): Schedule
 }
-
-
+#------------#
+#   User    #
+#------------#
 type User {
   id: ID!
-  name: String!
-  student_id: String!
+  googleID: String!
+  displayName: String!
+  name: String
+  student_id: String
   email: String!
   unitsEnrolled: String
   unitsTaken: String
@@ -166,23 +191,24 @@ type User {
 extend type Query {
   user(id: ID!): User
   users: [User!]!
+  userByGoogleID(googleID: String!): User
   userCountByMajor(programID: ID!): [User!]!
   userCountByUnitsTaken(num_of_units: String!): [User!]!
 }
 
 extend type Mutation {
-   createUserWithFirebaseID(
-        firebaseID: String!
-        name: String!
-        student_id: String!
+   createUserWithGoogleID(
+        googleID: String!
         email: String!
-        major: String
-        minor: String
+        displayName: String!
     ): User
   updateUser(args: String): User
   deleteUser(id: ID!): User
   addCourseToCompletedCourses(id: ID!, courseId: ID!): User
 }
+
+
+
 
 
 # add manually

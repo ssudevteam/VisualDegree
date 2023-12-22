@@ -40,6 +40,7 @@ app.use("/", express.static(path.join(__dirname, "public"))); // public static h
 app.use("/", require("./routes/mainrouter")); // main navigation routing
 app.use("/api", require("./routes/api"));     // Api level routing
 app.use("/blog", require("./blog/server"));   // Blog level routing
+app.use('/auth', require("./auth/authrouter")); // Auth levle routing
 
 /* HTML Messages   */
 // 404

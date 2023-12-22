@@ -2,6 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
+const sessionConfig = require("../auth/config");
+router.use(sessionConfig);
+
+const isAuthenticated = require("../auth/middleware");
 
 
 
@@ -20,7 +24,7 @@ router.get("/login", (req, res) => {
 });
 
 // App - webapp
-router.get("/app", (req, res) => {
+router.get("/app", isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/webapp", "index.html"));
 });
 
